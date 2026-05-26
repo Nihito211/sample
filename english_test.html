@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>英単語ランダムテスト (25問)</title>
+    <style>
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background-color: #f7f9fa;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+        h1 {
+            text-align: center;
+            color: #d35400;
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+        .subtitle {
+            text-align: center;
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 30px;
+        }
+        .quiz-item {
+            padding: 15px 0;
+            border-bottom: 1px solid #edf2f7;
+        }
+        .quiz-item:last-child {
+            border-bottom: none;
+        }
+        .question {
+            font-weight: bold;
+            font-size: 16px;
+            margin-bottom: 8px;
+            color: #2c3e50;
+        }
+        .input-area {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        input[type="text"] {
+            flex: 1;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            outline: none;
+            transition: border 0.2s;
+        }
+        input[type="text"]:focus {
+            border-color: #3498db;
+        }
+        .result-comment {
+            margin-top: 5px;
+            font-size: 14px;
+            font-weight: bold;
+            display: none;
+        }
+        .correct { color: #27ae60; }
+        .incorrect { color: #c0392b; }
+        .btn-container {
+            text-align: center;
+            margin-top: 30px;
+        }
+        button {
+            background-color: #e67e22;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.2s;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        button:hover {
+            background-color: #d35400;
+        }
+        #score-display {
+            text-align: center;
+            font-size: 22px;
+            font-weight: bold;
+            margin-top: 20px;
+            color: #2c3e50;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>英単語単語チェック (0001-0400)</h1>
+    <div class="subtitle">ランダムに出題された25問に英語で答えよう</div>
+
+    <form id="quiz-form">
+        <div id="quiz-container"></div>
+        <div class="btn-container">
+            <button type="button" id="submit-btn" onclick="checkAnswers()">採点する</button>
+            <button type="button" id="retry-btn" onclick="window.location.reload()" style="display:none; background-color:#7f8c8d;">もう一度挑戦</button>
+        </div>
+    </form>
+
+    <div id="score-display"></div>
+</div>
+
+<script>
+// 写真から抽出した400語のデータベース
+const wordDatabase = [
+    // 0001-0050
+    { jp: "食欲", en: "appetite" }, { jp: "うたた寝", en: "nap" }, { jp: "建築", en: "architecture" }, { jp: "続く", en: "last" }, { jp: "政治", en: "politics" },
+    { jp: "〜を展示する", en: "display" }, { jp: "等級", en: "grade" }, { jp: "ごみ", en: "trash" }, { jp: "引き渡し", en: "surrender" }, { jp: "大多数", en: "majority" },
+    { jp: "一見", en: "glance" }, { jp: "状況", en: "condition" }, { jp: "及んでいる", en: "range" }, { jp: "手段", en: "means" }, { jp: "〜を減らす", en: "reduce" },
+    { jp: "薬", en: "medicine" }, { jp: "〜を消費する", en: "consume" }, { jp: "運", en: "fortune" }, { jp: "努力", en: "effort" }, { jp: "〜を見積もる", en: "estimate" },
+    { jp: "〜をつかむ", en: "seize" }, { jp: "不足", en: "shortage" }, { jp: "夜明け", en: "dawn" }, { jp: "指示", en: "instruction" }, { jp: "事柄", en: "affair" },
+    { jp: "道具", en: "instrument" }, { jp: "割合", en: "rate" }, { jp: "〜を飾る", en: "decorate" }, { jp: "〜の用意をする", en: "prepare" }, { jp: "対話", en: "dialogue" },
+    { jp: "離婚", en: "divorce" }, { jp: "〜を加える", en: "add" }, { jp: "供給", en: "supply" }, { jp: "接近方法", en: "access" }, { jp: "習慣", en: "habit" },
+    { jp: "〜を伝達する", en: "communicate" }, { jp: "〜を数える", en: "count" }, { jp: "役割", en: "role" }, { jp: "出来事", en: "incident" }, { jp: "風味", en: "flavor" },
+    { jp: "〜を味わう", en: "taste" }, { jp: "葬式", en: "funeral" }, { jp: "心配", en: "trouble" }, { jp: "物", en: "stuff" }, { jp: "飲食物", en: "diet" },
+    { jp: "財政", en: "finance" }, { jp: "主題", en: "subject" }, { jp: "〜に食べ物を与える", en: "feed" }, { jp: "職業", en: "profession" }, { jp: "〜を賃借りする", en: "rent" },
+
+    // 0051-0100
+    { jp: "腐る", en: "decay" }, { jp: "便利な", en: "convenient" }, { jp: "私的な", en: "private" }, { jp: "緩い", en: "loose" }, { jp: "年1回の", en: "annual" },
+    { jp: "遠い", en: "distant" }, { jp: "高価な", en: "precious" }, { jp: "利用できる", en: "available" }, { jp: "横たわる", en: "lie" }, { jp: "叫ぶ", en: "exclaim" },
+    { jp: "〜を修理する", en: "fix" }, { jp: "ざらざらした", en: "rough" }, { jp: "打ち解けた", en: "casual" }, { jp: "避けられない", en: "inevitable" }, { jp: "〜を蓄える", en: "store" },
+    { jp: "気付いている", en: "conscious" }, { jp: "〜を持つ", en: "possess" }, { jp: "返事する", en: "reply" }, { jp: "ありそうな", en: "likely" }, { jp: "ありふれた", en: "ordinary" },
+    { jp: "〜を励ます", en: "cheer" }, { jp: "〜に知らせる", en: "inform" }, { jp: "わずかな", en: "slight" }, { jp: "無駄な", en: "vain" }, { jp: "〜を購入する", en: "purchase" },
+    { jp: "しきりにしたがる", en: "eager" }, { jp: "〜をこぼす", en: "spill" }, { jp: "たびたび起こる", en: "frequent" }, { jp: "適した", en: "adequate" }, { jp: "〜をふく", en: "wipe" },
+    { jp: "じっと見つめる", en: "stare" }, { jp: "〜をつぐ", en: "pour" }, { jp: "価値がある", en: "worth" }, { jp: "〜を延期する", en: "postpone" }, { jp: "正確な", en: "exact" },
+    { jp: "十分な", en: "sufficient" }, { jp: "慣れた", en: "accustomed" }, { jp: "異なった", en: "distinct" }, { jp: "〜を縫う", en: "sew" }, { jp: "家庭の", en: "domestic" },
+    { jp: "よく知られた", en: "familiar" }, { jp: "さらなる", en: "further" }, { jp: "上がる", en: "rise" }, { jp: "裸の", en: "bare" }, { jp: "予備の", en: "spare" },
+    { jp: "〜を保護する", en: "protect" }, { jp: "〜をつるす", en: "hang" }, { jp: "〜かなと思う", en: "wonder" }, { jp: "似ている", en: "alike" }, { jp: "生きて", en: "alive" },
+
+    // 0101-0150
+    { jp: "借金", en: "debt" }, { jp: "政治", en: "administration" }, { jp: "状況", en: "situation" }, { jp: "会議", en: "conference" }, { jp: "軍隊", en: "military" },
+    { jp: "内閣", en: "cabinet" }, { jp: "預金口座", en: "account" }, { jp: "候補者", en: "candidate" }, { jp: "保証", en: "guarantee" }, { jp: "人口", en: "population" },
+    { jp: "少数派", en: "minority" }, { jp: "大使", en: "ambassador" }, { jp: "会社", en: "firm" }, { jp: "価値", en: "value" }, { jp: "農業", en: "agriculture" },
+    { jp: "相続人", en: "heir" }, { jp: "選挙", en: "election" }, { jp: "労働組合", en: "union" }, { jp: "結果", en: "result" }, { jp: "利益", en: "benefit" },
+    { jp: "悪", en: "vice" }, { jp: "職務", en: "duty" }, { jp: "〜に与える", en: "provide" }, { jp: "〜の原因となる", en: "cause" }, { jp: "役人", en: "officer" },
+    { jp: "賃金", en: "wage" }, { jp: "交渉", en: "negotiation" }, { jp: "地域", en: "region" }, { jp: "特許", en: "patent" }, { jp: "合計", en: "sum" },
+    { jp: "税金", en: "tax" }, { jp: "法人", en: "corporation" }, { jp: "共和国", en: "republic" }, { jp: "〜を試みる", en: "attempt" }, { jp: "目的", en: "purpose" },
+    { jp: "割合", en: "proportion" }, { jp: "民主主義", en: "democracy" }, { jp: "頂上", en: "summit" }, { jp: "保険", en: "insurance" }, { jp: "危険", en: "hazard" },
+    { jp: "費用", en: "expense" }, { jp: "料金", en: "charge" }, { jp: "年金", en: "pension" }, { jp: "条約", en: "treaty" }, { jp: "境界", en: "border" },
+    { jp: "産業", en: "industry" }, { jp: "遺産", en: "legacy" }, { jp: "〜に警告する", en: "warn" }, { jp: "収入", en: "income" }, { jp: "〜を妨げる", en: "interrupt" },
+
+    // 0151-0200
+    { jp: "二者択一の", en: "alternative" }, { jp: "逃げる", en: "escape" }, { jp: "〜を追う", en: "pursue" }, { jp: "経済の", en: "economic" }, { jp: "逆の", en: "reverse" },
+    { jp: "富裕な", en: "wealthy" }, { jp: "〜を延期する", en: "extend" }, { jp: "全体の", en: "entire" }, { jp: "ふさわしい", en: "proper" }, { jp: "悲鳴を上げる", en: "scream" },
+    { jp: "小さい方の", en: "minor" }, { jp: "目に見える", en: "visible" }, { jp: "〜を許す", en: "permit" }, { jp: "〜に関係する", en: "concern" }, { jp: "〜を明らかにする", en: "reveal" },
+    { jp: "〜を押しつぶす", en: "crush" }, { jp: "投票する", en: "vote" }, { jp: "永続する", en: "permanent" }, { jp: "公の", en: "official" }, { jp: "非常に小さい", en: "minute" },
+    { jp: "〜を発表する", en: "announce" }, { jp: "〜を設立する", en: "establish" }, { jp: "〜を確認する", en: "confirm" }, { jp: "〜を提供する", en: "offer" }, { jp: "〜を得る", en: "gain" },
+    { jp: "〜を見なす", en: "regard" }, { jp: "即座の", en: "immediate" }, { jp: "〜を廃止する", en: "abolish" }, { jp: "〜を立証する", en: "prove" }, { jp: "〜を解雇する", en: "dismiss" },
+    { jp: "〜を要求する", en: "demand" }, { jp: "第1位の", en: "primary" }, { jp: "〜を豊かにする", en: "enrich" }, { jp: "〜に取って代わる", en: "replace" }, { jp: "不明瞭な", en: "obscure" },
+    { jp: "劣った", en: "inferior" }, { jp: "〜を含む", en: "involve" }, { jp: "重大な", en: "significant" }, { jp: "込み入った", en: "complicated" }, { jp: "社会の", en: "social" },
+    { jp: "〜を広げる", en: "spread" }, { jp: "市民の", en: "civil" }, { jp: "当然支払われるべき", en: "due" }, { jp: "大きい方の", en: "major" }, { jp: "恐ろしい", en: "scary" },
+    { jp: "共通の", en: "common" }, { jp: "財政上の", en: "financial" }, { jp: "餓死する", en: "starve" }, { jp: "強烈な", en: "intense" }, { jp: "爆発する", en: "explode" },
+
+    // 0201-0250
+    { jp: "影響", en: "impact" }, { jp: "感謝", en: "gratitude" }, { jp: "〜を驚かせる", en: "astonish" }, { jp: "衝動", en: "impulse" }, { jp: "〜に責任を負わせる", en: "blame" },
+    { jp: "緊張", en: "tension" }, { jp: "歓喜", en: "delight" }, { jp: "〜に賛成する", en: "approve" }, { jp: "衰える", en: "fade" }, { jp: "恥", en: "shame" },
+    { jp: "責任", en: "responsibility" }, { jp: "〜を侮辱する", en: "insult" }, { jp: "〜を刺激する", en: "stimulate" }, { jp: "同情", en: "sympathy" }, { jp: "〜をかき乱す", en: "disturb" },
+    { jp: "予報", en: "forecast" }, { jp: "〜を褒める", en: "praise" }, { jp: "匂い", en: "scent" }, { jp: "〜を困惑させる", en: "confuse" }, { jp: "〜を引き付ける", en: "attract" },
+    { jp: "脅迫", en: "threat" }, { jp: "暴力", en: "violence" }, { jp: "本能", en: "instinct" }, { jp: "抗議", en: "protest" }, { jp: "〜にさせてやる", en: "let" },
+    { jp: "ため息をつく", en: "sigh" }, { jp: "感覚", en: "sensation" }, { jp: "賛成する", en: "agree" }, { jp: "ためらう", en: "hesitate" }, { jp: "顔を赤らめる", en: "blush" },
+    { jp: "善", en: "virtue" }, { jp: "教育", en: "education" }, { jp: "見解", en: "viewpoint" }, { jp: "論点", en: "issue" }, { jp: "〜を予言する", en: "predict" },
+    { jp: "〜を批評する", en: "criticize" }, { jp: "〜を魅了する", en: "fascinate" }, { jp: "〜であるらしいと疑う", en: "suspect" }, { jp: "〜の感情を害する", en: "offend" }, { jp: "〜を悟る", en: "realize" },
+    { jp: "〜を祝う", en: "celebrate" }, { jp: "〜を非難する", en: "condemn" }, { jp: "〜を大事にする", en: "cherish" }, { jp: "〜だと思う", en: "suppose" }, { jp: "〜を否定する", en: "deny" },
+    { jp: "〜を推測する", en: "guess" }, { jp: "〜を拒絶する", en: "reject" }, { jp: "深い悲しみ", en: "grief" }, { jp: "〜を面白いと思わせる", en: "amuse" }, { jp: "〜を容赦する", en: "excuse" },
+
+    // 0251-0300
+    { jp: "不快な", en: "nasty" }, { jp: "控えめな", en: "modest" }, { jp: "好奇心が強い", en: "curious" }, { jp: "不平を言う", en: "complain" }, { jp: "怖がる", en: "scared" },
+    { jp: "〜を正しく理解する", en: "appreciate" }, { jp: "〜を想像する", en: "imagine" }, { jp: "受動的な", en: "passive" }, { jp: "複合の", en: "complex" }, { jp: "厳しい", en: "strict" },
+    { jp: "いらいらした", en: "irritated" }, { jp: "一般的な", en: "general" }, { jp: "油断のない", en: "alert" }, { jp: "確信している", en: "certain" }, { jp: "誤った", en: "false" },
+    { jp: "失望した", en: "disappointed" }, { jp: "有能な", en: "efficient" }, { jp: "〜に乗り損なう", en: "miss" }, { jp: "恐ろしい", en: "terrible" }, { jp: "思いやりがある", en: "considerate" },
+    { jp: "〜を突き止める", en: "locate" }, { jp: "分別のある", en: "sensible" }, { jp: "冷酷な", en: "cruel" }, { jp: "巨大な", en: "huge" }, { jp: "論理にかなった", en: "logical" },
+    { jp: "〜に反対する", en: "oppose" }, { jp: "否定的な", en: "negative" }, { jp: "気前の良い", en: "generous" }, { jp: "正直な", en: "sincere" }, { jp: "いとわない", en: "willing" },
+    { jp: "本気の", en: "serious" }, { jp: "楽天主義の", en: "optimistic" }, { jp: "〜を予期する", en: "expect" }, { jp: "頑固な", en: "stubborn" }, { jp: "間違いのない", en: "accurate" },
+    { jp: "〜を悩ませる", en: "annoy" }, { jp: "耳を傾けない", en: "deaf" }, { jp: "〜を強く望む", en: "desire" }, { jp: "神経質な", en: "nervous" }, { jp: "熱狂的な", en: "enthusiastic" },
+    { jp: "驚くべき", en: "marvelous" }, { jp: "無関心な", en: "indifferent" }, { jp: "取り乱している", en: "upset" }, { jp: "ばかばかしい", en: "silly" }, { jp: "熱心な", en: "keen" },
+    { jp: "したがらない", en: "reluctant" }, { jp: "失礼な", en: "rude" }, { jp: "〜を後悔する", en: "regret" }, { jp: "前向きな", en: "positive" }, { jp: "決死の", en: "desperate" },
+
+    // 0301-0350
+    { jp: "特権", en: "privilege" }, { jp: "任命", en: "appointment" }, { jp: "〜を直す", en: "mend" }, { jp: "頼る", en: "depend" }, { jp: "危機", en: "crisis" },
+    { jp: "一部", en: "portion" }, { jp: "経験", en: "experience" }, { jp: "〜を製造する", en: "produce" }, { jp: "欠如", en: "lack" }, { jp: "機会", en: "opportunity" },
+    { jp: "手順", en: "procedure" }, { jp: "優先", en: "priority" }, { jp: "積み荷", en: "load" }, { jp: "事業", en: "enterprise" }, { jp: "〜に保証する", en: "assure" },
+    { jp: "取り扱う", en: "deal" }, { jp: "特性", en: "property" }, { jp: "〜を分配する", en: "distribute" }, { jp: "丸薬", en: "pill" }, { jp: "地所", en: "estate" },
+    { jp: "足跡", en: "track" }, { jp: "有用性", en: "utility" }, { jp: "例", en: "instance" }, { jp: "契約", en: "contract" }, { jp: "段階", en: "phase" },
+    { jp: "〜を分ける", en: "share" }, { jp: "〜に納得させる", en: "convince" }, { jp: "報酬", en: "reward" }, { jp: "脅威", en: "menace" }, { jp: "任務", en: "mission" },
+    { jp: "計画", en: "scheme" }, { jp: "同僚", en: "colleague" }, { jp: "物", en: "object" }, { jp: "輝き", en: "glow" }, { jp: "〜を獲得する", en: "obtain" },
+    { jp: "〜を昇進させる", en: "promote" }, { jp: "〜を輸入する", en: "import" }, { jp: "表面", en: "surface" }, { jp: "驚き", en: "alarm" }, { jp: "装備", en: "equipment" },
+    { jp: "前後関係", en: "context" }, { jp: "物質", en: "substance" }, { jp: "〜を稼ぐ", en: "earn" }, { jp: "〜を適用する", en: "apply" }, { jp: "〜を制限する", en: "limit" },
+    { jp: "〜を雇う", en: "employ" }, { jp: "糸", en: "thread" }, { jp: "機能", en: "function" }, { jp: "注意", en: "attention" }, { jp: "構成要素", en: "component" },
+
+    // 0351-0400
+    { jp: "責任がある", en: "responsible" }, { jp: "〜に従う", en: "obey" }, { jp: "〜を禁止する", en: "forbid" }, { jp: "全部そろった", en: "complete" }, { jp: "単純な", en: "plain" },
+    { jp: "最終の", en: "ultimate" }, { jp: "〜に値する", en: "deserve" }, { jp: "〜を帰する", en: "attribute" }, { jp: "初めの", en: "initial" }, { jp: "〜を取得する", en: "acquire" },
+    { jp: "〜を受け取る", en: "accept" }, { jp: "〜を達成する", en: "achieve" }, { jp: "〜に命じる", en: "command" }, { jp: "固定された", en: "steady" }, { jp: "完全な", en: "absolute" },
+    { jp: "〜をつり下げる", en: "suspend" }, { jp: "主な", en: "principal" }, { jp: "〜を許可する", en: "allow" }, { jp: "特定の", en: "specific" }, { jp: "きつい", en: "tight" },
+    { jp: "〜を要求する", en: "claim" }, { jp: "〜を操作する", en: "operate" }, { jp: "一時的な", en: "temporary" }, { jp: "〜を必要とする", en: "require" }, { jp: "次の", en: "following" },
+    { jp: "〜を広告する", en: "advertise" }, { jp: "前者の", en: "former" }, { jp: "〜を許す", en: "forgive" }, { jp: "〜を向ける", en: "direct" }, { jp: "おおよその", en: "approximate" },
+    { jp: "退職する", en: "retire" }, { jp: "〜を説得する", en: "persuade" }, { jp: "〜を決定する", en: "determine" }, { jp: "〜を除外する", en: "omit" }, { jp: "後者の", en: "latter" },
+    { jp: "〜を決心する", en: "resolve" }, { jp: "〜を扱う", en: "handle" }, { jp: "正しい", en: "correct" }, { jp: "〜を断言する", en: "assert" }, { jp: "〜を造る", en: "manufacture" },
+    { jp: "具体的な", en: "concrete" }, { jp: "かなりの", en: "considerable" }, { jp: "〜に強いる", en: "force" }, { jp: "〜を占める", en: "occupy" }, { jp: "〜に意見を求める", en: "consult" },
+    { jp: "政治の", en: "political" }, { jp: "〜をやめる", en: "quit" }, { jp: "実際の", en: "actual" }, { jp: "〜を見落とす", en: "overlook" }, { jp: "〜を放送する", en: "broadcast" }
+];
+
+let selectedQuestions = [];
+
+// 25問をランダムに抽出して画面に生成する
+function generateQuiz() {
+    // データベースをシャッフル
+    const shuffled = [...wordDatabase].sort(() => 0.5 - Math.random());
+    // 先頭の25問を選択
+    selectedQuestions = shuffled.slice(0, 25);
+
+    const container = document.getElementById('quiz-container');
+    container.innerHTML = '';
+
+    selectedQuestions.forEach((word, index) => {
+        const itemDiv = document.createElement('div');
+        itemDiv.className = 'quiz-item';
+        
+        itemDiv.innerHTML = `
+            <div class="question">${index + 1}. ${word.jp}</div>
+            <div class="input-area">
+                <input type="text" id="answer-${index}" autocomplete="off" placeholder="英単語を入力">
+            </div>
+            <div class="result-comment" id="comment-${index}"></div>
+        `;
+        container.appendChild(itemDiv);
+    });
+}
+
+// 採点処理
+function checkAnswers() {
+    let score = 0;
+
+    selectedQuestions.forEach((word, index) => {
+        const userInput = document.getElementById(`answer-${index}`).value.trim().toLowerCase();
+        const correctAnswer = word.en.toLowerCase();
+        const commentDiv = document.getElementById(`comment-${index}`);
+        const inputField = document.getElementById(`answer-${index}`);
+
+        inputField.disabled = true; // 入力を固定
+        commentDiv.style.display = 'block';
+
+        if (userInput === correctAnswer) {
+            score++;
+            commentDiv.innerHTML = `〇 正解！`;
+            commentDiv.className = 'result-comment correct';
+        } else {
+            commentDiv.innerHTML = `× 不正解（正解: <strong>${word.en}</strong>）`;
+            commentDiv.className = 'result-comment incorrect';
+        }
+    });
+
+    // スコアの表示
+    const scoreDisplay = document.getElementById('score-display');
+    scoreDisplay.style.display = 'block';
+    scoreDisplay.innerHTML = `結果: 25問中 ${score}問 正解！ (得点率: ${Math.round((score / 25) * 100)}%)`;
+
+    // ボタンの切り替え
+    document.getElementById('submit-btn').style.display = 'none';
+    document.getElementById('retry-btn').style.display = 'inline-block';
+}
+
+// ページ読み込み時にクイズを生成
+window.onload = generateQuiz;
+</script>
+
+</body>
+</html>
