@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>日本史探究 総復習一問一答（No.7～No.12・小テスト網羅版）</title>
+    <title>【完全網羅・115問】日本史探究 総復習一問一答（No.7～No.12・小テスト）</title>
     <style>
         :root {
             --primary-color: #2c3e50;
             --accent-color: #e74c3c;
-            --bg-color: #f8f9fa;
+            --bg-color: #f4f6f7;
             --card-bg: #ffffff;
             --text-color: #333333;
         }
@@ -29,34 +29,34 @@
         }
         header h1 {
             margin: 0;
-            font-size: 1.8rem;
+            font-size: 1.6rem;
         }
         header p {
             margin: 0.5rem 0 0 0;
-            font-size: 1rem;
-            opacity: 0.8;
+            font-size: 0.95rem;
+            opacity: 0.9;
         }
         .container {
-            max-width: 800px;
-            margin: 2rem auto;
+            max-width: 900px;
+            margin: 1.5rem auto;
             padding: 0 1rem;
         }
         .tabs {
             display: flex;
             flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-bottom: 2rem;
+            gap: 0.3rem;
+            margin-bottom: 1.5rem;
             justify-content: center;
         }
         .tab-btn {
             background-color: #e2e8f0;
             border: none;
-            padding: 0.75rem 1rem;
-            border-radius: 5px;
+            padding: 0.6rem 0.8rem;
+            border-radius: 4px;
             cursor: pointer;
             font-weight: bold;
-            font-size: 0.9rem;
-            transition: all 0.3s ease;
+            font-size: 0.85rem;
+            transition: all 0.2s ease;
         }
         .tab-btn.active {
             background-color: var(--primary-color);
@@ -68,47 +68,62 @@
         .quiz-section.active {
             display: block;
         }
+        .section-title {
+            background-color: #dfe6e9;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            border-left: 6px solid var(--primary-color);
+        }
         .quiz-card {
             background-color: var(--card-bg);
-            border-left: 5px solid var(--primary-color);
-            border-radius: 5px;
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            border-left: 4px solid #bdc3c7;
+            border-radius: 4px;
+            padding: 1.2rem;
+            margin-bottom: 1rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
         }
-        .quiz-num {
-            font-size: 0.85rem;
+        .quiz-card.highlight {
+            border-left-color: var(--accent-color);
+        }
+        .quiz-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
             color: #7f8c8d;
             font-weight: bold;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.4rem;
+            border-bottom: 1px dashed #eee;
+            padding-bottom: 0.2rem;
         }
         .quiz-question {
-            font-size: 1.1rem;
+            font-size: 1rem;
             font-weight: bold;
-            margin-bottom: 1rem;
+            margin-bottom: 0.8rem;
         }
         .quiz-actions {
-            margin-bottom: 1rem;
+            margin-bottom: 0.5rem;
         }
         .ans-btn {
             background-color: #3498db;
             color: white;
             border: none;
-            padding: 0.5rem 1rem;
+            padding: 0.4rem 0.8rem;
             border-radius: 3px;
             cursor: pointer;
-            font-size: 0.9rem;
-            transition: background 0.2s;
+            font-size: 0.85rem;
         }
         .ans-btn:hover {
             background-color: #2980b9;
         }
         .quiz-answer-box {
             display: none;
-            background-color: #fdf2f2;
-            border: 1px solid #f5c6cb;
+            background-color: #fff5f5;
+            border: 1px solid #feb2b2;
             border-radius: 4px;
-            padding: 1rem;
+            padding: 0.8rem;
             margin-top: 0.5rem;
         }
         .quiz-answer-box.show {
@@ -117,464 +132,970 @@
         .answer-title {
             color: var(--accent-color);
             font-weight: bold;
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
+            font-size: 1.05rem;
+            margin-bottom: 0.4rem;
         }
         .answer-memo {
-            font-size: 0.95rem;
-            color: #555;
-            border-top: 1px dashed #f5c6cb;
-            padding-top: 0.5rem;
-            margin-top: 0.5rem;
+            font-size: 0.9rem;
+            color: #4a5568;
+            border-top: 1px solid #feb2b2;
+            padding-top: 0.4rem;
+            margin-top: 0.4rem;
+            background-color: #fff;
+            padding: 0.5rem;
+            border-radius: 3px;
         }
     </style>
 </head>
 <body>
 
 <header>
-    <h1>日本史探究 定期テスト対策総復習</h1>
-    <p>第13章 ワシントン体制 ～ 第15章 恐慌の時代（プリントNo.7～No.12・小テスト完全網羅）</p>
+    <h1>日本史探究 プリント全問題・全メモ網羅総復習</h1>
+    <p>No.7～No.12 ＆ 小テスト（穴埋め・手書き・記述・図表の全115問）</p>
 </header>
 
 <div class="container">
     <div class="tabs">
-        <button class="tab-btn active" onclick="switchTab('sec1')">1. WWI・パリ講和会議</button>
-        <button class="tab-btn" onclick="switchTab('sec2')">2. ワシントン体制・協調外交</button>
-        <button class="tab-btn" onclick="switchTab('sec3')">3. 大正デモクラシー・社会運動</button>
-        <button class="tab-btn" onclick="switchTab('sec4')">4. 4つの恐慌・昭和初期政治</button>
+        <button class="tab-btn active" onclick="switchTab('part1')">No.7-8 (大戦・ワシントン)</button>
+        <button class="tab-btn" onclick="switchTab('part2')">No.9 (社会運動・震災)</button>
+        <button class="tab-btn" onclick="switchTab('part3')">No.10 (普選・治安維持)</button>
+        <button class="tab-btn" onclick="switchTab('part4')">No.11-12 (4つの恐慌・昭和初期政治)</button>
+        <button class="tab-btn" onclick="switchTab('part5')">小テスト特別対策</button>
     </div>
 
-    <div id="sec1" class="quiz-section active">
+    <div id="part1" class="quiz-section active">
+        <div class="section-title">【No.7】第一次世界大戦とパリ講和会議</div>
+        
         <div class="quiz-card">
-            <div class="quiz-num">No.7：第一次世界大戦の対立構図</div>
-            <div class="quiz-question">三国同盟側に属していた主要な4つの国はどこ？（1915年に同盟国側に寝返った国を除く）</div>
-            <div class="quiz-actions"><button class="ans-btn" onclick="toggleAns(this)">正解を表示</button></div>
-            <div class="quiz-answer-box">
-                <div class="answer-title">ドイツ、オーストリア、ブルガリア、オスマン帝国</div>
-                <div class="answer-memo">※イタリアは1915年に連合国（三国協商）側に寝返りました。</div>
-            </div>
-        </div>
-        <div class="quiz-card">
-            <div class="quiz-num">No.7：第一次世界大戦の対立構図</div>
-            <div class="quiz-question">三国協商（連合国）側に属していた主要な6つの国はどこ？</div>
-            <div class="quiz-actions"><button class="ans-btn" onclick="toggleAns(this)">正解を表示</button></div>
-            <div class="quiz-answer-box">
-                <div class="answer-title">イギリス、フランス、ロシア、セルビア、日本、アメリカ</div>
-                <div class="answer-memo">※ロシアは1918年単独講和、アメリカは1917年参戦。</div>
-            </div>
-        </div>
-        <div class="quiz-card">
-            <div class="quiz-num">No.7：大戦期年表</div>
-            <div class="quiz-question">1914年6月、第一次世界大戦の引き金となった事件は？</div>
+            <div class="quiz-meta"><span>No.7 穴埋め(1)</span><span>大戦の勃発</span></div>
+            <div class="quiz-question">1914年6月、サライェヴォでオーストリア皇太子夫妻が暗殺された事件を何というか？</div>
             <div class="quiz-actions"><button class="ans-btn" onclick="toggleAns(this)">正解を表示</button></div>
             <div class="quiz-answer-box">
                 <div class="answer-title">サラエヴ（サラエボ）事件</div>
-                <div class="answer-memo">この事件の後、7月にオーストリアがセルビアに宣戦布告し、8月にイギリスがドイツに宣戦布告しました。</div>
+                <div class="answer-memo">これを機にオーストリアがセルビアに宣戦布告し、第一次世界大戦が始まりました。</div>
             </div>
         </div>
+
         <div class="quiz-card">
-            <div class="quiz-num">No.7：大戦期年表</div>
-            <div class="quiz-question">1915年1月、日本が中国（袁世凱内閣）に対して要求したものは何？</div>
+            <div class="quiz-meta"><span>No.7 穴埋め(2)</span><span>大戦の陣営</span></div>
+            <div class="quiz-question">ドイツ・オーストリアを中心に結成され、のちにトルコ（オスマン帝国）やブルガリアが加わった陣営を何というか？</div>
+            <div class="quiz-actions"><button class="ans-btn" onclick="toggleAns(this)">正解を表示</button></div>
+            <div class="quiz-answer-box">
+                <div class="answer-title">同盟国（三国同盟側）</div>
+                <div class="answer-memo">※イタリアは当初三国同盟でしたが、1915年に未回収のイタリア問題をめぐり連合国側に寝返りました。</div>
+            </div>
+        </div>
+
+        <div class="quiz-card">
+            <div class="quiz-meta"><span>No.7 穴埋め(3)</span><span>大戦の陣営</span></div>
+            <div class="quiz-question">イギリス・フランス・ロシアを中心に結成され、のちに日本やアメリカ、イタリアなどが加わった陣営を何というか？</div>
+            <div class="quiz-actions"><button class="ans-btn" onclick="toggleAns(this)">正解を表示</button></div>
+            <div class="quiz-answer-box">
+                <div class="answer-title">連合国（協商国・三国協商側）</div>
+                <div class="answer-memo">日本は日英同盟を理由に参戦しました。</div>
+            </div>
+        </div>
+
+        <div class="quiz-card">
+            <div class="quiz-meta"><span>No.7 年表(1914)</span><span>日本の動き</span></div>
+            <div class="quiz-question">1914年、日本はどこの国に宣戦布告し、中国のどこやどこの島々を占領したか？</div>
+            <div class="quiz-actions"><button class="ans-btn" onclick="toggleAns(this)">正解を表示</button></div>
+            <div class="quiz-answer-box">
+                <div class="answer-title">ドイツに宣戦 / 中国の山東半島（青島）、赤道以北のドイツ領南洋諸島</div>
+                <div class="answer-memo">ドイツがヨーロッパ戦線に没頭している隙を突いた軍事行動です。</div>
+            </div>
+        </div>
+
+        <div class="quiz-card">
+            <div class="quiz-meta"><span>No.7 年表(1915)</span><span>対華要求</span></div>
+            <div class="quiz-question">1915年1月、大隈重信内閣（外相：加藤高明）が中国の袁世凱政府に突きつけ、5月に受諾させた要求は何か？</div>
             <div class="quiz-actions"><button class="ans-btn" onclick="toggleAns(this)">正解を表示</button></div>
             <div class="quiz-answer-box">
                 <div class="answer-title">二十一カ条の要求</div>
-                <div class="answer-memo">のちに中国でこれの撤回を求める「五・四運動」が起こることになります。</div>
+                <div class="answer-memo">山東省のドイツ権益継承、南満州・東部内蒙古の権益期限延長（99年間へ）などが含まれ、中国の激しい反発を招きました。</div>
             </div>
         </div>
+
         <div class="quiz-card">
-            <div class="quiz-num">No.7：大戦期年表</div>
-            <div class="quiz-question">1918年3月、ロシアが戦線から離脱する際に結んだ条約は何？</div>
+            <div class="quiz-meta"><span>No.7 年表(1917)</span><span>ロシアの動向</span></div>
+            <div class="quiz-question">1917年にロシアで発生し、レーニン率いるボリシェヴィキが政権を握って世界初の社会主義国家を目指した出来事は何か？</div>
+            <div class="quiz-actions"><button class="ans-btn" onclick="toggleAns(this)">正解を表示</button></div>
+            <div class="quiz-answer-box">
+                <div class="answer-title">ロシア革命</div>
+                <div class="answer-memo">これによりロシアは戦争継続が不可能となり、戦線から離脱していくことになります。</div>
+            </div>
+        </div>
+
+        <div class="quiz-card">
+            <div class="quiz-meta"><span>No.7 年表(1917)</span><span>米の参戦</span></div>
+            <div class="quiz-question">1917年、アメリカが大戦に参戦した直接のきっかけとなった、ドイツの作戦は何か？</div>
+            <div class="quiz-actions"><button class="ans-btn" onclick="toggleAns(this)">正解を表示</button></div>
+            <div class="quiz-answer-box">
+                <div class="answer-title">無制限潜水艦作戦</div>
+                <div class="answer-memo">指定海域を通る船舶を無警告で撃沈する作戦。これによりアメリカの中立が破られました。</div>
+            </div>
+        </div>
+
+        <div class="quiz-card">
+            <div class="quiz-meta"><span>No.7 年表(1918)</span><span>ロシアの単独講和</span></div>
+            <div class="quiz-question">1918年3月、革命後のロシア（ソヴィエト政権）がドイツ側と結び、大戦から離脱した単独講和条約は何か？</div>
             <div class="quiz-actions"><button class="ans-btn" onclick="toggleAns(this)">正解を表示</button></div>
             <div class="quiz-answer-box">
                 <div class="answer-title">ブレスト=リトフスク条約</div>
-                <div class="answer-memo">1917年3月のロシア革命開始を受けての単独講和です。</div>
+                <div class="answer-memo">これによりドイツは東部戦線の兵力を西部に集中できるようになりました。</div>
             </div>
         </div>
+
         <div class="quiz-card">
-            <div class="quiz-num">No.7：パリ講和会議</div>
-            <div class="quiz-question">1918年、各地で反乱が発生し皇帝ヴィルヘルム二世が退位した国はどこ？また、これにより起こった革命を何という？</div>
+            <div class="quiz-meta"><span>No.7 年表(1918)</span><span>シベリア出兵</span></div>
+            <div class="quiz-question">1918年8月、チェコスロヴァキア軍救出を名目に、日・米・英・仏などが社会主義政権を打倒するために行った共同干渉戦争は何か？</div>
             <div class="quiz-actions"><button class="ans-btn" onclick="toggleAns(this)">正解を表示</button></div>
             <div class="quiz-answer-box">
-                <div class="answer-title">ドイツ（ドイツ革命）</div>
-                <div class="answer-memo">これによりドイツ共和国が連合国に降伏し、第一次世界大戦が終了しました。</div>
+                <div class="answer-title">シベリア出兵</div>
+                <div class="answer-memo">日本はこの出兵のために米の買い占めが起き、国内で「米騒動」が勃発。寺内正毅内閣が退陣しました。また日本は他国が撤退したあとも1922年まで駐留を続けました。</div>
             </div>
         </div>
+
         <div class="quiz-card">
-            <div class="quiz-num">No.7 / 小テスト</div>
-            <div class="quiz-question">1919年1月に始まった大戦後の講和会議を何というか？また、日本の全権をつとめた元老は誰か？</div>
+            <div class="quiz-meta"><span>No.7 年表(1918)</span><span>大戦の終結</span></div>
+            <div class="quiz-question">1918年11月、キール軍港の水兵暴動を機に皇帝が亡命し、臨時政府が休戦協定に調印して大戦を終結させたドイツの政変は何か？</div>
             <div class="quiz-actions"><button class="ans-btn" onclick="toggleAns(this)">正解を表示</button></div>
             <div class="quiz-answer-box">
-                <div class="answer-title">パリ講和会議 / 西園寺公望（さいおんじきんもち）</div>
-                <div class="answer-memo">※首席全権は西園寺公望、実際の外交実務を担ったもう一人の全権は牧野伸顕です。</div>
+                <div class="answer-title">ドイツ革命</div>
+                <div class="answer-memo">皇帝ヴィルヘルム2世はオランダへ亡命し、ドイツ帝国は崩壊、共和国となりました。</div>
             </div>
         </div>
+
         <div class="quiz-card">
-            <div class="quiz-num">No.7 / 小テスト</div>
-            <div class="quiz-question">アメリカ大統領ウィルソンが提唱し、パリ講和会議の基本原則となった方針を何というか？</div>
+            <div class="quiz-meta"><span>No.7 穴埋め(4)</span><span>パリ講和会議</span></div>
+            <div class="quiz-question">1919年1月、連合国がドイツに対する処分などを話し合うために開いた会議は何か？</div>
+            <div class="quiz-actions"><button class="ans-btn" onclick="toggleAns(this)">正解を表示</button></div>
+            <div class="quiz-answer-box">
+                <div class="answer-title">パリ講和会議</div>
+                <div class="answer-memo">日本は五大国の一員として参加し、世界の主要国としての地位を認められました。</div>
+            </div>
+        </div>
+
+        <div class="quiz-card">
+            <div class="quiz-meta"><span>No.7 穴埋め(5)</span><span>日本の全権</span></div>
+            <div class="quiz-question">パリ講和会議に派遣された日本の首席全権（元老）は誰か？また、実務を担ったもう一人の全権は誰か？</div>
+            <div class="quiz-actions"><button class="ans-btn" onclick="toggleAns(this)">正解を表示</button></div>
+            <div class="quiz-answer-box">
+                <div class="answer-title">西園寺公望（さいおんじ きんもち） / 牧野伸顕（まきの のぶあき）</div>
+                <div class="answer-memo">西園寺は最後の元老として知られる人物です。</div>
+            </div>
+        </div>
+
+        <div class="quiz-card">
+            <div class="quiz-meta"><span>No.7 穴埋め(6)</span><span>ウィルソンの原則</span></div>
+            <div class="quiz-question">アメリカ大統領ウィルソンが提唱し、パリ講和会議の基本原則となった方針は何か？</div>
             <div class="quiz-actions"><button class="ans-btn" onclick="toggleAns(this)">正解を表示</button></div>
             <div class="quiz-answer-box">
                 <div class="answer-title">十四カ条</div>
-                <div class="answer-memo">秘密外交の廃止、軍備の縮小、民族自決、海洋の自由、関税障壁の廃止、国際平和機関の成立などが含まれます。</div>
+                <div class="answer-memo">秘密外交の廃止、軍備縮小、民族自決、国際平和機関の設立などが掲げられました。</div>
             </div>
         </div>
-        <div class="quiz-card">
-            <div class="quiz-num">No.7 / 小テスト</div>
-            <div class="quiz-question">ウィルソンの「民族自決」についての説明として、プリントの手書きメモや小テストで指摘されていた「適用範囲の限界」とは何か？</div>
-            <div class="quiz-actions"><button class="ans-btn" onclick="toggleAns(this)">正解を表示</button></div>
-            <div class="quiz-answer-box">
-                <div class="answer-title">ヨーロッパでは適用されたものの、アジアやアフリカの植民地には適用されなかった点。</div>
-                <div class="answer-memo">手書きメモ：「自分たちの国や政府を、自分たちの意志で作るべき」という考え方だが、すべての民族に普遍ではない（ヨーロッパのみでアジアにはなし）。</div>
-            </div>
-        </div>
-        <div class="quiz-card">
-            <div class="quiz-num">No.7・8 / 小テスト</div>
-            <div class="quiz-question">1919年に調印された、対ドイツの講和条約は何？また、日本が継承した旧ドイツの権益を2つ答えよ。</div>
-            <div class="quiz-actions"><button class="ans-btn" onclick="toggleAns(this)">正解を表示</button></div>
-            <div class="quiz-answer-box">
-                <div class="answer-title">ヴェルサイユ条約 / ①山東省の旧ドイツ権益、②赤道以北の旧ドイツ領南洋諸島の委任統治権</div>
-                <div class="answer-memo">ドイツへの処分：植民地の放棄、多額の賠償金。また、チェコスロヴァキア、ユーゴスラヴィア、ポーランドなどの民族国家が独立しました。</div>
-            </div>
-        </div>
-    </div>
 
-    <div id="sec2" class="quiz-section">
-        <div class="quiz-card">
-            <div class="quiz-num">No.8 / 小テスト</div>
-            <div class="quiz-question">ヴェルサイユ条約に基づき設立された国際平和維持機関は何か？また、本部のある都市と、常任理事国となった4カ国を答えよ。</div>
+        <div class="quiz-card highlight">
+            <div class="quiz-meta"><span>No.7 手書き赤字メモ</span><span>民族自決の定義と限界</span></div>
+            <div class="quiz-question">ウィルソンの「民族自決」について、プリントに手書きされている解説（意味と適用範囲の限界）を答えよ。</div>
             <div class="quiz-actions"><button class="ans-btn" onclick="toggleAns(this)">正解を表示</button></div>
             <div class="quiz-answer-box">
-                <div class="answer-title">国際連盟 / 本部：ジュネーヴ / 常任理事国：英・仏・日・伊</div>
-                <div class="answer-memo">※提唱国であるアメリカは、議会（上院）の反対により不参加でした。国際労働機関(ILO)も設置されました。</div>
+                <div class="answer-title">意味：「自分たちの国や政府を自分たちの意志で作るべき」という考え。限界：ヨーロッパの民族には適用されたが、アジア・アフリカの植民地には適用されなかった。</div>
+                <div class="answer-memo">この不徹底さが、アジアでの三・一独立運動や五・四運動につながっていきます。</div>
             </div>
         </div>
+
         <div class="quiz-card">
-            <div class="quiz-num">No.8：アジアの民族運動</div>
-            <div class="quiz-question">1919年3月1日、朝鮮でパゴダ公園での独立宣言書朗読を機に起こった激しい独立運動は何？また当時の日本の対応と内閣は？</div>
+            <div class="quiz-meta"><span>No.7 穴埋め(7)</span><span>対独条約</span></div>
+            <div class="quiz-question">1919年6月に調印された、連合国とドイツとの間の講和条約は何か？</div>
             <div class="quiz-actions"><button class="ans-btn" onclick="toggleAns(this)">正解を表示</button></div>
             <div class="quiz-answer-box">
-                <div class="answer-title">三・一独立運動（万歳事件） / 原敬内閣が警察・憲兵・軍隊を動員して激しく弾圧。</div>
-                <div class="answer-memo">手書きメモ：諸国がパリ講和会議で民族自決を認めたのに感化。弾圧後、原内閣は「官制改正」を行い文官の総督就任を認め、憲兵警察を廃止し、植民地統治方針を武断政治から文化政治へと改善しました。</div>
+                <div class="answer-title">ヴェルサイユ条約</div>
+                <div class="answer-memo">ドイツに対し、全植民地の放棄、領土割譲、軍備の著しい制限、巨額の賠償金支払いを課しました。</div>
             </div>
         </div>
+
         <div class="quiz-card">
-            <div class="quiz-num">No.8：アジアの民族運動</div>
-            <div class="quiz-question">1919年5月4日、中国で二十一カ条の要求撤回やヴェルサイユ条約調印拒否を求めて起こった反日愛国運動は何？</div>
+            <div class="quiz-meta"><span>No.7 穴埋め(8)</span><span>日本の獲得権益</span></div>
+            <div class="quiz-question">ヴェルサイユ条約で、日本がドイツから継承することを認められた権益を2つ答えよ。</div>
+            <div class="quiz-actions"><button class="ans-btn" onclick="toggleAns(this)">正解を表示</button></div>
+            <div class="quiz-answer-box">
+                <div class="answer-title">①中国山東省の旧ドイツ権益、②赤道以北の旧ドイツ領南洋諸島の委任統治権</div>
+                <div class="answer-memo">これらは二十一カ条要求などで日本が既成事実化していたものです。</div>
+            </div>
+        </div>
+
+        <div class="quiz-card">
+            <div class="quiz-meta"><span>No.7 穴埋め(9)</span><span>東欧の動向</span></div>
+            <div class="quiz-question">ヴェルサイユ条約にともない、帝国が崩壊したことによって独立を認められた、東欧の主要な民族国家を3つ答えよ。</div>
+            <div class="quiz-actions"><button class="ans-btn" onclick="toggleAns(this)">正解を表示</button></div>
+            <div class="quiz-answer-box">
+                <div class="answer-title">チェコスロヴァキア、ユーゴスラヴィア、ポーランド</div>
+                <div class="answer-memo">フィンランド、エストニア、ラトヴィア、リトアニアなどもこの時期独立しています。</div>
+            </div>
+        </div>
+
+        <div class="section-title">【No.8】ワシントン体制と東アジア</div>
+
+        <div class="quiz-card">
+            <div class="quiz-meta"><span>No.8 穴埋め(1)</span><span>国際連盟</span></div>
+            <div class="quiz-question">十四カ条に基づき、1920年に発足した史上初の集団安全保障機関は何か？また、本部が置かれた都市はどこか？</div>
+            <div class="quiz-actions"><button class="ans-btn" onclick="toggleAns(this)">正解を表示</button></div>
+            <div class="quiz-answer-box">
+                <div class="answer-title">国際連盟 / ジュネーヴ（スイス）</div>
+                <div class="answer-memo">同時に、国際労働機関（ILO）や常設国際司法裁判所も設置されました。</div>
+            </div>
+        </div>
+
+        <div class="quiz-card highlight">
+            <div class="quiz-meta"><span>No.8 手書き赤字メモ</span><span>連盟の常任理事国と米の不参加</span></div>
+            <div class="quiz-question">国際連盟の発足時の常任理事国4カ国はどこか？また、提唱国であるアメリカが不参加となった理由は何か？</div>
+            <div class="quiz-actions"><button class="ans-btn" onclick="toggleAns(this)">正解を表示</button></div>
+            <div class="quiz-answer-box">
+                <div class="answer-title">常任理事国：イギリス、フランス、日本、イタリア / アメリカ不参加の理由：議会（上院）が批准を拒否したため。</div>
+                <div class="answer-memo">手書きメモに「常任理事国：英・仏・日・伊」「米：議会の反対で不参加」とあります。</div>
+            </div>
+        </div>
+
+        <div class="quiz-card">
+            <div class="quiz-meta"><span>No.8 穴埋め(2)</span><span>三・一独立運動</span></div>
+            <div class="quiz-question">1919年3月1日、日本の植民地支配下にあった朝鮮の京城（現ソウル）のパゴダ公園から始まった独立運動を何というか？</div>
+            <div class="quiz-actions"><button class="ans-btn" onclick="toggleAns(this)">正解を表示</button></div>
+            <div class="quiz-answer-box">
+                <div class="answer-title">三・一独立運動（万歳事件）</div>
+                <div class="answer-memo">手書きメモ：「民族自決」に感化されて発生。当時の内閣は原敬内閣です。</div>
+            </div>
+        </div>
+
+        <div class="quiz-card highlight">
+            <div class="quiz-meta"><span>No.8 手書き赤字メモ</span><span>朝鮮統治方針の転換</span></div>
+            <div class="quiz-question">三・一独立運動を激しく弾圧したあと、原敬内閣が行った「官制改正」の内容と、統治方針の変化（〜政治から〜政治へ）を答えよ。</div>
+            <div class="quiz-actions"><button class="ans-btn" onclick="toggleAns(this)">正解を表示</button></div>
+            <div class="quiz-answer-box">
+                <div class="answer-title">官制改正：文官の総督就任を認める、憲兵警察制度の廃止。 / 方針転換：武断政治から文化政治への変更。</div>
+                <div class="answer-memo">手書きメモに「弾圧→改善」「武断政治から文化政治へ」と明記されています。</div>
+            </div>
+        </div>
+
+        <div class="quiz-card">
+            <div class="quiz-meta"><span>No.8 穴埋め(3)</span><span>五・四運動</span></div>
+            <div class="quiz-question">1919年5月4日、北京の学生デモから始まり、二十一カ条要求の撤回やヴェルサイユ条約調印反対を掲げた中国の反日愛国運動は何か？</div>
             <div class="quiz-actions"><button class="ans-btn" onclick="toggleAns(this)">正解を表示</button></div>
             <div class="quiz-answer-box">
                 <div class="answer-title">五・四運動</div>
-                <div class="answer-memo">二十一カ条要求の撤回が拒否されたことや、旧ドイツ権益の中国返還を求める運動。これにより中国は連合国として参加したものの、ヴェルサイユ条約の調印を拒否しました。</div>
+                <div class="answer-memo">この運動の結果、中国の国民感情は激化し、中国政府はヴェルサイユ条約の調印を拒否しました。</div>
             </div>
         </div>
+
         <div class="quiz-card">
-            <div class="quiz-num">No.8：大戦後の経済循環</div>
-            <div class="quiz-question">第一次世界大戦直後、イギリス、フランス、イタリアは何に苦しんでいた？また、それを解決するためにどの国からの援助を受け、どこの国が復興した？</div>
+            <div class="quiz-meta"><span>No.8 図式問題</span><span>国際経済の循環</span></div>
+            <div class="quiz-question">大戦後の国際経済循環の図において、イギリス・フランス・イタリアなどの欧州連合国が抱えていた負債を何というか？またそれをどこに返済していたか？</div>
             <div class="quiz-actions"><button class="ans-btn" onclick="toggleAns(this)">正解を表示</button></div>
             <div class="quiz-answer-box">
-                <div class="answer-title">アメリカへの戦債（戦争の借金）支払いに苦しんだ。 / アメリカの援助により「ドイツ産業が復興」し、ドイツの「賠償金の支払い」によって英仏伊がアメリカへ戦債を返還した。</div>
-                <div class="answer-memo">小テスト正誤対策：「アメリカはドイツの復興に多額の援助を行った（◯）」「英仏日（日が入ると×、日本はアメリカに戦債苦していない）」「ドイツの賠償金はオーストリアに支払われた（×）」。</div>
+                <div class="answer-title">戦債（せんさい） / アメリカ合衆国に返済した</div>
+                <div class="answer-memo">欧州諸国はアメリカへの戦債返還を、ドイツからの「賠償金」で賄おうとしました。</div>
             </div>
         </div>
-        <div class="quiz-card">
-            <div class="quiz-num">No.8：ワシントン会議</div>
-            <div class="quiz-question">1921〜22年、アメリカが主導して太平洋・極東問題や軍備制限を審議した会議は何？また日本の全権は誰？</div>
+
+        <div class="quiz-card highlight">
+            <div class="quiz-meta"><span>No.8 図式問題の手書き</span><span>ドイツ復興の仕組み</span></div>
+            <div class="quiz-question">賠償金支払いに苦しむドイツに対し、多額の資金援助（投資）を行ってドイツ産業を復興させた国はどこか？</div>
             <div class="quiz-actions"><button class="ans-btn" onclick="toggleAns(this)">正解を表示</button></div>
             <div class="quiz-answer-box">
-                <div class="answer-title">ワシントン会議 / 加藤友三郎（海軍大臣）、幣原喜重郎（駐米大使）</div>
-                <div class="answer-memo">極東の新情勢（日本の中国進出本格化、ソヴィエト政権の連邦国家形成中、中国の民族運動活発化）を背景に開催されました。</div>
+                <div class="answer-title">アメリカ合衆国</div>
+                <div class="answer-memo">図のドイツの上に手書きで「ドイツ産業が復興」とあり、アメリカからドイツへ「援助」の矢印が引かれています。このサイクルが1929年の世界恐慌で崩壊します。</div>
             </div>
         </div>
+
         <div class="quiz-card">
-            <div class="quiz-num">No.8 / 小テスト</div>
-            <div class="quiz-question">ワシントン会議で結ばれた「四カ国条約」の参加国、内容、およびこれにより終了（廃棄）した協定は何？</div>
+            <div class="quiz-meta"><span>No.8 穴埋め(4)</span><span>ワシントン会議</span></div>
+            <div class="quiz-question">1921年11月〜22年2月、アメリカ大統領ハーディングの提唱により、海軍軍備制限や極東・太平洋問題を話し合うために開かれた会議は何か？</div>
             <div class="quiz-actions"><button class="ans-btn" onclick="toggleAns(this)">正解を表示</button></div>
             <div class="quiz-answer-box">
-                <div class="answer-title">参加国：英・米・仏・日 / 内容：太平洋に関する領土・権益の相互尊重と現状維持 / 終了した協定：日英同盟</div>
-                <div class="answer-memo">太平洋諸島の現状維持を約束した条約です。</div>
+                <div class="answer-title">ワシントン会議</div>
+                <div class="answer-memo">大戦中に日本が東アジアで勢力を急拡大したことを、アメリカやイギリスが抑制しようとした背景があります。</div>
             </div>
         </div>
-        <div class="quiz-card">
-            <div class="quiz-num">No.8 / 小テスト</div>
-            <div class="quiz-question">ワシントン会議で結ばれた「九カ国条約」の参加国（手書きの2カ国含む）、内容、およびこれにより日本が中国に返還した権益、廃棄された協定は何？</div>
+
+        <div class="quiz-card highlight">
+            <div class="quiz-meta"><span>No.8 手書き赤字メモ</span><span>極東の新情勢</span></div>
+            <div class="quiz-question">プリント右上に「背景：極東の新情勢」として箇条書きされている3つの事象を答えよ。</div>
             <div class="quiz-actions"><button class="ans-btn" onclick="toggleAns(this)">正解を表示</button></div>
             <div class="quiz-answer-box">
-                <div class="answer-title">参加国：英・米・仏・日 ＋ 伊・中・蘭・葡・白（ポルトガル、ベルギー） / 内容：中国の主権尊重、門戸開放、機会均等 / 返還権益：山東省 / 廃棄協定：石井・ランシング協定</div>
-                <div class="answer-memo">中国問題に関する条約。手書きで「ポルトガル」「ベルギー」の国名が補足されています。</div>
+                <div class="answer-title">①日本の中国進出が本格化、②ソヴィエト政権が連邦国家を形成しつつある（ソ連の脅威）、③中国の民族運動が活発化</div>
+                <div class="answer-memo">これらに対応するため、日・米・英などの共同歩調が必要とされました。</div>
             </div>
         </div>
+
         <div class="quiz-card">
-            <div class="quiz-num">No.8：ワシントン海軍軍備制限条約</div>
-            <div class="quiz-question">主力艦の保有量を制限した「ワシントン海軍軍備制限条約」における、英・米・日・仏・伊の比率をそれぞれ答えよ。</div>
+            <div class="quiz-meta"><span>No.8 穴埋め(5)</span><span>ワシントン会議日本全権</span></div>
+            <div class="quiz-question">ワシントン会議に派遣された日本の全権2名を答えよ。</div>
             <div class="quiz-actions"><button class="ans-btn" onclick="toggleAns(this)">正解を表示</button></div>
             <div class="quiz-answer-box">
-                <div class="answer-title">イギリス：5 、アメリカ：5 、日本：3 、フランス：1.67 、イタリア：1.67</div>
-                <div class="answer-memo">これら一連の条約によって構築された国際秩序を「ワシントン体制」と呼びます。</div>
+                <div class="answer-title">加藤友三郎（海軍大臣）、幣原喜重郎（駐米大使）</div>
+                <div class="answer-memo">加藤友三郎はのちに首相となり、山梨軍縮などを実行します。</div>
             </div>
         </div>
+
         <div class="quiz-card">
-            <div class="quiz-num">No.9：協調外交</div>
-            <div class="quiz-question">1924年以降、加藤高明内閣などで外相を務め、「英米との武力的対立を避け、中国には内政不干渉」を掲げる協調外交を推進した人物は誰？</div>
+            <div class="quiz-meta"><span>No.8 穴埋め(6)</span><span>四カ国条約</span></div>
+            <div class="quiz-question">ワシントン会議で結ばれた、太平洋諸島の領土・権益の現状維持を定めた条約は何か？また、その参加国4カ国を答えよ。</div>
             <div class="quiz-actions"><button class="ans-btn" onclick="toggleAns(this)">正解を表示</button></div>
             <div class="quiz-answer-box">
-                <div class="answer-title">幣原喜重郎（しではらきじゅうろう）［外交方針：幣原外交］</div>
-                <div class="answer-memo">経済面では「中国市場の拡大、満州の特殊権益の維持」を目指しましたが、日中関係全般の安定化には成功しませんでした。</div>
+                <div class="answer-title">四カ国条約 / アメリカ、イギリス、フランス、日本</div>
+                <div class="answer-memo">この条約の締結にともない、大戦前から続いていた「日英同盟」が廃棄（解消）されました。</div>
             </div>
         </div>
+
         <div class="quiz-card">
-            <div class="quiz-num">No.9：大正期の外交事件</div>
-            <div class="quiz-question">①1925年にソ連との国交を樹立した条約は何？<br>②1925年、上海の日本人経営の紡績工場でのストライキを機に起こった反帝国主義運動は何？</div>
+            <div class="quiz-meta"><span>No.8 穴埋め(7)</span><span>九カ国条約</span></div>
+            <div class="quiz-question">中国の主権尊重、領土保全、門戸開放・機会均等を定めた条約は何か？</div>
             <div class="quiz-actions"><button class="ans-btn" onclick="toggleAns(this)">正解を表示</button></div>
             <div class="quiz-answer-box">
-                <div class="answer-title">①日ソ基本条約 、②五・三〇事件</div>
-                <div class="answer-memo">日ソ基本条約にともない、北樺太からの撤兵、油田の半分の開発権獲得がなされました。</div>
+                <div class="answer-title">九カ国条約</div>
+                <div class="answer-memo">参加国は四カ国＋伊・中・蘭・（手書き：葡［ポルトガル］・白［ベルギー］）の計9カ国です。</div>
+            </div>
+        </div>
+
+        <div class="quiz-card highlight">
+            <div class="quiz-meta"><span>No.8 手書き赤字メモ</span><span>九カ国条約による廃棄・返還</span></div>
+            <div class="quiz-question">九カ国条約の締結にともない、日本が中国に返還した場所と、廃棄された日米間の協定は何か？</div>
+            <div class="quiz-actions"><button class="ans-btn" onclick="toggleAns(this)">正解を表示</button></div>
+            <div class="quiz-answer-box">
+                <div class="answer-title">返還：山東省（旧ドイツ権益） / 廃棄：石井・ランシング協定</div>
+                <div class="answer-memo">アメリカの「門戸開放」要求に日本が譲歩した形になります。</div>
+            </div>
+        </div>
+
+        <div class="quiz-card">
+            <div class="quiz-meta"><span>No.8 穴埋め(8)</span><span>主力艦制限</span></div>
+            <div class="quiz-question">主力艦の保有量を制限し、今後10年間は主力艦の新造を禁止した条約は何か？</div>
+            <div class="quiz-actions"><button class="ans-btn" onclick="toggleAns(this)">正解を表示</button></div>
+            <div class="quiz-answer-box">
+                <div class="answer-title">ワシントン海軍軍備制限条約</div>
+                <div class="answer-memo">軍拡競争による財政圧迫を避けるため、各国が妥協しました。</div>
+            </div>
+        </div>
+
+        <div class="quiz-card highlight">
+            <div class="quiz-meta"><span>No.8 穴埋め(9)・手書き</span><span>保有比率</span></div>
+            <div class="quiz-question">ワシントン海軍軍備制限条約における、米・英・日・仏・伊の主力艦保有比率をそれぞれ答えよ。</div>
+            <div class="quiz-actions"><button class="ans-btn" onclick="toggleAns(this)">正解を表示</button></div>
+            <div class="quiz-answer-box">
+                <div class="answer-title">米：5 、英：5 、日：3 、仏：1.67 、伊：1.67</div>
+                <div class="answer-memo">日本は「対米英7割（3.5）」を主張しましたが、最終的に6割（3）で妥協させられました。</div>
+            </div>
+        </div>
+
+        <div class="quiz-card">
+            <div class="quiz-meta"><span>No.8 穴埋め(10)</span><span>体制名</span></div>
+            <div class="quiz-question">ワシントン会議の一連の条約によって形成された、1920年代の東アジア・太平洋地域の国際平和秩序を何というか？</div>
+            <div class="quiz-actions"><button class="ans-btn" onclick="toggleAns(this)">正解を表示</button></div>
+            <div class="quiz-answer-box">
+                <div class="answer-title">ワシントン体制</div>
+                <div class="answer-memo">この協調外交体制が1930年代の満州事変まで続くことになります。</div>
             </div>
         </div>
     </div>
 
-    <div id="sec3" class="quiz-section">
+    <div id="part2" class="quiz-section">
+        <div class="section-title">【No.9】大正デモクラシーと社会運動の広がり</div>
+
         <div class="quiz-card">
-            <div class="quiz-num">No.9：労働運動の歴史年表</div>
-            <div class="quiz-question">以下の空欄を埋めよ。<br>・1897年：（① ）結成<br>・1900年：（② ）制定<br>・1911年：（③ ）制定（実施は1916年から）</div>
+            <div class="quiz-meta"><span>No.9 穴埋め(1)</span><span>幣原外交</span></div>
+            <div class="quiz-question">1924年以降、憲政会（のち民政党）系内閣で外相を務め、ワシントン体制を維持して英米との協調を図り、中国内政には不干渉を貫いた人物は誰か？</div>
+            <div class="quiz-actions"><button class="ans-btn" onclick="toggleAns(this)">正解を表示</button></div>
+            <div class="quiz-answer-box">
+                <div class="answer-title">幣原喜重郎（しではら きじゅうろう）</div>
+                <div class="answer-memo">この外交方針を「幣原外交（協調外交）」と呼びます。</div>
+            </div>
+        </div>
+
+        <div class="quiz-card highlight">
+            <div class="quiz-meta"><span>No.9 手書き赤字メモ</span><span>幣原外交の真の狙い</span></div>
+            <div class="quiz-question">幣原外交の狙いについて、プリントに手書きされている「経済的意図（2つの維持・拡大）」を答えよ。</div>
+            <div class="quiz-actions"><button class="ans-btn" onclick="toggleAns(this)">正解を表示</button></div>
+            <div class="quiz-answer-box">
+                <div class="answer-title">①中国市場の拡大、②満州の特殊権益の維持</div>
+                <div class="answer-memo">平和主義一辺倒ではなく、あくまで日本の経済権益を「対立を避けて守る」ための外交でした。</div>
+            </div>
+        </div>
+
+        <div class="quiz-card">
+            <div class="quiz-meta"><span>No.9 穴埋め(2)</span><span>日ソ国交樹立</span></div>
+            <div class="quiz-question">1925年、加藤高明内閣のもとでソ連との国交を樹立した条約は何か？また、それによる日本側のメリット（手書き）は何か？</div>
+            <div class="quiz-actions"><button class="ans-btn" onclick="toggleAns(this)">正解を表示</button></div>
+            <div class="quiz-answer-box">
+                <div class="answer-title">日ソ基本条約 / メリット：北樺太からの撤兵と引き換えに、油田の半分の開発権を獲得した。</div>
+                <div class="answer-memo">社会主義国家であるソ連を承認する代わりに、実利を取りました。</div>
+            </div>
+        </div>
+
+        <div class="quiz-card">
+            <div class="quiz-meta"><span>No.9 穴埋め(3)</span><span>中国の運動</span></div>
+            <div class="quiz-question">1925年、上海の日本人経営の紡績工場でのストライキを機に発生した、大規模な反帝国主義運動は何か？</div>
+            <div class="quiz-actions"><button class="ans-btn" onclick="toggleAns(this)">正解を表示</button></div>
+            <div class="quiz-answer-box">
+                <div class="answer-title">五・三〇事件</div>
+                <div class="answer-memo">中国でのナショナリズムの高まりを示し、日本の権益を脅かすようになります。</div>
+            </div>
+        </div>
+
+        <div class="quiz-card">
+            <div class="quiz-meta"><span>No.9 年表(1897-1911)</span><span>労働運動黎明期</span></div>
+            <div class="quiz-question">労働運動の初期年表の空欄を埋めよ。<br>・1897年：高野房太郎・片山潜らが（① ）を結成。<br>・1900年：運動取り締まりのため（② ）を制定。<br>・1911年：労働者保護のため（③ ）を制定（実施は1916年）。</div>
             <div class="quiz-actions"><button class="ans-btn" onclick="toggleAns(this)">正解を表示</button></div>
             <div class="quiz-answer-box">
                 <div class="answer-title">① 労働組合期成会 、② 治安警察法 、③ 工場法</div>
-                <div class="answer-memo">労働運動の黎明期の流れです。足尾銅山争議などの暴動も起きました。</div>
+                <div class="answer-memo">治安警察法第17条が特に労働運動の制限に使われました。</div>
             </div>
         </div>
+
         <div class="quiz-card">
-            <div class="quiz-num">No.9：労働運動の歴史年表</div>
-            <div class="quiz-question">1912年に結成された友愛会は、1921年に何と改称し、1922年にはさらに何という労働組合の全国組織へと改称したか？</div>
+            <div class="quiz-meta"><span>No.9 穴埋め(4)(5)</span><span>友愛会の発展</span></div>
+            <div class="quiz-question">1912年に鈴木文治らが結成した（① ）は、1921年に大日本労働総同盟友愛会、1922年には（② ）へと改称し、階級闘争志向の労働組合の全国組織へと発展した。</div>
             <div class="quiz-actions"><button class="ans-btn" onclick="toggleAns(this)">正解を表示</button></div>
             <div class="quiz-answer-box">
-                <div class="answer-title">1921年：大日本労働総同盟友愛会 → 1922年：日本労働総同盟</div>
-                <div class="answer-memo">友愛会が修養団体から労働組合の全国組織へと発展していった流れです。</div>
+                <div class="answer-title">① 友愛会 、② 日本労働総同盟</div>
+                <div class="answer-memo">当初は労働者と資本家の「労資協調」を掲げていましたが、大戦後は本格的な労働組合へ脱皮しました。</div>
             </div>
         </div>
+
         <div class="quiz-card">
-            <div class="quiz-num">No.9：思想の群像</div>
-            <div class="quiz-question">1918年、吉野作造らが「頑迷思想の撲滅」を掲げ、民本主義・デモクラシー思想の拡大を目指して結成した団体は何？また、それに影響されて東大の学生らが結成した社会科学研究団体は何？</div>
+            <div class="quiz-meta"><span>No.9 穴埋め(6)(7)</span><span>思想の団体</span></div>
+            <div class="quiz-question">1918年、吉野作造・大山郁夫らが民本主義の普及を目指して結成した団体は（① ）である。また、その影響を受けて東大の学生らが結成した社会科学研究団体を（② ）という。</div>
             <div class="quiz-actions"><button class="ans-btn" onclick="toggleAns(this)">正解を表示</button></div>
             <div class="quiz-answer-box">
-                <div class="answer-title">黎明会（れいめいかい） / 新人会（東大新人会）</div>
-                <div class="answer-memo">新人会は社会科学の研究、啓蒙、労働運動・普選運動にも参加しました。</div>
+                <div class="answer-title">① 黎明会（れいめいかい） 、② 新人会（東大新人会）</div>
+                <div class="answer-memo">新人会の学生たちは、のちに実際の労働運動や小作争議の現場に飛び込んでいくことになります。</div>
             </div>
         </div>
+
         <div class="quiz-card">
-            <div class="quiz-num">No.9：思想の群像</div>
-            <div class="quiz-question">1920年、資本主義に反対する勢力を結集して成立したものの、翌年に結社を禁止された社会主義団体は何？</div>
+            <div class="quiz-meta"><span>No.9 穴埋め(8)</span><span>社会主義同盟</span></div>
+            <div class="quiz-question">1920年、堺利彦や山川均らを中心に、社会主義者や無政府主義者が大同団結して結成された（翌年結社禁止）組織は何か？</div>
             <div class="quiz-actions"><button class="ans-btn" onclick="toggleAns(this)">正解を表示</button></div>
             <div class="quiz-answer-box">
                 <div class="answer-title">日本社会主義同盟</div>
-                <div class="answer-memo">社会主義・無政府主義などの勢力が大同団結したものです。</div>
+                <div class="answer-memo">思想的な違いを超えて集まりましたが、政府の即座の弾圧を受けました。</div>
             </div>
         </div>
-        <div class="quiz-card">
-            <div class="quiz-num">No.9：無政府主義と共産主義（手書きメモ）</div>
-            <div class="quiz-question">プリントの記述問題より、以下の思想の核心を説明せよ。<br>①無政府主義者クロポトキンの研究（森戸辰男教授が休職処分となった原因）<br>②共産主義（マルクス・レーニン主義）</div>
+
+        <div class="quiz-card highlight">
+            <div class="quiz-meta"><span>No.9 手書き記述問題</span><span>社会主義思想の核心</span></div>
+            <div class="quiz-question">プリント下部の記述欄にある、以下の2つの思想の核心（説明）を答えよ。<br>①無政府主義（アナキズム）<br>②共産主義（マルクス主義）</div>
             <div class="quiz-actions"><button class="ans-btn" onclick="toggleAns(this)">正解を表示</button></div>
             <div class="quiz-answer-box">
                 <div class="answer-title">①国家・議会・宗教など一切の権力を否定することで、理想的な社会ができると考える思想。<br>②私有財産制を否定し、人民による財産の共有を実現することで、平等な社会をつくろうとする思想。</div>
-                <div class="answer-memo">特にマルクス主義は労働者階級を解放し、平等な社会をめざす理論として影響を強めました。</div>
+                <div class="answer-memo">無政府主義はクロポトキンや大杉栄、共産主義はマルクスやレーニンが代表的です。</div>
             </div>
         </div>
+
         <div class="quiz-card">
-            <div class="quiz-num">No.8・9：北一輝と右翼思想</div>
-            <div class="quiz-question">北一輝が著し、「天皇大権によって私有財産を制限し、金融・工業の国家管理を行う国家社会主義的国家改造」を提示して、右翼の教典とされた本は何？またこれに影響を与えた民間右翼団体は何？</div>
+            <div class="quiz-meta"><span>No.9 穴埋め(9)(10)</span><span>国家社会主義</span></div>
+            <div class="quiz-question">『日本改造法案大綱』を著し、天皇大権による国家改造を唱えて右翼思想に大きな影響を与えた人物は（① ）である。また、彼らが大川周明らと結成した民間右翼団体を（② ）という。</div>
             <div class="quiz-actions"><button class="ans-btn" onclick="toggleAns(this)">正解を表示</button></div>
             <div class="quiz-answer-box">
-                <div class="answer-title">日本改造法案大綱 / 猶存社（ゆうぞんしゃ）［大川周明ら］</div>
-                <div class="answer-memo">手書きメモ：天皇、軍隊を中核とする国家改造方針。</div>
+                <div class="answer-title">① 北一輝（きた いっき） 、② 猶存社（ゆうぞんしゃ）</div>
+                <div class="answer-memo">手書きメモ：「天皇・軍隊を中核とする」。のちの二・二六事件の青年将校らに信奉されました。</div>
             </div>
         </div>
+
         <div class="quiz-card">
-            <div class="quiz-num">No.9：女性解放運動</div>
-            <div class="quiz-question">女性解放運動について、以下の空欄を埋めよ。<br>・1911年：（① ）結成（平塚らいてうら）…雑誌『青鞜』を発行<br>・1920年：（② ）結成（平塚らいてう、市川房枝ら）…治安警察法第5条の改正運動<br>・1924年：（③ ）結成…女性の参政権（選挙権）獲得を目指す</div>
+            <div class="quiz-meta"><span>No.9 穴埋め(11)(12)(13)</span><span>女性解放運動</span></div>
+            <div class="quiz-question">女性運動の空欄を埋めよ。<br>・1911年：平塚らいてうらが（① ）を結成し、雑誌『青鞜』を発刊。<br>・1920年：平塚・市川房枝らが（② ）を結成し、治安警察法第5条（新婦人協会の運動により1922年改正）の女子集会参加禁止の撤廃を求めた。<br>・1924年：市川房枝らが（③ ）を結成し、参政権獲得を目指した。</div>
             <div class="quiz-actions"><button class="ans-btn" onclick="toggleAns(this)">正解を表示</button></div>
             <div class="quiz-answer-box">
                 <div class="answer-title">① 青鞜社（せいとうしゃ） 、② 新婦人協会 、③ 婦人参政権獲得期成同盟会</div>
-                <div class="answer-memo">新婦人協会は「女子の政治的結社・政治集会禁止」の撤廃に動きました。</div>
+                <div class="answer-memo">「元始、女性は太陽であった」の言葉は青鞜の発刊の辞です。</div>
             </div>
         </div>
+
         <div class="quiz-card">
-            <div class="quiz-num">No.9：各種社会運動</div>
-            <div class="quiz-question">①1922年、堺利彦、山川均らが非合法で結成したコミンテルン日本支部は何？<br>②1922年、被差別部落の差別解消のために西光万吉らが結成した団体は何？またその宣言は？<br>③1922年に設立された、日本最初の小作人の全国組織は何？</div>
+            <div class="quiz-meta"><span>No.9 穴埋め(14)(15)</span><span>共産党と水平社</span></div>
+            <div class="quiz-question">・1922年、堺利彦・山川均らが非合法で結成した組織は（① ）である。<br>・1922年、被差別部落の解放を目指して西光万吉らが結成した団体は（② ）である。</div>
             <div class="quiz-actions"><button class="ans-btn" onclick="toggleAns(this)">正解を表示</button></div>
             <div class="quiz-answer-box">
-                <div class="answer-title">① 日本共産党 、② 全国水平社（宣言：「水平社宣言」）、③ 日本農民組合</div>
-                <div class="answer-memo">日本共産党の手書きメモ：ロシア革命が引き金。外国で共産党が結成される中、国際的な結びつきの中で結成。日本農民組合は小作争議を指導しました。</div>
+                <div class="answer-title">① 日本共産党 、② 全国水平社</div>
+                <div class="answer-memo">日本共産党の手書きメモ：「ロシア革命が引き金。コミンテルン日本支部」。全国水平社の宣言は「水平社宣言」と呼ばれ、日本初の人権宣言と言われます。</div>
             </div>
         </div>
+
         <div class="quiz-card">
-            <div class="quiz-num">No.9：関東大震災と社会不安</div>
-            <div class="quiz-question">1923年9月1日、死者・行方不明者10万人以上の大災害となった出来事は何？また、この混乱の中で発生した、朝鮮人虐殺事件以外の事件や手書きの事件名を2つ答えよ。</div>
+            <div class="quiz-meta"><span>No.9 穴埋め(16)</span><span>小作人運動</span></div>
+            <div class="quiz-question">1922年、杉山元治郎・賀川豊彦らが結成した、日本最初の農民（小作人）の全国組織は何か？</div>
             <div class="quiz-actions"><button class="ans-btn" onclick="toggleAns(this)">正解を表示</button></div>
             <div class="quiz-answer-box">
-                <div class="answer-title">関東大震災 / 亀戸事件、甘粕事件、虎の門事件（手書き）</div>
-                <div class="answer-memo">震災の混乱の中で社会主義者や朝鮮人が殺害される事件が発生しました。虎の門事件（1923年12月）は摂政宮（昭和天皇）が狙われた事件です。</div>
+                <div class="answer-title">日本農民組合（日農）</div>
+                <div class="answer-memo">小作料の引き下げを求めて、各地の「小作争議」を支援しました。</div>
             </div>
         </div>
+
         <div class="quiz-card">
-            <div class="quiz-num">No.9：関東大震災・東日本・阪神淡路の比較（表より）</div>
-            <div class="quiz-question">関東大震災の「主な死因」と、これほどの「大規模火災が発生した要因」について、表に書かれた手書き内容を答えよ。</div>
+            <div class="quiz-meta"><span>No.9 穴埋め(17)</span><span>関東大震災</span></div>
+            <div class="quiz-question">1923年9月1日に発生し、南関東を中心に壊滅的な被害をもたらした大災害は何か？</div>
             <div class="quiz-actions"><button class="ans-btn" onclick="toggleAns(this)">正解を表示</button></div>
             <div class="quiz-answer-box">
-                <div class="answer-title">主な死因：火災死 / 要因：昼食時に発生し、台風によって強い風が吹いていたため大規模火災が発生。</div>
-                <div class="answer-memo">ちなみに全壊は約21万棟、死者・行方不明者は10万数千人。東日本の死因は津波（溺死が92.4%）、阪神淡路の死因は建物の倒壊（圧死）と対比されています。</div>
+                <div class="answer-title">関東大震災</div>
+                <div class="answer-memo">死者・行方不明者は10万5千人余りにのぼりました。</div>
             </div>
         </div>
-        <div class="quiz-card">
-            <div class="quiz-num">No.10：護憲運動と政党政治</div>
-            <div class="quiz-question">1924年、山県有朋系の官僚や貴族院を基盤として成立した清浦奎吾内閣に対し、政党側が起こした運動を何という？また、中心となった「護憲三派」の政党名3つと、掲げたスローガンは？</div>
+
+        <div class="quiz-card highlight">
+            <div class="quiz-meta"><span>No.9 震災比較表（手書き）</span><span>火災の要因</span></div>
+            <div class="quiz-question">関東大震災の死因のほとんどが「火災死」であったが、大規模な火災が発生した要因として表に手書きされている内容を答えよ。</div>
             <div class="quiz-actions"><button class="ans-btn" onclick="toggleAns(this)">正解を表示</button></div>
             <div class="quiz-answer-box">
-                <div class="answer-title">第2次護憲運動 / 護憲三派：憲政会、立憲政友会、革新倶楽部 / スローガン：「憲政擁護・普通選挙断行・貴族院改革」</div>
-                <div class="answer-memo">清浦内閣は各閣僚を貴族院から選出したため「超然内閣」と批判されました。総選挙で護憲三派が圧勝し、1924年に加藤高明連立内閣が成立しました。</div>
+                <div class="answer-title">昼食時に発生し、台風による強風が吹いていたため。</div>
+                <div class="answer-memo">阪神淡路大震災（圧死・建物倒壊）、東日本大震災（溺死・津波）との対比が手書きされています。</div>
             </div>
         </div>
+
         <div class="quiz-card">
-            <div class="quiz-num">No.10 / 12：普通選挙法</div>
-            <div class="quiz-question">1925年に制定された普通選挙法において、選挙権と被選挙権が与えられた条件をそれぞれ詳しく答えよ。またこれにより有権者は何倍になったか？</div>
+            <div class="quiz-meta"><span>No.9 穴埋め(18)(19)</span><span>震災時の事件</span></div>
+            <div class="quiz-question">震災の混乱の中で戒厳令が敷かれ、デマのもとで多くの朝鮮人や中国人、社会主義者が殺害された。このとき、流言に乗じた軍や警察によって引き起こされた事件を2つ答えよ。</div>
             <div class="quiz-actions"><button class="ans-btn" onclick="toggleAns(this)">正解を表示</button></div>
             <div class="quiz-answer-box">
-                <div class="answer-title">選挙権：満25歳以上の男性 、被選挙権：満30歳以上の男性 / 有権者数は約4倍に増加。</div>
-                <div class="answer-memo">直接国税による納税要件制限が完全に撤廃されました（制限なし）。</div>
+                <div class="answer-title">亀戸（かめいど）事件 、甘粕（あまかす）事件</div>
+                <div class="answer-memo">亀戸事件では川合義虎ら労働運動家が、甘粕事件では憲兵大尉・甘粕正彦によって大杉栄や伊藤野枝らが殺害されました。</div>
             </div>
         </div>
-        <div class="quiz-card">
-            <div class="quiz-num">No.10：選挙法の変遷（表より）</div>
-            <div class="quiz-question">以下の選挙法実施年における「直接国税の条件」と「内閣名」を答えよ。<br>①1890年実施、②1920年実施、③1946年実施（性別・年齢も）</div>
+
+        <div class="quiz-card highlight">
+            <div class="quiz-meta"><span>No.9 手書き補足事件</span><span>虎の門事件</span></div>
+            <div class="quiz-question">1923年12月、無政府主義者の難波大助が摂政宮（のちの昭和天皇）を狙撃した、手書きで付け足されている事件名は何か？</div>
             <div class="quiz-actions"><button class="ans-btn" onclick="toggleAns(this)">正解を表示</button></div>
             <div class="quiz-answer-box">
-                <div class="answer-title">①1890年：15円以上（黒田清隆内閣時に公布）<br>②1920年：3円以上（原敬内閣時に公布）<br>③1946年：制限なし・男女満20歳以上（幣原喜重郎内閣時に公布）</div>
-                <div class="answer-memo">※ちなみに2017年実施は安倍晋三内閣時に公布され、男女満18歳以上、全人口比83.7%となっています。</div>
-            </div>
-        </div>
-        <div class="quiz-card">
-            <div class="quiz-num">No.10：治安維持法</div>
-            <div class="quiz-question">1925年、普通選挙法とほぼ同時に制定された法律は何？また当初の目的と禁止した内容（手書きメモ含む）を答えよ。</div>
-            <div class="quiz-actions"><button class="ans-btn" onclick="toggleAns(this)">正解を表示</button></div>
-            <div class="quiz-answer-box">
-                <div class="answer-title">治安維持法 / 当初の目的：日ソ国交樹立による共産主義思想の波及を防ぐ。内容：「国体」の変革や私有財産制度の否認を目的とする結社の禁止。</div>
-                <div class="answer-memo">手書きメモ：普通選挙法の成立による労働者階級の政治的影響力の増大に備える。</div>
-            </div>
-        </div>
-        <div class="quiz-card">
-            <div class="quiz-num">No.10：政党政治の黄金期</div>
-            <div class="quiz-question">1924年の加藤高明内閣成立から1932年の犬養毅内閣崩壊（五・一五事件）まで、立憲政友会と憲政会（のちの立憲民政党）の総裁が交代で内閣を組織した慣例を何という？</div>
-            <div class="quiz-actions"><button class="ans-btn" onclick="toggleAns(this)">正解を表示</button></div>
-            <div class="quiz-answer-box">
-                <div class="answer-title">憲政の常道（けんせいのじょうどう）</div>
-                <div class="answer-memo">大正末期から昭和初期にかけて二大政党による本格的な政党内閣期が続きました。</div>
+                <div class="answer-title">虎の門事件</div>
+                <div class="answer-memo">この事件の責任をとり、第2次山本権兵衛内閣が総辞職しました。</div>
             </div>
         </div>
     </div>
 
-    <div id="sec4" class="quiz-section">
+    <div id="part3" class="quiz-section">
+        <div class="section-title">【No.10】政党政治の展開と普通選挙法</div>
+
         <div class="quiz-card">
-            <div class="quiz-num">No.12：社会主義運動への弾圧</div>
-            <div class="quiz-question">普通選挙法成立後初の総選挙（1928年）で無産政党勢力が8人当選し、日本共産党が公然と活動を開始したことを受けて、田中義一内閣が1928年と1929年に行った共産党員一斉検挙事件をそれぞれ何という？</div>
+            <div class="quiz-meta"><span>No.10 穴埋め(1)</span><span>清浦奎吾内閣</span></div>
+            <div class="quiz-question">1924年、山県有朋系の官僚や貴族院を基盤として成立した、政党を無視した内閣は何か？</div>
+            <div class="quiz-actions"><button class="ans-btn" onclick="toggleAns(this)">正解を表示</button></div>
+            <div class="quiz-answer-box">
+                <div class="answer-title">清浦奎吾（きようら けいご）内閣</div>
+                <div class="answer-memo">閣僚のほとんどが貴族院議員であったため、世論から「超然内閣」と激しく批判されました。</div>
+            </div>
+        </div>
+
+        <div class="quiz-card">
+            <div class="quiz-meta"><span>No.10 穴埋め(2)</span><span>護憲運動</span></div>
+            <div class="quiz-question">清浦内閣に対し、「特権内閣の打倒、政党内閣の樹立」を掲げて起こった運動を何というか？</div>
+            <div class="quiz-actions"><button class="ans-btn" onclick="toggleAns(this)">正解を表示</button></div>
+            <div class="quiz-answer-box">
+                <div class="answer-title">第2次護憲運動</div>
+                <div class="answer-memo">※第1次護憲運動（1912年）は桂太郎内閣を退陣させた運動（閥族打破・憲政擁護）です。</div>
+            </div>
+        </div>
+
+        <div class="quiz-card">
+            <div class="quiz-meta"><span>No.10 穴埋め(3)(4)(5)</span><span>護憲三派</span></div>
+            <div class="quiz-question">第2次護憲運動を推進し、総選挙で共闘した「護憲三派」の3つの政党をすべて答えよ。</div>
+            <div class="quiz-actions"><button class="ans-btn" onclick="toggleAns(this)">正解を表示</button></div>
+            <div class="quiz-answer-box">
+                <div class="answer-title">憲政会（加藤高明）、立憲政友会（高橋 party）、革新倶楽部（犬養毅）</div>
+                <div class="answer-memo">それぞれの党首名も重要です。総選挙でこの三派が圧勝しました。</div>
+            </div>
+        </div>
+
+        <div class="quiz-card highlight">
+            <div class="quiz-meta"><span>No.10 手書き赤字メモ</span><span>護憲三派のスローガン</span></div>
+            <div class="quiz-question">護憲三派が掲げた共通のスローガン（目標）を3つ答えよ。</div>
+            <div class="quiz-actions"><button class="ans-btn" onclick="toggleAns(this)">正解を表示</button></div>
+            <div class="quiz-answer-box">
+                <div class="answer-title">憲政擁護（政党内閣の樹立）、普通選挙断行、貴族院改革</div>
+                <div class="answer-memo">プリント中央の矢印部分に手書きで書き込まれています。</div>
+            </div>
+        </div>
+
+        <div class="quiz-card">
+            <div class="quiz-meta"><span>No.10 穴埋め(6)</span><span>加藤高明内閣</span></div>
+            <div class="quiz-question">1924年、清浦内閣退陣のあとに成立した、護憲三派による連立内閣は何か？</div>
+            <div class="quiz-actions"><button class="ans-btn" onclick="toggleAns(this)">正解を表示</button></div>
+            <div class="quiz-answer-box">
+                <div class="answer-title">加藤高明（かとう たかあき）内閣</div>
+                <div class="answer-memo">この内閣のもとで、1925年に「普通選挙法」と「治安維持法」がセットで制定されます。</div>
+            </div>
+        </div>
+
+        <div class="quiz-card">
+            <div class="quiz-meta"><span>No.10 穴埋め(7)</span><span>普通選挙法</span></div>
+            <div class="quiz-question">1925年に制定され、納税要件を完全に撤廃した画期的な選挙法は何か？</div>
+            <div class="quiz-actions"><button class="ans-btn" onclick="toggleAns(this)">正解を表示</button></div>
+            <div class="quiz-answer-box">
+                <div class="answer-title">普通選挙法</div>
+                <div class="answer-memo">これにより有権者数はこれまでの約4倍（約330万人→約1240万人）に膨れ上がりました。</div>
+            </div>
+        </div>
+
+        <div class="quiz-card highlight">
+            <div class="quiz-meta"><span>No.10 選挙権の条件</span><span>普選法の対象</span></div>
+            <div class="quiz-question">1925年の普通選挙法において、選挙権が与えられた具体的な条件（性別・年齢・その他）を答えよ。</div>
+            <div class="quiz-actions"><button class="ans-btn" onclick="toggleAns(this)">正解を表示</button></div>
+            <div class="quiz-answer-box">
+                <div class="answer-title">満25歳以上のすべての男性（女性にはなし、納税要件なし）</div>
+                <div class="answer-memo">被選挙権は「満30歳以上の男性」です。また、手書きで「貧民（生活保護受給者など）は除外」の旨も表に記載があります。</div>
+            </div>
+        </div>
+
+        <div class="quiz-card">
+            <div class="quiz-meta"><span>No.10 選挙法変遷の表</span><span>歴代の選挙法</span></div>
+            <div class="quiz-question">以下の実施年における選挙権の納税条件と、制定時の内閣を答えよ。<br>①1890年実施、②1920年実施、③1946年実施</div>
+            <div class="quiz-actions"><button class="ans-btn" onclick="toggleAns(this)">正解を表示</button></div>
+            <div class="quiz-answer-box">
+                <div class="answer-title">①1890年：直接国税15円以上（黒田清隆内閣時に公布）<br>②1920年：直接国税3円以上（原敬内閣時に公布）<br>③1946年：制限なし（男女満20歳以上、幣原喜重郎内閣時）</div>
+                <div class="answer-memo">それぞれの人口比も重要です。1890年は1.1%、1920年は5.5%、1925年は20.1%、1946年は48.7%。</div>
+            </div>
+        </div>
+
+        <div class="quiz-card">
+            <div class="quiz-meta"><span>No.10 穴埋め(8)</span><span>治安維持法</span></div>
+            <div class="quiz-question">普通選挙法による無産階級（労働者など）の進出や、日ソ国交樹立にともなう共産主義の波及を防ぐために、抱き合わせで制定された法律は何か？</div>
+            <div class="quiz-actions"><button class="ans-btn" onclick="toggleAns(this)">正解を表示</button></div>
+            <div class="quiz-answer-box">
+                <div class="answer-title">治安維持法（1925年）</div>
+                <div class="answer-memo">手書きメモ：「アメ（普選法）とムチ（治安維持法）」。</div>
+            </div>
+        </div>
+
+        <div class="quiz-card highlight">
+            <div class="quiz-meta"><span>No.10 治安維持法の処罰対象</span><span>禁止された2つの目的</span></div>
+            <div class="quiz-question">治安維持法において、変革または否認することを目的として結社を組織した者を処罰するとされた、2つの事柄は何か？</div>
+            <div class="quiz-actions"><button class="ans-btn" onclick="toggleAns(this)">正解を表示</button></div>
+            <div class="quiz-answer-box">
+                <div class="answer-title">①国体の変革（天皇制の否定）、②私有財産制度の否認（社会主義・共産主義）</div>
+                <div class="answer-memo">「国体」とは天皇を中心とする日本の国家体制のことです。</div>
+            </div>
+        </div>
+
+        <div class="quiz-card">
+            <div class="quiz-meta"><span>No.10 穴埋め(9)</span><span>憲政の常道</span></div>
+            <div class="quiz-question">加藤高明内閣以降、1932年の五・一五事件まで、衆議院の多数を占めた２大政党（政友会と民政党/憲政会）の党首が交代で内閣を組織した政党政治の慣例を何というか？</div>
+            <div class="quiz-actions"><button class="ans-btn" onclick="toggleAns(this)">正解を表示</button></div>
+            <div class="quiz-answer-box">
+                <div class="answer-title">憲政の常道（けんせいのじょうどう）</div>
+                <div class="answer-memo">これにより本格的な政党内閣が約8年間続く「政党政治の黄金期」となりました。</div>
+            </div>
+        </div>
+    </div>
+
+    <div id="part4" class="quiz-section">
+        <div class="section-title">【No.11-12】恐慌の時代と昭和初期の政治</div>
+
+        <div class="quiz-card highlight">
+            <div class="quiz-meta"><span>No.11 手書き赤字メモ</span><span>恐慌の定義</span></div>
+            <div class="quiz-question">プリント冒頭に手書きされている「恐慌」の定義（どのような状態か）を答えよ。</div>
+            <div class="quiz-actions"><button class="ans-btn" onclick="toggleAns(this)">正解を表示</button></div>
+            <div class="quiz-answer-box">
+                <div class="answer-title">資本主義体制下で、不況が深刻化して経済が破綻・不安定化した状態。</div>
+                <div class="answer-memo">単なる不景気ではなく、銀行の倒産や株価暴落をともなう破綻状態を指します。</div>
+            </div>
+        </div>
+
+        <div class="quiz-card">
+            <div class="quiz-meta"><span>No.11 穴埋め(1)</span><span>戦後恐慌</span></div>
+            <div class="quiz-question">1920年、大戦終結にともなう欧州諸国の生産再開により、日本の輸出が激減し、株式市場の暴落から始まった最初の恐慌は何か？</div>
+            <div class="quiz-actions"><button class="ans-btn" onclick="toggleAns(this)">正解を表示</button></div>
+            <div class="quiz-answer-box">
+                <div class="answer-title">戦購恐慌</div>
+                <div class="answer-memo">大戦中の「大戦景気」が一転して激しい不況となりました。</div>
+            </div>
+        </div>
+
+        <div class="quiz-card">
+            <div class="quiz-meta"><span>No.11 年表(1920)</span><span>暴落した商品</span></div>
+            <div class="quiz-question">1920年の戦後恐慌で、東京株式市場の暴落とともに相場が半値以下に暴落した、当時の２大重要輸出商品を答えよ。</div>
+            <div class="quiz-actions"><button class="ans-btn" onclick="toggleAns(this)">正解を表示</button></div>
+            <div class="quiz-answer-box">
+                <div class="answer-title">糸（生糸）、綿糸</div>
+                <div class="answer-memo">これにともない多くの紡績業者や商社が打撃を受けました。</div>
+            </div>
+        </div>
+
+        <div class="quiz-card">
+            <div class="quiz-meta"><span>No.11 穴埋め(2)</span><span>震災恐慌</span></div>
+            <div class="quiz-question">1923年、大震災による決済不能となった手形（震災手形）が大量に発生し、経済が停滞した状況を何というか？</div>
+            <div class="quiz-actions"><button class="ans-btn" onclick="toggleAns(this)">正解を表示</button></div>
+            <div class="quiz-answer-box">
+                <div class="answer-title">震災恐慌</div>
+                <div class="answer-memo">政府や日本銀行は、これらの焦げ付き手形を救済するため「震災手形割引損失補償令」を出して決済を先延ばしにしました。これが次の恐慌の火種になります。</div>
+            </div>
+        </div>
+
+        <div class="quiz-card">
+            <div class="quiz-meta"><span>No.11 穴埋め(3)</span><span>金融恐慌</span></div>
+            <div class="quiz-question">1927年、震災手形処理の審議中に起きた蔵相の失言をきっかけに、銀行への取り付け騒ぎが発生した恐慌は何か？</div>
+            <div class="quiz-actions"><button class="ans-btn" onclick="toggleAns(this)">正解を表示</button></div>
+            <div class="quiz-answer-box">
+                <div class="answer-title">金融恐慌</div>
+                <div class="answer-memo">多くの銀行が休業・倒産に追い込まれました。当時の内閣は第1次若槻礼次郎内閣です。</div>
+            </div>
+        </div>
+
+        <div class="quiz-card highlight">
+            <div class="quiz-meta"><span>No.11 穴埋め(4)・手書き</span><span>失言した蔵相</span></div>
+            <div class="quiz-question">金融恐慌の引き金となる「東京渡辺銀行がとうとう破綻いたしました」という事実と異なる失言をした大蔵大臣は誰か？</div>
+            <div class="quiz-actions"><button class="ans-btn" onclick="toggleAns(this)">正解を表示</button></div>
+            <div class="quiz-answer-box">
+                <div class="answer-title">片岡直温（かたおか なおはる）</div>
+                <div class="answer-memo">実際にはその時点で破綻していませんでしたが、この発言で預金者がパニックを起こし、窓口に殺到（取り付け騒ぎ）しました。</div>
+            </div>
+        </div>
+
+        <div class="quiz-card">
+            <div class="quiz-meta"><span>No.11 穴埋め(5)</span><span>鈴木商店と提携銀行</span></div>
+            <div class="quiz-question">金融恐慌で経営破綻した、神戸の巨大商社はどこか？また、その商社に巨額の不良債権（機関銀行化）を抱えて倒産危機に陥った銀行はどこか？</div>
+            <div class="quiz-actions"><button class="ans-btn" onclick="toggleAns(this)">正解を表示</button></div>
+            <div class="quiz-answer-box">
+                <div class="answer-title">鈴木商店 / 台湾銀行</div>
+                <div class="answer-memo">鈴木商店は大戦景気で急成長したものの、戦後の不況で経営が行き詰まっていました。</div>
+            </div>
+        </div>
+
+        <div class="quiz-card highlight">
+            <div class="quiz-meta"><span>No.11 手書き赤字メモ</span><span>若槻内閣退陣の真相</span></div>
+            <div class="quiz-question">若槻礼次郎内閣は、台湾銀行救済のための救済緊急勅令をどこに拒否されて総辞職したか？また、拒否された「本当の理由（手書き）」を答えよ。</div>
+            <div class="quiz-actions"><button class="ans-btn" onclick="toggleAns(this)">正解を表示</button></div>
+            <div class="quiz-answer-box">
+                <div class="answer-title">拒否した機関：枢密院（すうみついん） / 拒否の本当の理由：若槻内閣の「幣原外交（中国内政不干渉）」が気に入らなかったため、内閣を潰そうとした。</div>
+                <div class="answer-memo">手書きに「枢密院が拒否（理由：幣原外交が気に入らないため）」とはっきり書かれています。</div>
+            </div>
+        </div>
+
+        <div class="quiz-card">
+            <div class="quiz-meta"><span>No.11 穴埋め(6)(7)</span><span>恐慌の解決</span></div>
+            <div class="quiz-question">若槻内閣の次に成立し、金融恐慌を沈めさせた内閣は何か？また、その時任命された蔵相は誰か？</div>
+            <div class="quiz-actions"><button class="ans-btn" onclick="toggleAns(this)">正解を表示</button></div>
+            <div class="quiz-answer-box">
+                <div class="answer-title">田中義一（たなか ぎいち）内閣 / 高橋是清（たかはし これきよ）</div>
+                <div class="answer-memo">高橋是清は数々の財政危機を救った「ダルマ蔵相」として有名です。</div>
+            </div>
+        </div>
+
+        <div class="quiz-card">
+            <div class="quiz-meta"><span>No.11 穴埋め(8)</span><span>モラトリアム</span></div>
+            <div class="quiz-question">田中義一内閣が金融パニックを鎮めるために出した、3週間の支払い猶予令を何というか？</div>
+            <div class="quiz-actions"><button class="ans-btn" onclick="toggleAns(this)">正解を表示</button></div>
+            <div class="quiz-answer-box">
+                <div class="answer-title">モラトリアム（私議支払い猶予令）</div>
+                <div class="answer-memo">この間に日本銀行が大量の臨時の紙幣（片面印刷の二百円札など）を印刷し、銀行の店頭に積んで安心させました。</div>
+            </div>
+        </div>
+
+        <div class="quiz-card highlight">
+            <div class="quiz-meta"><span>No.11 下部記述問題</span><span>財閥への集中</span></div>
+            <div class="quiz-question">金融恐慌の結果、中小銀行が整理・合併され、預金が集中した「五大財閥」をすべて答えよ。また、これにより日本経済はどうなったか（記述例）。</div>
+            <div class="quiz-actions"><button class="ans-btn" onclick="toggleAns(this)">正解を表示</button></div>
+            <div class="quiz-answer-box">
+                <div class="answer-title">五大財閥：三井・三菱・住友・安田・第一 / 日本経済への影響：多くの分野で財閥が支配的な地位を占め、その影響力がより強大になった。</div>
+                <div class="answer-memo">手書き記述：「多くの分野で財閥の占める割合が高く、支配的地位を占め影響が大きかった。ただし電力・ガス・紡績は低い」。</div>
+            </div>
+        </div>
+
+        <div class="quiz-card">
+            <div class="quiz-meta"><span>No.11 穴埋め(9)</span><span>積極外交</span></div>
+            <div class="quiz-question">田中義一内閣（首相が外相を兼任）が、それまでの幣原外交から転換した、満蒙の権益を武力で防衛しようとする外交方針を何というか？</div>
+            <div class="quiz-actions"><button class="ans-btn" onclick="toggleAns(this)">正解を表示</button></div>
+            <div class="quiz-answer-box">
+                <div class="answer-title">積極外交（強硬外交）</div>
+                <div class="answer-memo">1927年には「東方会議」を開き、対支政策綱領を決定しました（満蒙は中国本土と区別し、日本の特殊権益を守る）。</div>
+            </div>
+        </div>
+
+        <div class="quiz-card">
+            <div class="quiz-meta"><span>No.11 穴埋め(10)(11)</span><span>山東出兵と北伐</span></div>
+            <div class="quiz-question">中国の蔣介石率いる国民革命軍による（① ）に対抗し、居留民保護を名目に田中内閣が行った計3回に及ぶ軍事干渉は何か？</div>
+            <div class="quiz-actions"><button class="ans-btn" onclick="toggleAns(this)">正解を表示</button></div>
+            <div class="quiz-answer-box">
+                <div class="answer-title">① 北伐（ほくばつ） / 軍事干渉：山東出兵（さんとうしゅっぺい）</div>
+                <div class="answer-memo">第2次出兵の際には、日本軍と国民政府軍が衝突する「済南（さいなん）事件」が発生しました。</div>
+            </div>
+        </div>
+
+        <div class="quiz-card">
+            <div class="quiz-meta"><span>No.11 穴埋め(12)</span><span>張作霖爆殺事件</span></div>
+            <div class="quiz-question">1928年6月、北伐軍に敗れて奉天へ退却する満州の軍閥を、関東軍（高級参謀：河本大作ら）が列車ごと爆破して殺害した事件は何か？</div>
+            <div class="quiz-actions"><button class="ans-btn" onclick="toggleAns(this)">正解を表示</button></div>
+            <div class="quiz-answer-box">
+                <div class="answer-title">張作霖（ちょう さくりん）爆殺事件</div>
+                <div class="answer-memo">当時は「満州某重大事件」と伏せられて報道されました。</div>
+            </div>
+        </div>
+
+        <div class="quiz-card highlight">
+            <div class="quiz-meta"><span>No.11 手書き赤字メモ</span><span>爆殺事件の結末</span></div>
+            <div class="quiz-question">張作霖爆殺事件の報告をめぐり、田中義一首相は誰から叱責されて総辞職に追い込まれたか？またその後、張作霖の息子である張学良はどうしたか？</div>
+            <div class="quiz-actions"><button class="ans-btn" onclick="toggleAns(this)">正解を表示</button></div>
+            <div class="quiz-answer-box">
+                <div class="answer-title">叱責した人物：昭和天皇 / 張学良の動向：国民政府（蔣介石）に合流し、中国の北伐が完了した。</div>
+                <div class="answer-memo">「河本大作らを処罰する」という約束を翻した田中首相に対し、昭和天皇が不信感をあらわにし、田中は辞職。その後まもなく急死しました。</div>
+            </div>
+        </div>
+
+        <div class="quiz-card">
+            <div class="quiz-meta"><span>No.12 穴埋め(1)</span><span>無産政党の進出</span></div>
+            <div class="quiz-question">1928年、普通選挙法のもとで行われた第16回総選挙において、労働者や農民を基盤とする何という政党勢力が8議席を獲得したか？</div>
+            <div class="quiz-actions"><button class="ans-btn" onclick="toggleAns(this)">正解を表示</button></div>
+            <div class="quiz-answer-box">
+                <div class="answer-title">無産政党（むさんせいとう）</div>
+                <div class="answer-memo">労働農民党、社会民衆党などです。これに危機感を抱いた田中内閣は弾圧を強化します。</div>
+            </div>
+        </div>
+
+        <div class="quiz-card">
+            <div class="quiz-meta"><span>No.12 穴埋め(2)(3)</span><span>共産党弾圧</span></div>
+            <div class="quiz-question">田中義一内閣が、非合法の日本共産党員を一斉に検挙した、1928年と1929年の事件をそれぞれ何というか？</div>
             <div class="quiz-actions"><button class="ans-btn" onclick="toggleAns(this)">正解を表示</button></div>
             <div class="quiz-answer-box">
                 <div class="answer-title">1928年：三・一五事件 、1929年：四・一六事件</div>
-                <div class="answer-memo">三・一五事件では労働農民党など3団体が結社禁止、日本労働組合評議会が解散させられ、日本共産党はほぼ壊滅しました。</div>
+                <div class="answer-memo">三・一五事件の後、労働農民党や日本労働組合評議会などの関係団体が解散させられました。</div>
             </div>
         </div>
-        <div class="quiz-card">
-            <div class="quiz-num">No.10 / 12：治安維持法の改悪</div>
-            <div class="quiz-question">1928年、田中義一内閣が緊急勅令（手書きメモ：枢密院の反対を避けるため緊急勅令で改革・強化）によって治安維持法を改正した際、追加された最高刑と内容の変化を答えよ。</div>
+
+        <div class="quiz-card highlight">
+            <div class="quiz-meta"><span>No.12 穴埋め(4)・手書き</span><span>治安維持法の改悪</span></div>
+            <div class="quiz-question">1928年、田中内閣が「緊急勅令」を用いて治安維持法を改正（改悪）した際、追加された最高刑は何か？また、手書きされている改正の「実質的な変化」を答えよ。</div>
             <div class="quiz-actions"><button class="ans-btn" onclick="toggleAns(this)">正解を表示</button></div>
             <div class="quiz-answer-box">
-                <div class="answer-title">最高刑：死刑 / 内容変化：私有財産制を否認する目的の組織（結社）自体も完全にダメ（一発アウト）になった。</div>
-                <div class="answer-memo">手書きメモ：「死刑が増えた」「私有財産制を否認する組織もダメになった」。改正により警察には特別高等警察（特高）が設置されました。</div>
+                <div class="answer-title">最高刑：死刑 / 実質的な変化：私有財産制を否認する組織（結社）を組織・加入しただけで一発アウト（死刑・重罪）になった。</div>
+                <div class="answer-memo">手書きメモに「死刑が増えた」「私有財産制を否認する組織も完全にダメになった」とあります。また、枢密院の反対を避けるために議会を通さず「緊急勅令」を使ったことも手書きされています。</div>
             </div>
         </div>
+
         <div class="quiz-card">
-            <div class="quiz-num">No.11 / 12：大正〜昭和初期の4つの恐慌</div>
-            <div class="quiz-question">以下の4つの恐慌の名称を順番に答えよ。<br>①1920年：大戦終結、ヨーロッパ諸国の復帰、過剰生産による株価暴落<br>②1923年：震災手形の決済不能、不渡手形大量発生<br>③1927年：震災手形処理の不手際、蔵相の失言による取り付け騒ぎ<br>④1929年：ニューヨークの株価暴落が日本へ波及</div>
+            <div class="quiz-meta"><span>No.12 穴埋め(5)</span><span>特高の設置</span></div>
+            <div class="quiz-question">治安維持法の強化にともない、思想犯罪・社会運動を取り締まるために各府県の警察に配置された専門の警察組織を何というか？</div>
             <div class="quiz-actions"><button class="ans-btn" onclick="toggleAns(this)">正解を表示</button></div>
             <div class="quiz-answer-box">
-                <div class="answer-title">① 戦後恐慌 、② 震災恐慌 、③ 金融恐慌 、④ 昭和恐慌（世界恐慌）</div>
-                <div class="answer-memo">日本経済はこれら4つの恐慌により、慢性的な不況の状態が続くことになります。手書きメモによる「恐慌の定義」：資本主義体制下で不況が深刻化して経済が破綻・不安定化した状態。</div>
+                <div class="answer-title">特別高等警察（特高）</div>
+                <div class="answer-memo">これにより、政府に反対する思想や運動への監視・拷問が日常化していきました。</div>
             </div>
         </div>
+
         <div class="quiz-card">
-            <div class="quiz-num">No.11：戦後恐慌</div>
-            <div class="quiz-question">戦後恐慌の経過として、1919年の日本の貿易は何超過だった？また1920年に東京株式市場の暴落により相場が半値以下に落ちた2つの主要商品は？</div>
+            <div class="quiz-meta"><span>No.12 穴埋め(6)(7)</span><span>濱口雄幸内閣</span></div>
+            <div class="quiz-question">1929年7月、田中義一内閣の総辞職を受けて成立した立憲民政党の内閣は何か？また、起用された大蔵大臣は誰か？</div>
             <div class="quiz-actions"><button class="ans-btn" onclick="toggleAns(this)">正解を表示</button></div>
             <div class="quiz-answer-box">
-                <div class="answer-title">輸入超過 / 糸（生糸）・綿糸</div>
-                <div class="answer-memo">対応として日本銀行が多額の救済融資を行いました。</div>
+                <div class="answer-title">濱口雄幸（はまぐち おさち）内閣 / 井上準之助（いのうえ じゅんのすけ）</div>
+                <div class="answer-memo">濱口首相はその風貌から「ライオン首相」と呼ばれ、緊縮財政と幣原外交の復活（協調外交）を掲げました。</div>
             </div>
         </div>
+
         <div class="quiz-card">
-            <div class="quiz-num">No.11：金融恐慌</div>
-            <div class="quiz-question">1927年の金融恐慌において、①失言をして取り付け騒ぎを引き起こした蔵相の名前は？、②破綻の危機に陥った鈴木商店系列の主要銀行は？、③これにより総辞職した内閣は？</div>
+            <div class="quiz-meta"><span>No.12 穴埋め(8)</span><span>昭和恐慌（世界恐慌）</span></div>
+            <div class="quiz-question">1929年10月、ニューヨークのウォール街での株価大暴落をきっかけに世界中に波及した恐慌を何というか？</div>
             <div class="quiz-actions"><button class="ans-btn" onclick="toggleAns(this)">正解を表示</button></div>
             <div class="quiz-answer-box">
-                <div class="answer-title">① 片岡直温（なおはる）、② 台湾銀行（鈴木商店の不良債権を抱えていた）、③ 第1次若槻礼次郎内閣</div>
-                <div class="answer-memo">手書きメモ：若槻内閣は台湾銀行救済のために「緊急勅令」を出そうとするも、枢密院に拒否されました（理由：2億円の融資、幣原外交が気に入らなかったため）。</div>
+                <div class="answer-title">世界恐慌（日本では昭和恐慌）</div>
+                <div class="answer-memo">この最悪のタイミングで、日本は次の経済政策を断行してしまいます。</div>
             </div>
         </div>
+
         <div class="quiz-card">
-            <div class="quiz-num">No.11：金融恐慌の処理</div>
-            <div class="quiz-question">若槻内閣の次に成立し、金融恐慌を沈静化させた内閣は？また、そのとき実施された3週間の支払い猶予令のことをカタカナで何という？</div>
-            <div class="quiz-actions"><button class="ans-btn" onclick="toggleAns(this)">正解を表示</button></div>
-            <div class="quiz-answer-box">
-                <div class="answer-title">田中義一内閣 / モラトリアム</div>
-                <div class="answer-memo">預金者の銀行からの引き落としを一時停止し、裏が白い臨時の紙幣（二百円札など）を大量に印刷してパニックを鎮めました。</div>
-            </div>
-        </div>
-        <div class="quiz-card">
-            <div class="quiz-num">No.11：財閥の優位（手書きメモ）</div>
-            <div class="quiz-question">金融恐慌後、中小銀行の整理・合併が進み、預金が集中した「五大財閥」の名称をすべて答えよ。また、当時の日本経済の状況に関する記述解答例を答えよ。</div>
-            <div class="quiz-actions"><button class="ans-btn" onclick="toggleAns(this)">正解を表示</button></div>
-            <div class="quiz-answer-box">
-                <div class="answer-title">三井・三菱・住友・安田・第一</div>
-                <div class="answer-memo">記述解答例：多くの分野で財閥の占める割合が高く、財閥が支配的な地位を占め影響が大きかったことがわかる。しかし、電力・ガス・紡績は財閥への集中の割合が低い。</div>
-            </div>
-        </div>
-        <div class="quiz-card">
-            <div class="quiz-num">No.11 / 12：金解禁と井上財政</div>
-            <div class="quiz-question">1929年に成立した濱口雄幸内閣（立憲民政党、蔵相：井上準之助）が、緊縮財政と「協調」外交を掲げて1930年に行った経済政策は何？また、その狙い（手書きメモ）を答えよ。</div>
+            <div class="quiz-meta"><span>No.12 穴埋め(9)</span><span>金解禁</span></div>
+            <div class="quiz-question">1930年1月、濱口内閣（井上蔵相）が日本経済の体質改善と円の国際信用回復を目指して行った、金本位制への復帰政策を何というか？</div>
             <div class="quiz-actions"><button class="ans-btn" onclick="toggleAns(this)">正解を表示</button></div>
             <div class="quiz-answer-box">
                 <div class="answer-title">金解禁（金輸出解禁）</div>
-                <div class="answer-memo">手書きメモ：円の国際的な信用を落とさないようにする。企業に無駄を見直しさせ、日本経済の体質改善を図る。</div>
+                <div class="answer-memo">あえて旧為替レート（100円＝49.85ドル）という実質的な「円高」水準で強行しました。</div>
             </div>
         </div>
-        <div class="quiz-card">
-            <div class="quiz-num">No.12：昭和恐慌の深化</div>
-            <div class="quiz-question">旧為替レート（100円＝49.85ドル、金15グラム＝20円）という実質的な「円高」で金解禁を強行した結果、どうなったか？<br>①日本の輸出・輸入はどちらが滞った？、②独占資本に対する恐慌対策として1931年に制定された法律は？</div>
+
+        <div class="quiz-card highlight">
+            <div class="quiz-meta"><span>No.12 手書き赤字メモ</span><span>井上財政の狙いと裏目</span></div>
+            <div class="quiz-question">井上蔵相が金解禁を行った「狙い（手書き）」と、世界恐慌と重なったことで起きた「最悪の結果（2つの減少・流出）」を答えよ。</div>
             <div class="quiz-actions"><button class="ans-btn" onclick="toggleAns(this)">正解を表示</button></div>
             <div class="quiz-answer-box">
-                <div class="answer-title">① 輸出が滞った（日本製品が9%程度値上がりしたため）、② 重要産業統制法</div>
-                <div class="answer-memo">世界恐慌のタイミングと重なったため、日本は激しい「昭和恐慌」に突入し、正貨（金）が大量に流出、企業の倒産や失業者が増大しました。</div>
+                <div class="answer-title">狙い：無駄（非効率な企業）を見直しさせ、日本経済の体質改善を図る。信用を落とさない。 / 結果：輸出が激減（日本製品が9%値上がりしたため滞る）、正貨（金）が大量に流出した。</div>
+                <div class="answer-memo">手書きメモに「輸出が滞る（9%値上がりするため）」「金の流出」と鋭く突っ込まれています。これにより日本は物価が暴落し、深刻な「昭和恐慌」へ突入しました。</div>
             </div>
         </div>
+
         <div class="quiz-card">
-            <div class="quiz-num">No.12：農業恐慌</div>
-            <div class="quiz-question">昭和恐慌下で、農産物や繭（まゆ）の価格が暴落した。以下の現象を何というか？<br>①1930年：豊作により米価が下がった現象<br>②1931年：大凶作に見舞われた東北地方などの現象</div>
+            <div class="quiz-meta"><span>No.12 穴埋め(10)</span><span>重要産業統制法</span></div>
+            <div class="quiz-question">1931年、昭和恐慌下のカルテル（生産制限や価格協定）を政府が容認・奨励し、独占資本を救済するために制定した法律は何か？</div>
+            <div class="quiz-actions"><button class="ans-btn" onclick="toggleAns(this)">正解を表示</button></div>
+            <div class="quiz-answer-box">
+                <div class="answer-title">重要産業統制法</div>
+                <div class="answer-memo">これにより、主要産業のカルテル結成が国家によって合法化・推進されました。</div>
+            </div>
+        </div>
+
+        <div class="quiz-card">
+            <div class="quiz-meta"><span>No.12 穴埋め(11)(12)</span><span>農業恐慌の２大悲劇</span></div>
+            <div class="quiz-question">昭和恐慌は農村を直撃し（農業恐慌）、生糸や米価が暴落した。農村を襲った以下の２つの現象・原因を何というか？<br>①1930年：豊作なのに米価が暴落し、農民が困窮した現象。<br>②1931年：東北・北海道を中心に冷害で大凶作となり、飢餓に陥った現象。</div>
             <div class="quiz-actions"><button class="ans-btn" onclick="toggleAns(this)">正解を表示</button></div>
             <div class="quiz-answer-box">
                 <div class="answer-title">① 豊作貧乏 、② 凶作恐慌（冷害恐慌）</div>
-                <div class="answer-memo">農村は悲惨な飢饉状態となり、娘の身売りなどが社会問題化しました。</div>
+                <div class="answer-memo">農村では欠食児童や娘の身売りが続出し、社会問題となりました。これが軍部による政権奪取（ファシズム化）のエネルギーになっていきます。</div>
             </div>
         </div>
-        <div class="quiz-card">
-            <div class="quiz-num">No.11：田中義一内閣の積極外交</div>
-            <div class="quiz-question">田中義一内閣が幣原外交から方針転換した外交を何というか？また、中国国民党の蔣介石による（① ）に対抗し、日本人居留民の保護や張作霖支援を目的に行った軍事行動を何というか？</div>
+    </div>
+
+    <div id="part5" class="quiz-section">
+        <div class="section-title">【小テスト対策】実際のテスト問題から完全再現</div>
+
+        <div class="quiz-card highlight">
+            <div class="quiz-meta"><span>小テスト 問1対策</span><span>条約の完全識別</span></div>
+            <div class="quiz-question">小テストで出題された、大戦後〜ワシントン会議の4つの条約（A〜D）のキーワードを完璧に一致させよ。<br>【A】ヴェルサイユ条約、【B】四カ国条約、【C】九カ国条約、【D】ワシントン海軍軍備制限条約</div>
             <div class="quiz-actions"><button class="ans-btn" onclick="toggleAns(this)">正解を表示</button></div>
             <div class="quiz-answer-box">
-                <div class="answer-title">積極外交（強硬外交） / ① 北伐（ほくばつ） 、軍事行動：山東出兵（さんとうしゅっぺい）</div>
-                <div class="answer-memo">1927年の「東方会議」で対支政策綱領を決定。「満蒙は中国領土にあらず」とし、1928年には済南（さいなん）事件で国民革命軍と日本軍が武力衝突しました。</div>
+                <div class="answer-title">
+                    A：赤道以北の南洋諸島の委任統治権、山東省の旧ドイツ権益、多額の賠償金<br>
+                    B：日英同盟の廃棄、太平洋に関する現状維持<br>
+                    C：山東省権益の中国返還、石井・ランシング協定廃棄、中国の門戸開放<br>
+                    D：主力艦保有比率（米5：英5：日3）、10年間の建造禁止
+                </div>
+                <div class="answer-memo">小テストの選択問題（ア〜オ）を記号で選ぶ問題の完全対策です。キーワードを頭に叩き込んでください。</div>
             </div>
         </div>
-        <div class="quiz-card">
-            <div class="quiz-num">No.11：張作霖爆殺事件</div>
-            <div class="quiz-question">1928年、関東軍参謀の河本大作らが張作霖の乗った列車を爆破して殺害した事件を何というか？またこれによりどうなったか？</div>
+
+        <div class="quiz-card highlight">
+            <div class="quiz-meta"><span>小テスト 問2対策</span><span>正誤判定の罠(1)</span></div>
+            <div class="quiz-question">「大戦後の国際経済循環において、アメリカは戦債支払いに苦しむイギリス、フランス、日本に多額の援助を行った。」この文章の誤りはどこか？</div>
             <div class="quiz-actions"><button class="ans-btn" onclick="toggleAns(this)">正解を表示</button></div>
             <div class="quiz-answer-box">
-                <div class="answer-title">張作霖爆殺事件（満州某重大事件） / 田中義一内閣が責任をとって総辞職、張学良が満州を国民政府の支配下と認めて北伐が完了した。</div>
-                <div class="answer-memo">昭和天皇から叱責された田中首相が総辞職に追い込まれ、政権は濱口内閣へと交代しました。</div>
+                <div class="answer-title">「日本に多額の援助を行った」という点がバツ。正しくは「ドイツ」の復興に多額の援助を行った。</div>
+                <div class="answer-memo">模範解答より：日本は大戦で「債権国」になっており、援助を受ける側ではありません。アメリカが援助したのは敗戦国のドイツです。</div>
+            </div>
+        </div>
+
+        <div class="quiz-card highlight">
+            <div class="quiz-meta"><span>小テスト 問2対策</span><span>正誤判定の罠(2)</span></div>
+            <div class="quiz-question">「ドイツはイギリスやフランスから支払われた賠償金によって復興を遂げた。」この文章の誤りはどこか？</div>
+            <div class="quiz-actions"><button class="ans-btn" onclick="toggleAns(this)">正解を表示</button></div>
+            <div class="quiz-answer-box">
+                <div class="answer-title">主客が逆。正しくは「ドイツがイギリスやフランスに賠償金を支払った」のであり、復興の原動力はアメリカの資本である。</div>
+                <div class="answer-memo">テストの定番ひっかけ問題です。</div>
+            </div>
+        </div>
+
+        <div class="quiz-card highlight">
+            <div class="quiz-meta"><span>小テスト 問3対策</span><span>記述：三・一独立運動の統治転換</span></div>
+            <div class="quiz-question">【実際のテスト記述問題】<br>三・一独立運動の後、日本政府（原敬内閣）はどのような「官制改正」を行い、どのように「統治方針」を改善したか、模範解答通りに答えよ。</div>
+            <div class="quiz-actions"><button class="ans-btn" onclick="toggleAns(this)">正解を表示</button></div>
+            <div class="quiz-answer-box">
+                <div class="answer-title">官制改正により文官の総督就任を認め、憲兵警察制度を廃止するなど、それまでの武断政治から文化政治へと統治方針を改善した。</div>
+                <div class="answer-memo">「文官の総督就任」「憲兵警察制度の廃止」「武断政治から文化政治へ」の3つの要素が必須です。</div>
+            </div>
+        </div>
+
+        <div class="quiz-card highlight">
+            <div class="quiz-meta"><span>小テスト 問4対策</span><span>記述：ウィルソンの十四カ条の限界</span></div>
+            <div class="quiz-question">【実際のテスト記述問題】<br>パリ講和会議の基本原則となったウィルソンの「十四カ条」における「民族自決」の考え方は、どのような限界を持っていたか、模範解答通りに答えよ。</div>
+            <div class="quiz-actions"><button class="ans-btn" onclick="toggleAns(this)">正解を表示</button></div>
+            <div class="quiz-answer-box">
+                <div class="answer-title">ヨーロッパの民族には適用され、チェコスロヴァキアなどが独立したが、アジアやアフリカの植民地には適用されなかったという限界。</div>
+                <div class="answer-memo">「ヨーロッパには適用され東欧諸国が独立したこと」と「アジア・アフリカには適用されなかったこと」を対比して書くのが満点解答です。</div>
             </div>
         </div>
     </div>
@@ -582,17 +1103,15 @@
 
 <script>
     function switchTab(tabId) {
-        // すべてのセクションを非表示にする
         const sections = document.querySelectorAll('.quiz-section');
         sections.forEach(sec => sec.classList.remove('active'));
         
-        // すべてのタブボタンのactiveクラスを外す
         const buttons = document.querySelectorAll('.tab-btn');
         buttons.forEach(btn => btn.classList.remove('active'));
         
-        // 対象のセクションとボタンをアクティブにする
         document.getElementById(tabId).classList.add('active');
         event.currentTarget.classList.add('active');
+        window.scrollTo(0, 0);
     }
 
     function toggleAns(btn) {
