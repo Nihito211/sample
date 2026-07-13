@@ -2,371 +2,609 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>日本近代史 徹底網羅テスト</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>日本史探究 総復習一問一答（No.7～No.12・小テスト網羅版）</title>
     <style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #e74c3c;
+            --bg-color: #f8f9fa;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+        }
         body {
             font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
-            background-color: #f5f7fa;
-            color: #333;
+            background-color: var(--bg-color);
+            color: var(--text-color);
             line-height: 1.6;
             margin: 0;
             padding: 0;
         }
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 2rem 1rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        header h1 {
+            margin: 0;
+            font-size: 1.8rem;
+        }
+        header p {
+            margin: 0.5rem 0 0 0;
+            font-size: 1rem;
+            opacity: 0.8;
+        }
         .container {
             max-width: 800px;
-            margin: 30px auto;
-            background: #fff;
-            padding: 40px;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            margin: 2rem auto;
+            padding: 0 1rem;
         }
-        h1 {
-            text-align: center;
-            color: #2c3e50;
-            border-bottom: 3px solid #3498db;
-            padding-bottom: 15px;
-            margin-bottom: 30px;
+        .tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            justify-content: center;
         }
-        .intro {
-            background-color: #e8f4fd;
-            border-left: 5px solid #3498db;
-            padding: 15px;
-            margin-bottom: 30px;
-            border-radius: 0 4px 4px 0;
+        .tab-btn {
+            background-color: #e2e8f0;
+            border: none;
+            padding: 0.75rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
         }
-        .quiz-item {
-            margin-bottom: 25px;
-            padding-bottom: 20px;
-            border-bottom: 1px dashed #ddd;
+        .tab-btn.active {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        .quiz-section {
+            display: none;
+        }
+        .quiz-section.active {
+            display: block;
+        }
+        .quiz-card {
+            background-color: var(--card-bg);
+            border-left: 5px solid var(--primary-color);
+            border-radius: 5px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        .quiz-num {
+            font-size: 0.85rem;
+            color: #7f8c8d;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
         }
         .quiz-question {
+            font-size: 1.1rem;
             font-weight: bold;
-            font-size: 1.1em;
-            margin-bottom: 10px;
-            color: #2c3e50;
+            margin-bottom: 1rem;
         }
-        .options-group {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-            margin-left: 10px;
+        .quiz-actions {
+            margin-bottom: 1rem;
         }
-        .option-label {
-            display: flex;
-            align-items: center;
-            padding: 8px 12px;
-            background: #f8f9fa;
-            border: 1px solid #e9ecef;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: background 0.2s;
-        }
-        .option-label:hover {
-            background: #e9ecef;
-        }
-        .option-label input {
-            margin-right: 10px;
-        }
-        .btn-container {
-            text-align: center;
-            margin-top: 40px;
-        }
-        #submit-btn {
-            background-color: #27ae60;
+        .ans-btn {
+            background-color: #3498db;
             color: white;
             border: none;
-            padding: 15px 40px;
-            font-size: 1.2em;
-            border-radius: 30px;
+            padding: 0.5rem 1rem;
+            border-radius: 3px;
             cursor: pointer;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            transition: background 0.2s, transform 0.1s;
+            font-size: 0.9rem;
+            transition: background 0.2s;
         }
-        #submit-btn:hover {
-            background-color: #219653;
+        .ans-btn:hover {
+            background-color: #2980b9;
         }
-        #submit-btn:active {
-            transform: scale(0.98);
-        }
-        #result {
-            margin-top: 30px;
-            padding: 20px;
-            border-radius: 8px;
+        .quiz-answer-box {
             display: none;
-            text-align: center;
-            font-size: 1.3em;
-            font-weight: bold;
+            background-color: #fdf2f2;
+            border: 1px solid #f5c6cb;
+            border-radius: 4px;
+            padding: 1rem;
+            margin-top: 0.5rem;
         }
-        .success {
-            background-color: #d4edda;
-            color: #155724;
-            border: 1px solid #c3e6cb;
+        .quiz-answer-box.show {
+            display: block;
         }
-        .correct-ans {
-            color: #27ae60;
+        .answer-title {
+            color: var(--accent-color);
             font-weight: bold;
-            margin-top: 5px;
-            display: none;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
         }
-        .wrong-choice {
-            color: #c0392b;
-            font-weight: bold;
+        .answer-memo {
+            font-size: 0.95rem;
+            color: #555;
+            border-top: 1px dashed #f5c6cb;
+            padding-top: 0.5rem;
+            margin-top: 0.5rem;
         }
     </style>
 </head>
 <body>
 
+<header>
+    <h1>日本史探究 定期テスト対策総復習</h1>
+    <p>第13章 ワシントン体制 ～ 第15章 恐慌の時代（プリントNo.7～No.12・小テスト完全網羅）</p>
+</header>
+
 <div class="container">
-    <h1>日本近代史 徹底網羅テスト（全124問）</h1>
-    <div class="intro">
-        <p>自由民権運動から明治・大正期の外交、そして大正デモクラシー期までの重要問題全124問です。</p>
-        <p><strong>※ページを更新（リロード）するたびに、全ての問題がランダムな順序でシャッフルされます。</strong></p>
+    <div class="tabs">
+        <button class="tab-btn active" onclick="switchTab('sec1')">1. WWI・パリ講和会議</button>
+        <button class="tab-btn" onclick="switchTab('sec2')">2. ワシントン体制・協調外交</button>
+        <button class="tab-btn" onclick="switchTab('sec3')">3. 大正デモクラシー・社会運動</button>
+        <button class="tab-btn" onclick="switchTab('sec4')">4. 4つの恐慌・昭和初期政治</button>
     </div>
 
-    <form id="quiz-form">
-        <div id="quiz-container"></div>
-        
-        <div class="btn-container">
-            <button type="button" id="submit-btn" onclick="calcScore()">採点する</button>
+    <div id="sec1" class="quiz-section active">
+        <div class="quiz-card">
+            <div class="quiz-num">No.7：第一次世界大戦の対立構図</div>
+            <div class="quiz-question">三国同盟側に属していた主要な4つの国はどこ？（1915年に同盟国側に寝返った国を除く）</div>
+            <div class="quiz-actions"><button class="ans-btn" onclick="toggleAns(this)">正解を表示</button></div>
+            <div class="quiz-answer-box">
+                <div class="answer-title">ドイツ、オーストリア、ブルガリア、オスマン帝国</div>
+                <div class="answer-memo">※イタリアは1915年に連合国（三国協商）側に寝返りました。</div>
+            </div>
         </div>
-    </form>
+        <div class="quiz-card">
+            <div class="quiz-num">No.7：第一次世界大戦の対立構図</div>
+            <div class="quiz-question">三国協商（連合国）側に属していた主要な6つの国はどこ？</div>
+            <div class="quiz-actions"><button class="ans-btn" onclick="toggleAns(this)">正解を表示</button></div>
+            <div class="quiz-answer-box">
+                <div class="answer-title">イギリス、フランス、ロシア、セルビア、日本、アメリカ</div>
+                <div class="answer-memo">※ロシアは1918年単独講和、アメリカは1917年参戦。</div>
+            </div>
+        </div>
+        <div class="quiz-card">
+            <div class="quiz-num">No.7：大戦期年表</div>
+            <div class="quiz-question">1914年6月、第一次世界大戦の引き金となった事件は？</div>
+            <div class="quiz-actions"><button class="ans-btn" onclick="toggleAns(this)">正解を表示</button></div>
+            <div class="quiz-answer-box">
+                <div class="answer-title">サラエヴ（サラエボ）事件</div>
+                <div class="answer-memo">この事件の後、7月にオーストリアがセルビアに宣戦布告し、8月にイギリスがドイツに宣戦布告しました。</div>
+            </div>
+        </div>
+        <div class="quiz-card">
+            <div class="quiz-num">No.7：大戦期年表</div>
+            <div class="quiz-question">1915年1月、日本が中国（袁世凱内閣）に対して要求したものは何？</div>
+            <div class="quiz-actions"><button class="ans-btn" onclick="toggleAns(this)">正解を表示</button></div>
+            <div class="quiz-answer-box">
+                <div class="answer-title">二十一カ条の要求</div>
+                <div class="answer-memo">のちに中国でこれの撤回を求める「五・四運動」が起こることになります。</div>
+            </div>
+        </div>
+        <div class="quiz-card">
+            <div class="quiz-num">No.7：大戦期年表</div>
+            <div class="quiz-question">1918年3月、ロシアが戦線から離脱する際に結んだ条約は何？</div>
+            <div class="quiz-actions"><button class="ans-btn" onclick="toggleAns(this)">正解を表示</button></div>
+            <div class="quiz-answer-box">
+                <div class="answer-title">ブレスト=リトフスク条約</div>
+                <div class="answer-memo">1917年3月のロシア革命開始を受けての単独講和です。</div>
+            </div>
+        </div>
+        <div class="quiz-card">
+            <div class="quiz-num">No.7：パリ講和会議</div>
+            <div class="quiz-question">1918年、各地で反乱が発生し皇帝ヴィルヘルム二世が退位した国はどこ？また、これにより起こった革命を何という？</div>
+            <div class="quiz-actions"><button class="ans-btn" onclick="toggleAns(this)">正解を表示</button></div>
+            <div class="quiz-answer-box">
+                <div class="answer-title">ドイツ（ドイツ革命）</div>
+                <div class="answer-memo">これによりドイツ共和国が連合国に降伏し、第一次世界大戦が終了しました。</div>
+            </div>
+        </div>
+        <div class="quiz-card">
+            <div class="quiz-num">No.7 / 小テスト</div>
+            <div class="quiz-question">1919年1月に始まった大戦後の講和会議を何というか？また、日本の全権をつとめた元老は誰か？</div>
+            <div class="quiz-actions"><button class="ans-btn" onclick="toggleAns(this)">正解を表示</button></div>
+            <div class="quiz-answer-box">
+                <div class="answer-title">パリ講和会議 / 西園寺公望（さいおんじきんもち）</div>
+                <div class="answer-memo">※首席全権は西園寺公望、実際の外交実務を担ったもう一人の全権は牧野伸顕です。</div>
+            </div>
+        </div>
+        <div class="quiz-card">
+            <div class="quiz-num">No.7 / 小テスト</div>
+            <div class="quiz-question">アメリカ大統領ウィルソンが提唱し、パリ講和会議の基本原則となった方針を何というか？</div>
+            <div class="quiz-actions"><button class="ans-btn" onclick="toggleAns(this)">正解を表示</button></div>
+            <div class="quiz-answer-box">
+                <div class="answer-title">十四カ条</div>
+                <div class="answer-memo">秘密外交の廃止、軍備の縮小、民族自決、海洋の自由、関税障壁の廃止、国際平和機関の成立などが含まれます。</div>
+            </div>
+        </div>
+        <div class="quiz-card">
+            <div class="quiz-num">No.7 / 小テスト</div>
+            <div class="quiz-question">ウィルソンの「民族自決」についての説明として、プリントの手書きメモや小テストで指摘されていた「適用範囲の限界」とは何か？</div>
+            <div class="quiz-actions"><button class="ans-btn" onclick="toggleAns(this)">正解を表示</button></div>
+            <div class="quiz-answer-box">
+                <div class="answer-title">ヨーロッパでは適用されたものの、アジアやアフリカの植民地には適用されなかった点。</div>
+                <div class="answer-memo">手書きメモ：「自分たちの国や政府を、自分たちの意志で作るべき」という考え方だが、すべての民族に普遍ではない（ヨーロッパのみでアジアにはなし）。</div>
+            </div>
+        </div>
+        <div class="quiz-card">
+            <div class="quiz-num">No.7・8 / 小テスト</div>
+            <div class="quiz-question">1919年に調印された、対ドイツの講和条約は何？また、日本が継承した旧ドイツの権益を2つ答えよ。</div>
+            <div class="quiz-actions"><button class="ans-btn" onclick="toggleAns(this)">正解を表示</button></div>
+            <div class="quiz-answer-box">
+                <div class="answer-title">ヴェルサイユ条約 / ①山東省の旧ドイツ権益、②赤道以北の旧ドイツ領南洋諸島の委任統治権</div>
+                <div class="answer-memo">ドイツへの処分：植民地の放棄、多額の賠償金。また、チェコスロヴァキア、ユーゴスラヴィア、ポーランドなどの民族国家が独立しました。</div>
+            </div>
+        </div>
+    </div>
 
-    <div id="result"></div>
+    <div id="sec2" class="quiz-section">
+        <div class="quiz-card">
+            <div class="quiz-num">No.8 / 小テスト</div>
+            <div class="quiz-question">ヴェルサイユ条約に基づき設立された国際平和維持機関は何か？また、本部のある都市と、常任理事国となった4カ国を答えよ。</div>
+            <div class="quiz-actions"><button class="ans-btn" onclick="toggleAns(this)">正解を表示</button></div>
+            <div class="quiz-answer-box">
+                <div class="answer-title">国際連盟 / 本部：ジュネーヴ / 常任理事国：英・仏・日・伊</div>
+                <div class="answer-memo">※提唱国であるアメリカは、議会（上院）の反対により不参加でした。国際労働機関(ILO)も設置されました。</div>
+            </div>
+        </div>
+        <div class="quiz-card">
+            <div class="quiz-num">No.8：アジアの民族運動</div>
+            <div class="quiz-question">1919年3月1日、朝鮮でパゴダ公園での独立宣言書朗読を機に起こった激しい独立運動は何？また当時の日本の対応と内閣は？</div>
+            <div class="quiz-actions"><button class="ans-btn" onclick="toggleAns(this)">正解を表示</button></div>
+            <div class="quiz-answer-box">
+                <div class="answer-title">三・一独立運動（万歳事件） / 原敬内閣が警察・憲兵・軍隊を動員して激しく弾圧。</div>
+                <div class="answer-memo">手書きメモ：諸国がパリ講和会議で民族自決を認めたのに感化。弾圧後、原内閣は「官制改正」を行い文官の総督就任を認め、憲兵警察を廃止し、植民地統治方針を武断政治から文化政治へと改善しました。</div>
+            </div>
+        </div>
+        <div class="quiz-card">
+            <div class="quiz-num">No.8：アジアの民族運動</div>
+            <div class="quiz-question">1919年5月4日、中国で二十一カ条の要求撤回やヴェルサイユ条約調印拒否を求めて起こった反日愛国運動は何？</div>
+            <div class="quiz-actions"><button class="ans-btn" onclick="toggleAns(this)">正解を表示</button></div>
+            <div class="quiz-answer-box">
+                <div class="answer-title">五・四運動</div>
+                <div class="answer-memo">二十一カ条要求の撤回が拒否されたことや、旧ドイツ権益の中国返還を求める運動。これにより中国は連合国として参加したものの、ヴェルサイユ条約の調印を拒否しました。</div>
+            </div>
+        </div>
+        <div class="quiz-card">
+            <div class="quiz-num">No.8：大戦後の経済循環</div>
+            <div class="quiz-question">第一次世界大戦直後、イギリス、フランス、イタリアは何に苦しんでいた？また、それを解決するためにどの国からの援助を受け、どこの国が復興した？</div>
+            <div class="quiz-actions"><button class="ans-btn" onclick="toggleAns(this)">正解を表示</button></div>
+            <div class="quiz-answer-box">
+                <div class="answer-title">アメリカへの戦債（戦争の借金）支払いに苦しんだ。 / アメリカの援助により「ドイツ産業が復興」し、ドイツの「賠償金の支払い」によって英仏伊がアメリカへ戦債を返還した。</div>
+                <div class="answer-memo">小テスト正誤対策：「アメリカはドイツの復興に多額の援助を行った（◯）」「英仏日（日が入ると×、日本はアメリカに戦債苦していない）」「ドイツの賠償金はオーストリアに支払われた（×）」。</div>
+            </div>
+        </div>
+        <div class="quiz-card">
+            <div class="quiz-num">No.8：ワシントン会議</div>
+            <div class="quiz-question">1921〜22年、アメリカが主導して太平洋・極東問題や軍備制限を審議した会議は何？また日本の全権は誰？</div>
+            <div class="quiz-actions"><button class="ans-btn" onclick="toggleAns(this)">正解を表示</button></div>
+            <div class="quiz-answer-box">
+                <div class="answer-title">ワシントン会議 / 加藤友三郎（海軍大臣）、幣原喜重郎（駐米大使）</div>
+                <div class="answer-memo">極東の新情勢（日本の中国進出本格化、ソヴィエト政権の連邦国家形成中、中国の民族運動活発化）を背景に開催されました。</div>
+            </div>
+        </div>
+        <div class="quiz-card">
+            <div class="quiz-num">No.8 / 小テスト</div>
+            <div class="quiz-question">ワシントン会議で結ばれた「四カ国条約」の参加国、内容、およびこれにより終了（廃棄）した協定は何？</div>
+            <div class="quiz-actions"><button class="ans-btn" onclick="toggleAns(this)">正解を表示</button></div>
+            <div class="quiz-answer-box">
+                <div class="answer-title">参加国：英・米・仏・日 / 内容：太平洋に関する領土・権益の相互尊重と現状維持 / 終了した協定：日英同盟</div>
+                <div class="answer-memo">太平洋諸島の現状維持を約束した条約です。</div>
+            </div>
+        </div>
+        <div class="quiz-card">
+            <div class="quiz-num">No.8 / 小テスト</div>
+            <div class="quiz-question">ワシントン会議で結ばれた「九カ国条約」の参加国（手書きの2カ国含む）、内容、およびこれにより日本が中国に返還した権益、廃棄された協定は何？</div>
+            <div class="quiz-actions"><button class="ans-btn" onclick="toggleAns(this)">正解を表示</button></div>
+            <div class="quiz-answer-box">
+                <div class="answer-title">参加国：英・米・仏・日 ＋ 伊・中・蘭・葡・白（ポルトガル、ベルギー） / 内容：中国の主権尊重、門戸開放、機会均等 / 返還権益：山東省 / 廃棄協定：石井・ランシング協定</div>
+                <div class="answer-memo">中国問題に関する条約。手書きで「ポルトガル」「ベルギー」の国名が補足されています。</div>
+            </div>
+        </div>
+        <div class="quiz-card">
+            <div class="quiz-num">No.8：ワシントン海軍軍備制限条約</div>
+            <div class="quiz-question">主力艦の保有量を制限した「ワシントン海軍軍備制限条約」における、英・米・日・仏・伊の比率をそれぞれ答えよ。</div>
+            <div class="quiz-actions"><button class="ans-btn" onclick="toggleAns(this)">正解を表示</button></div>
+            <div class="quiz-answer-box">
+                <div class="answer-title">イギリス：5 、アメリカ：5 、日本：3 、フランス：1.67 、イタリア：1.67</div>
+                <div class="answer-memo">これら一連の条約によって構築された国際秩序を「ワシントン体制」と呼びます。</div>
+            </div>
+        </div>
+        <div class="quiz-card">
+            <div class="quiz-num">No.9：協調外交</div>
+            <div class="quiz-question">1924年以降、加藤高明内閣などで外相を務め、「英米との武力的対立を避け、中国には内政不干渉」を掲げる協調外交を推進した人物は誰？</div>
+            <div class="quiz-actions"><button class="ans-btn" onclick="toggleAns(this)">正解を表示</button></div>
+            <div class="quiz-answer-box">
+                <div class="answer-title">幣原喜重郎（しではらきじゅうろう）［外交方針：幣原外交］</div>
+                <div class="answer-memo">経済面では「中国市場の拡大、満州の特殊権益の維持」を目指しましたが、日中関係全般の安定化には成功しませんでした。</div>
+            </div>
+        </div>
+        <div class="quiz-card">
+            <div class="quiz-num">No.9：大正期の外交事件</div>
+            <div class="quiz-question">①1925年にソ連との国交を樹立した条約は何？<br>②1925年、上海の日本人経営の紡績工場でのストライキを機に起こった反帝国主義運動は何？</div>
+            <div class="quiz-actions"><button class="ans-btn" onclick="toggleAns(this)">正解を表示</button></div>
+            <div class="quiz-answer-box">
+                <div class="answer-title">①日ソ基本条約 、②五・三〇事件</div>
+                <div class="answer-memo">日ソ基本条約にともない、北樺太からの撤兵、油田の半分の開発権獲得がなされました。</div>
+            </div>
+        </div>
+    </div>
+
+    <div id="sec3" class="quiz-section">
+        <div class="quiz-card">
+            <div class="quiz-num">No.9：労働運動の歴史年表</div>
+            <div class="quiz-question">以下の空欄を埋めよ。<br>・1897年：（① ）結成<br>・1900年：（② ）制定<br>・1911年：（③ ）制定（実施は1916年から）</div>
+            <div class="quiz-actions"><button class="ans-btn" onclick="toggleAns(this)">正解を表示</button></div>
+            <div class="quiz-answer-box">
+                <div class="answer-title">① 労働組合期成会 、② 治安警察法 、③ 工場法</div>
+                <div class="answer-memo">労働運動の黎明期の流れです。足尾銅山争議などの暴動も起きました。</div>
+            </div>
+        </div>
+        <div class="quiz-card">
+            <div class="quiz-num">No.9：労働運動の歴史年表</div>
+            <div class="quiz-question">1912年に結成された友愛会は、1921年に何と改称し、1922年にはさらに何という労働組合の全国組織へと改称したか？</div>
+            <div class="quiz-actions"><button class="ans-btn" onclick="toggleAns(this)">正解を表示</button></div>
+            <div class="quiz-answer-box">
+                <div class="answer-title">1921年：大日本労働総同盟友愛会 → 1922年：日本労働総同盟</div>
+                <div class="answer-memo">友愛会が修養団体から労働組合の全国組織へと発展していった流れです。</div>
+            </div>
+        </div>
+        <div class="quiz-card">
+            <div class="quiz-num">No.9：思想の群像</div>
+            <div class="quiz-question">1918年、吉野作造らが「頑迷思想の撲滅」を掲げ、民本主義・デモクラシー思想の拡大を目指して結成した団体は何？また、それに影響されて東大の学生らが結成した社会科学研究団体は何？</div>
+            <div class="quiz-actions"><button class="ans-btn" onclick="toggleAns(this)">正解を表示</button></div>
+            <div class="quiz-answer-box">
+                <div class="answer-title">黎明会（れいめいかい） / 新人会（東大新人会）</div>
+                <div class="answer-memo">新人会は社会科学の研究、啓蒙、労働運動・普選運動にも参加しました。</div>
+            </div>
+        </div>
+        <div class="quiz-card">
+            <div class="quiz-num">No.9：思想の群像</div>
+            <div class="quiz-question">1920年、資本主義に反対する勢力を結集して成立したものの、翌年に結社を禁止された社会主義団体は何？</div>
+            <div class="quiz-actions"><button class="ans-btn" onclick="toggleAns(this)">正解を表示</button></div>
+            <div class="quiz-answer-box">
+                <div class="answer-title">日本社会主義同盟</div>
+                <div class="answer-memo">社会主義・無政府主義などの勢力が大同団結したものです。</div>
+            </div>
+        </div>
+        <div class="quiz-card">
+            <div class="quiz-num">No.9：無政府主義と共産主義（手書きメモ）</div>
+            <div class="quiz-question">プリントの記述問題より、以下の思想の核心を説明せよ。<br>①無政府主義者クロポトキンの研究（森戸辰男教授が休職処分となった原因）<br>②共産主義（マルクス・レーニン主義）</div>
+            <div class="quiz-actions"><button class="ans-btn" onclick="toggleAns(this)">正解を表示</button></div>
+            <div class="quiz-answer-box">
+                <div class="answer-title">①国家・議会・宗教など一切の権力を否定することで、理想的な社会ができると考える思想。<br>②私有財産制を否定し、人民による財産の共有を実現することで、平等な社会をつくろうとする思想。</div>
+                <div class="answer-memo">特にマルクス主義は労働者階級を解放し、平等な社会をめざす理論として影響を強めました。</div>
+            </div>
+        </div>
+        <div class="quiz-card">
+            <div class="quiz-num">No.8・9：北一輝と右翼思想</div>
+            <div class="quiz-question">北一輝が著し、「天皇大権によって私有財産を制限し、金融・工業の国家管理を行う国家社会主義的国家改造」を提示して、右翼の教典とされた本は何？またこれに影響を与えた民間右翼団体は何？</div>
+            <div class="quiz-actions"><button class="ans-btn" onclick="toggleAns(this)">正解を表示</button></div>
+            <div class="quiz-answer-box">
+                <div class="answer-title">日本改造法案大綱 / 猶存社（ゆうぞんしゃ）［大川周明ら］</div>
+                <div class="answer-memo">手書きメモ：天皇、軍隊を中核とする国家改造方針。</div>
+            </div>
+        </div>
+        <div class="quiz-card">
+            <div class="quiz-num">No.9：女性解放運動</div>
+            <div class="quiz-question">女性解放運動について、以下の空欄を埋めよ。<br>・1911年：（① ）結成（平塚らいてうら）…雑誌『青鞜』を発行<br>・1920年：（② ）結成（平塚らいてう、市川房枝ら）…治安警察法第5条の改正運動<br>・1924年：（③ ）結成…女性の参政権（選挙権）獲得を目指す</div>
+            <div class="quiz-actions"><button class="ans-btn" onclick="toggleAns(this)">正解を表示</button></div>
+            <div class="quiz-answer-box">
+                <div class="answer-title">① 青鞜社（せいとうしゃ） 、② 新婦人協会 、③ 婦人参政権獲得期成同盟会</div>
+                <div class="answer-memo">新婦人協会は「女子の政治的結社・政治集会禁止」の撤廃に動きました。</div>
+            </div>
+        </div>
+        <div class="quiz-card">
+            <div class="quiz-num">No.9：各種社会運動</div>
+            <div class="quiz-question">①1922年、堺利彦、山川均らが非合法で結成したコミンテルン日本支部は何？<br>②1922年、被差別部落の差別解消のために西光万吉らが結成した団体は何？またその宣言は？<br>③1922年に設立された、日本最初の小作人の全国組織は何？</div>
+            <div class="quiz-actions"><button class="ans-btn" onclick="toggleAns(this)">正解を表示</button></div>
+            <div class="quiz-answer-box">
+                <div class="answer-title">① 日本共産党 、② 全国水平社（宣言：「水平社宣言」）、③ 日本農民組合</div>
+                <div class="answer-memo">日本共産党の手書きメモ：ロシア革命が引き金。外国で共産党が結成される中、国際的な結びつきの中で結成。日本農民組合は小作争議を指導しました。</div>
+            </div>
+        </div>
+        <div class="quiz-card">
+            <div class="quiz-num">No.9：関東大震災と社会不安</div>
+            <div class="quiz-question">1923年9月1日、死者・行方不明者10万人以上の大災害となった出来事は何？また、この混乱の中で発生した、朝鮮人虐殺事件以外の事件や手書きの事件名を2つ答えよ。</div>
+            <div class="quiz-actions"><button class="ans-btn" onclick="toggleAns(this)">正解を表示</button></div>
+            <div class="quiz-answer-box">
+                <div class="answer-title">関東大震災 / 亀戸事件、甘粕事件、虎の門事件（手書き）</div>
+                <div class="answer-memo">震災の混乱の中で社会主義者や朝鮮人が殺害される事件が発生しました。虎の門事件（1923年12月）は摂政宮（昭和天皇）が狙われた事件です。</div>
+            </div>
+        </div>
+        <div class="quiz-card">
+            <div class="quiz-num">No.9：関東大震災・東日本・阪神淡路の比較（表より）</div>
+            <div class="quiz-question">関東大震災の「主な死因」と、これほどの「大規模火災が発生した要因」について、表に書かれた手書き内容を答えよ。</div>
+            <div class="quiz-actions"><button class="ans-btn" onclick="toggleAns(this)">正解を表示</button></div>
+            <div class="quiz-answer-box">
+                <div class="answer-title">主な死因：火災死 / 要因：昼食時に発生し、台風によって強い風が吹いていたため大規模火災が発生。</div>
+                <div class="answer-memo">ちなみに全壊は約21万棟、死者・行方不明者は10万数千人。東日本の死因は津波（溺死が92.4%）、阪神淡路の死因は建物の倒壊（圧死）と対比されています。</div>
+            </div>
+        </div>
+        <div class="quiz-card">
+            <div class="quiz-num">No.10：護憲運動と政党政治</div>
+            <div class="quiz-question">1924年、山県有朋系の官僚や貴族院を基盤として成立した清浦奎吾内閣に対し、政党側が起こした運動を何という？また、中心となった「護憲三派」の政党名3つと、掲げたスローガンは？</div>
+            <div class="quiz-actions"><button class="ans-btn" onclick="toggleAns(this)">正解を表示</button></div>
+            <div class="quiz-answer-box">
+                <div class="answer-title">第2次護憲運動 / 護憲三派：憲政会、立憲政友会、革新倶楽部 / スローガン：「憲政擁護・普通選挙断行・貴族院改革」</div>
+                <div class="answer-memo">清浦内閣は各閣僚を貴族院から選出したため「超然内閣」と批判されました。総選挙で護憲三派が圧勝し、1924年に加藤高明連立内閣が成立しました。</div>
+            </div>
+        </div>
+        <div class="quiz-card">
+            <div class="quiz-num">No.10 / 12：普通選挙法</div>
+            <div class="quiz-question">1925年に制定された普通選挙法において、選挙権と被選挙権が与えられた条件をそれぞれ詳しく答えよ。またこれにより有権者は何倍になったか？</div>
+            <div class="quiz-actions"><button class="ans-btn" onclick="toggleAns(this)">正解を表示</button></div>
+            <div class="quiz-answer-box">
+                <div class="answer-title">選挙権：満25歳以上の男性 、被選挙権：満30歳以上の男性 / 有権者数は約4倍に増加。</div>
+                <div class="answer-memo">直接国税による納税要件制限が完全に撤廃されました（制限なし）。</div>
+            </div>
+        </div>
+        <div class="quiz-card">
+            <div class="quiz-num">No.10：選挙法の変遷（表より）</div>
+            <div class="quiz-question">以下の選挙法実施年における「直接国税の条件」と「内閣名」を答えよ。<br>①1890年実施、②1920年実施、③1946年実施（性別・年齢も）</div>
+            <div class="quiz-actions"><button class="ans-btn" onclick="toggleAns(this)">正解を表示</button></div>
+            <div class="quiz-answer-box">
+                <div class="answer-title">①1890年：15円以上（黒田清隆内閣時に公布）<br>②1920年：3円以上（原敬内閣時に公布）<br>③1946年：制限なし・男女満20歳以上（幣原喜重郎内閣時に公布）</div>
+                <div class="answer-memo">※ちなみに2017年実施は安倍晋三内閣時に公布され、男女満18歳以上、全人口比83.7%となっています。</div>
+            </div>
+        </div>
+        <div class="quiz-card">
+            <div class="quiz-num">No.10：治安維持法</div>
+            <div class="quiz-question">1925年、普通選挙法とほぼ同時に制定された法律は何？また当初の目的と禁止した内容（手書きメモ含む）を答えよ。</div>
+            <div class="quiz-actions"><button class="ans-btn" onclick="toggleAns(this)">正解を表示</button></div>
+            <div class="quiz-answer-box">
+                <div class="answer-title">治安維持法 / 当初の目的：日ソ国交樹立による共産主義思想の波及を防ぐ。内容：「国体」の変革や私有財産制度の否認を目的とする結社の禁止。</div>
+                <div class="answer-memo">手書きメモ：普通選挙法の成立による労働者階級の政治的影響力の増大に備える。</div>
+            </div>
+        </div>
+        <div class="quiz-card">
+            <div class="quiz-num">No.10：政党政治の黄金期</div>
+            <div class="quiz-question">1924年の加藤高明内閣成立から1932年の犬養毅内閣崩壊（五・一五事件）まで、立憲政友会と憲政会（のちの立憲民政党）の総裁が交代で内閣を組織した慣例を何という？</div>
+            <div class="quiz-actions"><button class="ans-btn" onclick="toggleAns(this)">正解を表示</button></div>
+            <div class="quiz-answer-box">
+                <div class="answer-title">憲政の常道（けんせいのじょうどう）</div>
+                <div class="answer-memo">大正末期から昭和初期にかけて二大政党による本格的な政党内閣期が続きました。</div>
+            </div>
+        </div>
+    </div>
+
+    <div id="sec4" class="quiz-section">
+        <div class="quiz-card">
+            <div class="quiz-num">No.12：社会主義運動への弾圧</div>
+            <div class="quiz-question">普通選挙法成立後初の総選挙（1928年）で無産政党勢力が8人当選し、日本共産党が公然と活動を開始したことを受けて、田中義一内閣が1928年と1929年に行った共産党員一斉検挙事件をそれぞれ何という？</div>
+            <div class="quiz-actions"><button class="ans-btn" onclick="toggleAns(this)">正解を表示</button></div>
+            <div class="quiz-answer-box">
+                <div class="answer-title">1928年：三・一五事件 、1929年：四・一六事件</div>
+                <div class="answer-memo">三・一五事件では労働農民党など3団体が結社禁止、日本労働組合評議会が解散させられ、日本共産党はほぼ壊滅しました。</div>
+            </div>
+        </div>
+        <div class="quiz-card">
+            <div class="quiz-num">No.10 / 12：治安維持法の改悪</div>
+            <div class="quiz-question">1928年、田中義一内閣が緊急勅令（手書きメモ：枢密院の反対を避けるため緊急勅令で改革・強化）によって治安維持法を改正した際、追加された最高刑と内容の変化を答えよ。</div>
+            <div class="quiz-actions"><button class="ans-btn" onclick="toggleAns(this)">正解を表示</button></div>
+            <div class="quiz-answer-box">
+                <div class="answer-title">最高刑：死刑 / 内容変化：私有財産制を否認する目的の組織（結社）自体も完全にダメ（一発アウト）になった。</div>
+                <div class="answer-memo">手書きメモ：「死刑が増えた」「私有財産制を否認する組織もダメになった」。改正により警察には特別高等警察（特高）が設置されました。</div>
+            </div>
+        </div>
+        <div class="quiz-card">
+            <div class="quiz-num">No.11 / 12：大正〜昭和初期の4つの恐慌</div>
+            <div class="quiz-question">以下の4つの恐慌の名称を順番に答えよ。<br>①1920年：大戦終結、ヨーロッパ諸国の復帰、過剰生産による株価暴落<br>②1923年：震災手形の決済不能、不渡手形大量発生<br>③1927年：震災手形処理の不手際、蔵相の失言による取り付け騒ぎ<br>④1929年：ニューヨークの株価暴落が日本へ波及</div>
+            <div class="quiz-actions"><button class="ans-btn" onclick="toggleAns(this)">正解を表示</button></div>
+            <div class="quiz-answer-box">
+                <div class="answer-title">① 戦後恐慌 、② 震災恐慌 、③ 金融恐慌 、④ 昭和恐慌（世界恐慌）</div>
+                <div class="answer-memo">日本経済はこれら4つの恐慌により、慢性的な不況の状態が続くことになります。手書きメモによる「恐慌の定義」：資本主義体制下で不況が深刻化して経済が破綻・不安定化した状態。</div>
+            </div>
+        </div>
+        <div class="quiz-card">
+            <div class="quiz-num">No.11：戦後恐慌</div>
+            <div class="quiz-question">戦後恐慌の経過として、1919年の日本の貿易は何超過だった？また1920年に東京株式市場の暴落により相場が半値以下に落ちた2つの主要商品は？</div>
+            <div class="quiz-actions"><button class="ans-btn" onclick="toggleAns(this)">正解を表示</button></div>
+            <div class="quiz-answer-box">
+                <div class="answer-title">輸入超過 / 糸（生糸）・綿糸</div>
+                <div class="answer-memo">対応として日本銀行が多額の救済融資を行いました。</div>
+            </div>
+        </div>
+        <div class="quiz-card">
+            <div class="quiz-num">No.11：金融恐慌</div>
+            <div class="quiz-question">1927年の金融恐慌において、①失言をして取り付け騒ぎを引き起こした蔵相の名前は？、②破綻の危機に陥った鈴木商店系列の主要銀行は？、③これにより総辞職した内閣は？</div>
+            <div class="quiz-actions"><button class="ans-btn" onclick="toggleAns(this)">正解を表示</button></div>
+            <div class="quiz-answer-box">
+                <div class="answer-title">① 片岡直温（なおはる）、② 台湾銀行（鈴木商店の不良債権を抱えていた）、③ 第1次若槻礼次郎内閣</div>
+                <div class="answer-memo">手書きメモ：若槻内閣は台湾銀行救済のために「緊急勅令」を出そうとするも、枢密院に拒否されました（理由：2億円の融資、幣原外交が気に入らなかったため）。</div>
+            </div>
+        </div>
+        <div class="quiz-card">
+            <div class="quiz-num">No.11：金融恐慌の処理</div>
+            <div class="quiz-question">若槻内閣の次に成立し、金融恐慌を沈静化させた内閣は？また、そのとき実施された3週間の支払い猶予令のことをカタカナで何という？</div>
+            <div class="quiz-actions"><button class="ans-btn" onclick="toggleAns(this)">正解を表示</button></div>
+            <div class="quiz-answer-box">
+                <div class="answer-title">田中義一内閣 / モラトリアム</div>
+                <div class="answer-memo">預金者の銀行からの引き落としを一時停止し、裏が白い臨時の紙幣（二百円札など）を大量に印刷してパニックを鎮めました。</div>
+            </div>
+        </div>
+        <div class="quiz-card">
+            <div class="quiz-num">No.11：財閥の優位（手書きメモ）</div>
+            <div class="quiz-question">金融恐慌後、中小銀行の整理・合併が進み、預金が集中した「五大財閥」の名称をすべて答えよ。また、当時の日本経済の状況に関する記述解答例を答えよ。</div>
+            <div class="quiz-actions"><button class="ans-btn" onclick="toggleAns(this)">正解を表示</button></div>
+            <div class="quiz-answer-box">
+                <div class="answer-title">三井・三菱・住友・安田・第一</div>
+                <div class="answer-memo">記述解答例：多くの分野で財閥の占める割合が高く、財閥が支配的な地位を占め影響が大きかったことがわかる。しかし、電力・ガス・紡績は財閥への集中の割合が低い。</div>
+            </div>
+        </div>
+        <div class="quiz-card">
+            <div class="quiz-num">No.11 / 12：金解禁と井上財政</div>
+            <div class="quiz-question">1929年に成立した濱口雄幸内閣（立憲民政党、蔵相：井上準之助）が、緊縮財政と「協調」外交を掲げて1930年に行った経済政策は何？また、その狙い（手書きメモ）を答えよ。</div>
+            <div class="quiz-actions"><button class="ans-btn" onclick="toggleAns(this)">正解を表示</button></div>
+            <div class="quiz-answer-box">
+                <div class="answer-title">金解禁（金輸出解禁）</div>
+                <div class="answer-memo">手書きメモ：円の国際的な信用を落とさないようにする。企業に無駄を見直しさせ、日本経済の体質改善を図る。</div>
+            </div>
+        </div>
+        <div class="quiz-card">
+            <div class="quiz-num">No.12：昭和恐慌の深化</div>
+            <div class="quiz-question">旧為替レート（100円＝49.85ドル、金15グラム＝20円）という実質的な「円高」で金解禁を強行した結果、どうなったか？<br>①日本の輸出・輸入はどちらが滞った？、②独占資本に対する恐慌対策として1931年に制定された法律は？</div>
+            <div class="quiz-actions"><button class="ans-btn" onclick="toggleAns(this)">正解を表示</button></div>
+            <div class="quiz-answer-box">
+                <div class="answer-title">① 輸出が滞った（日本製品が9%程度値上がりしたため）、② 重要産業統制法</div>
+                <div class="answer-memo">世界恐慌のタイミングと重なったため、日本は激しい「昭和恐慌」に突入し、正貨（金）が大量に流出、企業の倒産や失業者が増大しました。</div>
+            </div>
+        </div>
+        <div class="quiz-card">
+            <div class="quiz-num">No.12：農業恐慌</div>
+            <div class="quiz-question">昭和恐慌下で、農産物や繭（まゆ）の価格が暴落した。以下の現象を何というか？<br>①1930年：豊作により米価が下がった現象<br>②1931年：大凶作に見舞われた東北地方などの現象</div>
+            <div class="quiz-actions"><button class="ans-btn" onclick="toggleAns(this)">正解を表示</button></div>
+            <div class="quiz-answer-box">
+                <div class="answer-title">① 豊作貧乏 、② 凶作恐慌（冷害恐慌）</div>
+                <div class="answer-memo">農村は悲惨な飢饉状態となり、娘の身売りなどが社会問題化しました。</div>
+            </div>
+        </div>
+        <div class="quiz-card">
+            <div class="quiz-num">No.11：田中義一内閣の積極外交</div>
+            <div class="quiz-question">田中義一内閣が幣原外交から方針転換した外交を何というか？また、中国国民党の蔣介石による（① ）に対抗し、日本人居留民の保護や張作霖支援を目的に行った軍事行動を何というか？</div>
+            <div class="quiz-actions"><button class="ans-btn" onclick="toggleAns(this)">正解を表示</button></div>
+            <div class="quiz-answer-box">
+                <div class="answer-title">積極外交（強硬外交） / ① 北伐（ほくばつ） 、軍事行動：山東出兵（さんとうしゅっぺい）</div>
+                <div class="answer-memo">1927年の「東方会議」で対支政策綱領を決定。「満蒙は中国領土にあらず」とし、1928年には済南（さいなん）事件で国民革命軍と日本軍が武力衝突しました。</div>
+            </div>
+        </div>
+        <div class="quiz-card">
+            <div class="quiz-num">No.11：張作霖爆殺事件</div>
+            <div class="quiz-question">1928年、関東軍参謀の河本大作らが張作霖の乗った列車を爆破して殺害した事件を何というか？またこれによりどうなったか？</div>
+            <div class="quiz-actions"><button class="ans-btn" onclick="toggleAns(this)">正解を表示</button></div>
+            <div class="quiz-answer-box">
+                <div class="answer-title">張作霖爆殺事件（満州某重大事件） / 田中義一内閣が責任をとって総辞職、張学良が満州を国民政府の支配下と認めて北伐が完了した。</div>
+                <div class="answer-memo">昭和天皇から叱責された田中首相が総辞職に追い込まれ、政権は濱口内閣へと交代しました。</div>
+            </div>
+        </div>
+    </div>
 </div>
 
 <script>
-// 全124問のデータ
-const rawData = [
-    { q: "1874年、板垣退助らが政府に対して提出し、自由民権運動の始まりとなった、国民が選んだ議会の開設を求める建白書は何か。", a: ["憲法制定の建白書", "漸次立憲政体樹立の建白書", "民撰議院設立の建白書", "国会開設の建白書"], c: 2 },
-    { q: "民撰議院設立の建白書を提出した後、板垣退助らが地元の土佐（高知）で結成した政治結社は何か。", a: ["愛国社", "国会期成同盟", "立志社", "自由党"], c: 2 },
-    { q: "1875年、板垣退助らが大阪に全国の民権派代表を集めて結成し、のちに再興されて民権運動の中心的な連絡機関となった組織は何か。", a: ["愛国社", "立憲改進党", "立志社", "憲政党"], c: 0 },
-    { q: "1875年、大阪会議での藩閥側との妥協に基づいて出された、将来的に憲法を制定し、段階的に国会を開くことを約束した詔は何か。", a: ["国会開設の勅諭", "漸次立憲政体樹立の詔", "軍人勅諭", "戊申詔書"], c: 1 },
-    { q: "1880年、愛国社を改組して結成され、国会の開設を政府に直接要求するために全国から代表が集まった同盟組織は何か。", a: ["自由党", "国会期成同盟", "立憲改進党", "憲政本党"], c: 1 },
-    { q: "政府が自由民権運動の拡大を抑え込むため1880年に制定し、集会や結社の自由を警察の許可制にして厳しく制限した法規は何か。", a: ["治安警察法", "新聞紙条例", "保安条例", "集会条例"], c: 3 },
-    { q: "1881年に国会開設の勅諭が出されたことを受け、板垣退助を総理（党首）として結成された、フランス風の急進的な主権在民論を唱えた日本最初の政党は何か。", a: ["立憲改進党", "自由党", "立憲帝政党", "憲政党"], c: 1 },
-    { q: "1882年、大隈重信を党首として結成され、イギリス型の立憲君主制や漸進的な改革を主張し、都市の知識人や実業家に支持された政党は何か。", a: ["自由党", "立憲帝政党", "立憲改進党", "立憲政友会"], c: 2 },
-    { q: "1885年、それまでの太政官制に代わって導入され、各省の長官を国務大臣として内閣総理大臣が統括する近代的な行政組織の制度は何か。", a: ["官国制", "内閣制度", "議会制度", "枢密院制度"], c: 1 },
-    { q: "1889年2月11日、黒田清隆内閣のもとで、天皇が臣民に授けるという形式（欽定憲法）で発布された、アジア最初の近代憲法は何か。", a: ["大日本帝国憲法", "日本国憲法", "臣民権利憲法", "明治大憲章"], c: 0 },
-    { q: "大日本帝国憲法が発布された翌日、黒田清隆首相が表明した「政府は政党の意向に左右されず、独自に行政を行う」という立場を何主義というか。", a: ["専制主義", "超然主義", "官僚主義", "軍国主義"], c: 1 },
-    { q: "1890年、大日本帝国憲法に基づいて初めて実施され、民党が過半数を獲得する結果となった、日本の歴史上最初の国政選挙は何か。", a: ["第1回衆議院議員総選挙", "第1回貴族院議員互選", "普通選挙総選挙", "全国地主議員選挙"], c: 0 },
-    { q: "初期の帝国議会において、政府の軍備拡張や増税の方針に反対し、「政費節減・民力休養」を掲げて対立した、自由党や立憲改進党などの野党勢力を何というか。", a: ["吏党", "革新党", "民党", "進歩党"], c: 2 },
-    { q: "第1回衆議院議員総選挙が行われた際の内閣であり、第1回帝国議会で民党側と激しく対立した長州藩出身の首相は誰か。", a: ["山県有朋", "松方正義", "伊藤博文", "黒田清隆"], c: 0 },
-    { q: "第2回議会において、予算案をめぐって民党と対立して議会を解散し、その後の選挙で品川弥二郎内相らによる激しい選挙干渉を行った薩摩藩出身の首相は誰か。", a: ["山県有朋", "伊藤博文", "黒田清隆", "松方正義"], c: 3 },
-    { q: "日清戦争後、藩閥政府は方針を転換して政党との提携を模索したが、第2次伊藤博文内閣に内務大臣として入閣した自由党の指導者は誰か。", a: ["大隈重信", "板垣退助", "尾崎行雄", "後藤象二郎"], c: 1 },
-    { q: "第2次松方正義内閣は、自由党に対抗するために別の政党と提携したが、このとき外務大臣として入閣した進歩党の指導者は誰か。", a: ["板垣退助", "犬養毅", "大隈重信", "星亨"], c: 2 },
-    { q: "第3次伊藤博文内閣が地租増徴（増税）をめざして超然主義に戻ったことに対抗し、1898年に自由党と進歩党が合同して結成した巨大政党は何か。", a: ["憲政党", "憲政本党", "立憲政友会", "立憲同志会"], c: 0 },
-    { q: "1898年、憲政党の結成を受けて、日本で初めて成立した「本格的な政党内閣」の通称（二人の指導者の名前から取ったもの）は何か。", a: ["伊藤内閣", "隈板内閣", "大隈・犬養内閣", "松方内閣"], c: 1 },
-    { q: "日本初の政党内閣で文部大臣を務めた尾崎行雄が、演説の中で「日本で共和政治が行われるとすれば…」と仮定の話をしたことが藩閥派に激しく非難され、辞職に追い込まれた事件は何か。", a: ["シーメンス事件", "治安維持事件", "共和演説事件", "自由党内紛事件"], c: 2 },
-    { q: "第2次山県有朋内閣が、政党の党員が実力や資格なしに高級官僚のポストに就くのを防ぎ、政党の影響力を排除するために改正した法令は何か。", a: ["文官任用令", "治安警察法", "高級官僚令", "文官処務規程"], c: 0 },
-    { q: "第2次山県有朋内閣が制定し、陸軍・海軍の大臣になれる者を「現役の大将・中将」に限定することで、政党内閣が軍部を統制するのを防ごうとした制度は何か。", a: ["統帥権独立制", "緊急勅令現役制", "軍部大臣現役武官制", "軍部現役制"], c: 2 },
-    { q: "1900年、憲政党の旧自由党系メンバーを中心に、かつて民権派と対立していた藩閥のリーダーが総裁となって結成され、その後の大正・昭和期の政治にも大きな影響を与えた政党は何か。", a: ["立憲改進党", "立憲政友会", "憲政本党", "立憲同志会"], c: 1 },
-    { q: "立憲政友会が結成された際、初代総裁に就任した藩閥出身の政治家は誰か。", a: ["山県有朋", "松方正義", "伊藤博文", "桂太郎"], c: 2 },
-    { q: "1882年、朝鮮で大院君を支持する軍隊が保守派や日本に対して暴動を起こし、日本公使館などを襲撃した事件を何というか。", a: ["甲申事変", "壬午軍乱", "朝鮮総督事件", "義兵運動"], c: 1 },
-    { q: "1884年、日本の援助を受けた金玉均ら親日派（独立党）が、朝鮮政府内の親清派を打倒しようとして起こしたものの、清軍の介入で失敗したクーデター事件は何か。", a: ["壬午軍乱", "甲午農民戦争", "甲申事変", "ハーグ密使事件"], c: 2 },
-    { q: "甲申事変の後、日本（伊藤博文）と清（李鴻章）の間で結ばれ、日清両軍の朝鮮からの撤退や、将来朝鮮へ出兵する際は互いに事前に通知することを定めた条約は何か。", a: ["天津条約", "下関条約", "日朝修好条規", "北京議定書"], c: 0 },
-    { q: "1894年、東学の信徒を中心に朝鮮で起きた、「斥倭斥洋（日本と西洋を排斥する）」や減税を掲げた大規模な農民蜂起は何か。", a: ["義兵運動", "壬午の乱", "甲午農民戦争", "辛亥革命"], c: 2 },
-    { q: "甲午農民戦争の鎮圧をめぐって日清両国が出兵したことから、朝鮮の主導権をめぐって1894年に勃発した戦争は何か。", a: ["日露戦争", "日清戦争", "北清事変", "第一次世界大戦"], c: 1 },
-    { q: "日清戦争の講和条約として1895年に山口県で結ばれ、日本全権の伊藤博文・陸奥宗光と、清全権の李鴻章の間で調印された条約は何か。", a: ["ポーツマス条約", "天津条約", "下関条約", "北京条約"], c: 2 },
-    { q: "日清戦争後、下関条約によって清からの完全な独立が認められた朝鮮は、清の冊封体制から脱却し、1897年に国号を何と改めたか。", a: ["大韓帝国", "大韓民国", "朝鮮民主主義人民共和国", "高麗共和国"], c: 0 },
-    { q: "下関条約によって一度は日本への割譲が決まったものの、直後の列強による干渉（三国干渉）によって、日本が清に返還せざるを得なくなった半島はどこか。", a: ["朝鮮半島", "山東半島", "遼東半島", "能登半島"], c: 2 },
-    { q: "日本の遼東半島領有に対し、「東洋の平和のため」として清への返還を要求した「三国干渉」を行った3つの国はどれか。", a: ["ロシア・イギリス・フランス", "ロシア・フランス・ドイツ", "イギリス・アメリカ・ドイツ", "ロシア・ドイツ・アメリカ"], c: 1 },
-    { q: "三国干渉を受け入れた日本国民が、ロシアへの敵対心を強め、「苦難を耐え忍んで復讐のチャンスを待つ」という意味で流行した四字熟語は何か。", a: ["堅忍不抜", "富国強兵", "尊王攘夷", "臥薪嘗胆"], c: 3 },
-    { q: "日清戦争で獲得した台湾を統治するため、現地に設置された台湾総督府の初代総督に就任した海軍軍人は誰か。", a: ["樺山資紀", "児玉源太郎", "後藤新平", "寺内正毅"], c: 0 },
-    { q: "徳富蘇峰らが提唱し、日清戦争後の思想界において、対外拡張や軍備拡張を肯定し、国家の利益や権力を最優先に支持するようになった主流の思想を何というか。", a: ["社会主義", "自由主義", "国家主義", "個人主義"], c: 2 },
-    { q: "高山樗牛が雑誌『太陽』などで主張して、日本独自の文化や立場を強調しながら大陸進出を先導した思想は何か。", a: ["民本主義", "アジア主義", "欧米主義", "日本主義"], c: 3 },
-    { q: "欧米列強による中国分割が進むなか、ドイツが山東半島東部の膠州湾を租借して、その湾口に建設した港湾都市はどこか。", a: ["旅順", "大連", "威海衛", "青島"], c: 3 },
-    { q: "列強の中国進出に対し、当時まだ中国に拠点がなかったアメリカの国務長官が発表した、中国の門戸開放・機会均等・領土保全を求める宣言の提唱者は誰か。", a: ["ジョン・ヘイ", "タフト", "ランシング", "ルーズベルト"], c: 0 },
-    { q: "1900年、「扶清滅洋」を唱える宗教的排外主義団体が起こし、北京の外国公使館を包囲した事件を何というか。", a: ["辛亥革命", "壬午軍乱", "北清事変", "大逆事件"], c: 2 },
-    { q: "北清事変を鎮圧した列強と清との間で1901年に締結され、清に多額の賠償金や北京への外国軍隊駐留を認めさせた協協定は何か。", a: ["北京議定書", "天津条約", "下関条約", "ポーツマス条約"], c: 0 },
-    { q: "北清事変の際、どさくさに紛れて大軍を送り込み、事変が終わった後も撤退せずに事実上の占領を継続した、ロシアの進出先である中国東北部の地域はどこか。", a: ["山東省", "満州", "台湾", "華興"], c: 1 },
-    { q: "ロシアの満州占領に対し、伊藤博文や井上馨らが主張した、「ロシアの満州経営を認める代わりに、日本の朝鮮への優越権を認めさせる」という外交交渉論の立場を何というか。", a: ["日英同盟", "日露協商", "満州死守", "对露強硬"], c: 1 },
-    { q: "ロシアの南下を警戒するイギリスと、朝鮮・満州での権益を守りたい日本の利害が一致し、1902年に締結された軍事同盟条約は何か。", a: ["日露協約", "日米紳士協定", "三国同盟", "日英同盟"], c: 3 },
-    { q: "日露戦争の開戦前、キリスト教徒の立場から「いかなる戦争にも反対する」として絶対非戦論を唱えた思想家は誰か。", a: ["幸徳秋水", "内村鑑三", "堺利彦", "与謝野晶子"], c: 1 },
-    { q: "平民社を結成して『平民新聞』を創刊し、社会主義・平民主義の立場から日露戦争への反対を訴えた、のちに大逆事件で処刑される人物は誰か。", a: ["内村鑑三", "堺利彦", "幸徳秋水", "片山潜"], c: 2 },
-    { q: "雑誌『明星』に、旅順口包囲軍に参加していた弟を思い、「君死にたまふことなかれ」という日露戦争への反戦詩を発表した歌人は誰か。", a: ["与謝野晶子", "樋口一葉", "平塚らいてう", "菅野スガ"], c: 0 },
-    { q: "日露戦争の大規模な陸上戦において、大山巌総司令官率いる日本軍とロシア軍が激突し、激戦の末に日本軍が勝利した、満州の主要都市で行われた大規模な会戦は何か。", a: ["旅順口攻撃", "遼陽会戦", "奉天会戦", "黒溝台会戦"], c: 2 },
-    { q: "東郷平八郎司令長官が率いる日本海軍の連合艦隊が、はるばる回航してきたロシアのバルチック艦隊を対馬海峡で迎え撃ち、壊滅させた世界史的な海戦は何か。", a: ["日本海海戦", "黄海海戦", "旅順口海戦", "蔚山沖海戦"], c: 0 },
-    { q: "1905年、アメリカの大統領ルーズベルトの仲介によって結ばれた、日露戦争の講和条約は何か。", a: ["ポーツマス条約", "ヴェルサイユ条約", "下関条約", "サンフランシスコ講和条約"], c: 0 },
-    { q: "日露戦争の講和交渉において、ロシア側のウィッテ全権を相手に、日本の全権として交渉を行った外務大臣は誰か。", a: ["陸奥宗光", "小村寿太郎", "加藤高明", "井上馨"], c: 1 },
-    { q: "ポーツマス条約において、ロシアは日本に対し、どこの国に対する指導・保護・監督の権利（優越権）を完全に認めたか。", a: ["中国（清）", "台湾", "韓国", "フィリピン"], c: 2 },
-    { q: "ポーツマス条約の内容に激怒した民衆が、講和反対を叫んで東京で暴動を起こし、官邸や交番、新聞社などを襲撃して戒厳令が出される事態となった事件は何か。", a: ["共和演説事件", "米騒動", "虎ノ門事件", "日比谷焼き打ち事件"], c: 3 },
-    { q: "日本が韓国を保護国化するにあたり、アメリカがフィリピンを領有することを認める代わりに、アメリカに日本の韓国保護権を認めさせた1905年の非公式な合意は何か。", a: ["桂・タフト協定", "石井・ランシング協定", "日米紳士協定", "ルート・高平協定"], c: 0 },
-    { q: "1905年、日本が韓国を完全に保護国化するにあたり、イギリスに日本の韓国保護権を承認させるために改定された同盟条約は何か。", a: ["日英同盟協約改定", "日露協約", "日韓攻守同盟", "英露協定"], c: 0 },
-    { q: "1904年から1907年にかけて3回にわたり締結され、日本の韓国における政治・外交・内政の権限を段階的に奪っていった一連の条約を何というか。", a: ["日韓議定書", "日韓協約", "韓国保護条約", "下関条約"], c: 1 },
-    { q: "第2次日韓協約に基づいて韓国の外交権を奪った日本が、漢城（ソウル）に設置した統治機関を何というか。", a: ["朝鮮総督府", "関東都督府", "統監府", "台湾総督府"], c: 2 },
-    { q: "統監府の初代統監に就任し、韓国の保護国化政策を推し進めた、元老でもある藩閥の政治家は誰か。", a: ["山県有朋", "伊藤博文", "寺内正毅", "桂太郎"], c: 1 },
-    { q: "1907年、韓国の高宗皇帝がオランダで開催されていた万国平和会議に密使を送り、日韓協約の無効と日本の侵略を国際社会に訴えようとしたものの、拒絶された事件は何か。", a: ["壬午軍乱", "義兵運動", "ハーグ密使事件", "満州密使事件"], c: 2 },
-    { q: "第3次日韓協約による韓国軍隊の解散などをきっかけに、民衆や元軍人らが激しい武装抵抗を展開した、朝鮮全土に広がった運動を何というか。", a: ["独立門運動", "東学党の乱", "義兵運動", "三・一独立運動"], c: 2 },
-    { q: "1910年、日本は「韓国併合条約」を強制し、大韓帝国を完全に滅亡させて自国の領土（植民地）としたが、この出来事を何というか。", a: ["韓国保護化", "韓国併合", "朝鮮租借", "満韓交換"], c: 1 },
-    { q: "韓国併合後、それまでの統監府を廃止し、朝鮮を植民地支配するためにソウルに新設された、強力な権限を持つ統治機関は何か。", a: ["朝鮮総督府", "関東都督府", "台湾総督府", "樺太庁"], c: 0 },
-    { q: "初代の朝鮮総督に就任し、憲兵警察制度を敷いて武断政治を行った陸軍軍人は誰か。", a: ["伊藤博文", "児玉源太郎", "寺内正毅", "乃木希典"], c: 2 },
-    { q: "日露戦争後、日本がロシアから譲り受けた遼東半島南部の租借地と南満州鉄道の属地を統治・警備するために、旅順に設置した機関は何か。", a: ["関東総督府", "朝鮮総督府", "関東都督府", "満州駐留軍"], c: 2 },
-    { q: "ポーツマス条約でロシアから譲り受けた長春・旅順間の鉄道を経営するために、1906年に設立された、半官半民の大規模な国策会社は何か。", a: ["南満州鉄道株式会社", "東洋拓殖株式会社", "満州開発公社", "台湾製糖株式会社"], c: 0 },
-    { q: "1911年、中国で孫文らが指導し、清朝を打倒してアジア最初の共和国を樹立することになった革命を何というか。", a: ["義和団の乱", "辛亥革命", "太平天国", "五・四運動"], c: 1 },
-    { q: "辛亥革命によって1912年、南京を首都として正式に建国された、アジア最初の共和国の国号は何か。", a: ["大清帝国", "中華人民共和国", "中華民国", "満州国"], c: 2 },
-    { q: "立憲政友会の初代総裁であったが、1909年にハルビン駅で安重根に暗殺された人物は誰か。", a: ["山県有朋", "大隈重信", "伊藤博文", "星亨"], c: 2 },
-    { q: "明治末期から大正初期にかけて、山県有朋の後継者である長州藩閥主導の人物と、伊藤博文の後継者である政党主導の人物が、交互に政権を担当した。このうち「長州藩閥・陸軍」を代表して内閣を組織した首相は誰か。", a: ["桂太郎", "西園寺公望", "山本権兵衛", "寺内正毅"], c: 0 },
-    { q: "交互に政権を交代した時代において、伊藤博文の後を継いで立憲政友会の第2代総裁となり、内閣を組織した首相は誰か。", a: ["桂太郎", "西園寺公望", "大隈重信", "原敬"], c: 1 },
-    { q: "第1次西園寺公望内閣が、日露戦争後の軍事輸送や経済発展のために制定し、全国の主要な私鉄を国が買い上げて一本化させた法律は何か。", a: ["鉄道国有法", "国家総動員法", "治安警察法", "陸上交通統制法"], c: 0 },
-    { q: "第2次桂太郎内閣のとき、日露戦争後の思想的な緩みや社会主義思想の台頭を警戒し、国民に勤倹節約や皇室への忠誠を求めて天皇の名で出された詔書は何か。", a: ["軍人勅諭", "教育勅語", "戊申詔書", "治安詔書"], c: 2 },
-    { q: "1910年、明治天皇の暗殺を計画したとして、全国の社会主義者や無政府主義者が一斉に検挙され、翌年に多くの者が死刑となった社会主義弾圧事件を何というか。", a: ["共和演説事件", "大逆事件", "滝川事件", "三・一五事件"], c: 1 },
-    { q: "大逆事件によって検挙され、計画への関与が薄いとされたものの、社会主義運動のリーダーとして翌年死刑に処された思想家は誰か。", a: ["幸徳秋水", "内村鑑三", "片山潜", "堺利彦"], c: 0 },
-    { q: "明治末期から大正初年にかけて、2人の有力政治家が交互に首相を務め、藩閥と政党が妥協しながら政局を安定させていた約10年間の政治体制を何時代というか。", a: ["薩長割拠時代", "超然主義時代", "桂園時代", "大正デモクラシー時代"], c: 2 },
-    { q: "明治維新以降、内閣や議会を超越した立場から、天皇を補佐して次の首相を推薦するなど、国家の最高重大事を決定した政界の重鎮たちを何というか。", a: ["枢密院", "元老", "内大臣", "貴族院"], c: 1 },
-    { q: "元老たちが持っていた憲法上に明文化されていない事実上の権限であり、これによって歴代の首相が実質的に決定されていた特権を何というか。", a: ["統帥権", "内閣委任権", "首相の選任権", "勅令発布権"], c: 2 },
-    { q: "第2次西園寺内閣に対し、陸軍が朝鮮の防衛や中国の辛亥革命への備えを理由として、激しく政府に要求した軍備拡張案は何か。", a: ["2個師団増設", "八八艦隊計画", "満州駐留軍新設", "国家総動員"], c: 0 },
-    { q: "陸軍の要求に対し、日露戦争後の財政難を理由に西園寺内閣が閣議で出した結論はどれか。", a: ["承認", "否決", "延期", "一部修正"], c: 1 },
-    { q: "軍備増設案を否決された陸軍が、陸相を単独辞職させ、さらに後任を出さないことで西園寺内閣を総辞職に追い込んだが、これを可能にした山県有朋制定の制度は何か。", a: ["文官任用令", "統帥権独立の原則", "軍部大臣現役武官制", "治安警察法"], c: 2 },
-    { q: "西園寺内閣が倒れた後、宮中に回って天皇の側近に就いていた桂太郎が、元老の推薦で再び首相として担ぎ出された。このときの桂の役職は何か。", a: ["内大臣", "宮内大臣", "枢密院議長", "元老"], c: 0 },
-    { q: "桂太郎が宮中から突然首相に復帰したことに対し、民衆や政党が「藩閥政治を維持しようとしている」と猛反発して起こした、近代日本初の本格的な憲政擁護運動を何というか。", a: ["自由民権運動", "第一次護憲運動", "第二次護憲運動", "普通選挙運動"], c: 1 },
-    { q: "第一次護憲運動において、新聞や民衆が藩閥打倒を叫ぶ際に共通して掲げた有名なスローガンはどれか。", a: ["尊王攘夷・富国強兵", "政費節減・民力休養", "閥族打破・憲政擁護", "天皇機関・主権在民"], c: 2 },
-    { q: "第一次護憲運動の際、議会で桂太郎首相の姿勢を激しく糾弾し、「憲政の神様」と称えられた立憲政友会の政治家は誰か。", a: ["尾崎行雄", "犬養毅", "加藤高明", "原敬"], c: 0 },
-    { q: "尾崎行雄とともに護憲運動の先頭に立ち、のちに立憲国民党を率いて同じく民衆から絶大な支持を得た政治家は誰か。", a: ["犬養毅", "尾崎行雄", "幣原喜重郎", "吉野作造"], c: 0 },
-    { q: "1913年、民衆が議事堂を取り囲むなか、激しい批判に耐えかねた第3次桂内閣が、わずか50日余りで総辞職に追い込まれたこの政治的な激変を何というか。", a: ["明治十四年の政変", "大正政変", "満州事変", "帝人事件"], c: 1 },
-    { q: "大正期、憲法学の立場から「国家という法人の中に天皇という最高機関がある」と論じ、政党政治の理論的支柱となった東京帝国大学の教授は誰か。", a: ["吉野作造", "美濃部達吉", "穂積八束", "上杉慎吉"], c: 1 },
-    { q: "美濃部達吉が唱え、当時の憲法解釈の主流となった学説を何というか。", a: ["天皇主権説", "天皇機関説", "民本主義", "君主専制説"], c: 1 },
-    { q: "大正政変によって桂太郎内閣が倒れた後に成立し、立憲政友会を与党として軍部大臣現役武官制の緩和などを実現した、薩摩藩閥出身の海軍大将の首相は誰か。", a: ["山本権兵衛", "寺内正毅", "大隈重信", "原敬"], c: 0 },
-    { q: "山本権兵衛内閣が、外国製の軍艦や兵器の輸入をめぐる海軍高官の巨大な汚職事件が発覚したことで、民衆の激しい糾弾を受けて総辞職に追い込まれた事件は何か。", a: ["共和演説事件", "シーメンス事件", "帝人事件", "満鉄汚職事件"], c: 1 },
-    { q: "山本内閣の崩壊後、元老の推薦で久々に首相（第2次）に復帰し、国民的な人気を背景に第一次世界大戦への参戦を決めた人物は誰か。", a: ["板垣退助", "加藤高明", "大隈重信", "寺内正毅"], c: 2 },
-    { q: "第2次大隈重信内閣を支えるため、加藤高明を中心に結成された有力な反政友会系の政党は何か。", a: ["立憲同志会", "憲政本党", "進歩党", "自由党"], c: 0 },
-    { q: "19世紀末以降、民族・宗教の対立が激化し、いつ大戦が起きてもおかしくない状態にあったバルカン半島の通称は何か。", a: ["ヨーロッパの火薬庫", "東洋のベニス", "アジアの十字路", "暗黒の大陸"], c: 0 },
-    { q: "第一次世界大戦前、ヨーロッパで対立していた2大陣営のうち、ドイツ・オーストリア・イタリアが結んでいた同盟を何というか。", a: ["三国協商", "三国同盟", "日英同盟", "同盟罷業"], c: 1 },
-    { q: "三国同盟に対抗して、イギリス・フランス・ロシアの3カ国が結んでいた協調関係の陣営を何というか。", a: ["三国協商", "三国同盟", "連合国同盟", "枢軸国"], c: 0 },
-    { q: "1914年、オーストリアの皇太子夫妻が暗殺され、第一次世界大戦の直接の引き金となった事件は何か。", a: ["サライェヴォ事件", "ミューンヘン事件", "ウィーン事件", "ベルリン事件"], c: 0 },
-    { q: "第2次大隈内閣の外務大臣として、第一次世界大戦が勃発すると日英同盟を理由に掲げて早々とドイツへの参戦を主導した政治家は誰か。", a: ["小村寿太郎", "加藤高明", "陸奥宗光", "幣原喜重郎"], c: 1 },
-    { q: "第一次世界大戦に参戦した日本が、アジア太平洋地域で手薄になっている隙を突き、中国の山東半島における拠点であったどこの国の軍隊を攻撃したか。", a: ["ロシア", "フランス", "イギリス", "ドイツ"], c: 3 },
-    { q: "1915年、日本軍がドイツの租借地であった膠州湾の要衝を占領したが、その中心都市はどこか。", a: ["旅順", "大連", "青島", "奉天"], c: 2 },
-    { q: "1915年、大隈重信内閣が中国の袁世凱政府に対し、山東省のドイツ権益の継承や満州での権益延長など、軍事力を背景に突きつけた強硬な要求は何か。", a: ["二十一ヵ条の要求", "北京議定書", "満韓交換要求", "山東割譲要求"], c: 0 },
-    { q: "二十一ヵ条の要求において、日本が租借期限や鉄道の経営期限を大幅に延長させた、遼東半島南端の2つの重要港湾都市はどこか。", a: ["青島・威海衛", "旅順・大連", "上海・香港", "広東・南京"], c: 1 },
-    { q: "大隈内閣の後に成立した寺内正毅内閣が、中国の段祺瑞政権に対して巨額の秘密資金を貸し付け、日本の権益を認めさせようとした外交政策を何というか。", a: ["西原借款", "満州借款", "寺内融資", "東洋拓殖借款"], c: 0 },
-    { q: "第一次世界大戦中、日本がロシアとの間で結び、中国における両国の利害（権益確保）を互いに確認・保護し合った協定は何か。", a: ["日露協約", "日露同盟", "ポーツマス条約", "日露漁業条約"], c: 0 },
-    { q: "1917年に結ばれ、アメリカが中国における日本の特殊権益を認める代わりに、日本が中国の門戸開放を認めた、両国の外交官の名前がついた協定は何か。", a: ["桂・タフト協定", "ルート・高平協定", "石井・ランシング協定", "ワシントン協定"], c: 2 },
-    { q: "1917年、ロシア革命の過程で労働者や兵士らが組織した、ロシア語で「評議会」を意味する自治的な組織を何というか。", a: ["ソヴィエト", "ドゥーマ", "コミンテルン", "ボリシェヴィキ"], c: 0 },
-    { q: "1917年3月、首都でのデモや暴動をきっかけにロマノフ朝の帝政が崩壊した出来事を何というか。", a: ["ロシア二月革命", "ロシア十月革命", "血の日曜日事件", "ピョートル革命"], c: 0 },
-    { q: "ボリシェヴィキを率いてロシア十月革命を成功させ、世界初の社会主義政権を樹立した最高指導者は誰か。", a: ["スターリン", "トロツキー", "レーニン", "マルクス"], c: 2 },
-    { q: "1917年11月、レーニンらの指導により臨時政府が打倒され、ソヴィエト政権が権力を掌握した革命を何というか。", a: ["ロシア二月革命", "ロシア十月革命", "パリ・コミューン", "辛亥革命"], c: 1 },
-    { q: "ソヴィエト政権が第一次世界大戦から離脱するため、1918年にドイツ側と結んだ単独の講和条約は何か。", a: ["ブレスト=リトフスク条約", "ヴェルサイユ条約", "ポーツマス条約", "補給休戦条約"], c: 0 },
-    { q: "1922年、世界で最初の社会主義国家の連合として正式に成立した国の名称は何か。", a: ["ロシア帝国", "ソヴィエト社会主義共和国連邦", "東ドイツ共和国", "中華人民共和国"], c: 1 },
-    { q: "東部戦線の崩壊と社会主義の拡大を恐れた英米仏日などの列強が、チェコスロバキア軍救出を名目にロシアへ軍隊を送り込んだ軍事干渉を何というか。", a: ["シベリア出兵", "山東出兵", "満州事変", "北清事変"], c: 0 },
-    { q: "大正期を中心に高まった、自由主義・民主主義的な政治改革や社会運動の潮流を総称して何というか。", a: ["自由民権運動", "大正デモクラシー", "国家社会主義運動", "戦後革新運動"], c: 1 },
-    { q: "吉野作造が提唱した、大日本帝国憲法のもとで主権の所在を問わず、民衆の利益と意見を反映させて政治を行うべきだとした民主主義思想は何か。", a: ["天皇機関説", "主権在民論", "民本主義", "社会主義"], c: 2 },
-    { q: "大戦中に超然主義の立場をとって組閣し、シベリア出兵を決断したものの、国内での大騒動の責任をとって退陣した長州藩出身の首相は誰か。", a: ["寺内正毅", "桂太郎", "山県有朋", "清浦奎吾"], c: 0 },
-    { q: "大正政変の直前に結成された立憲同志会を母体として、1916年に結成され、政友会と対立した二大政党の一角は何か。", a: ["憲政会", "立憲政友会", "憲政本党", "進歩党"], c: 0 },
-    { q: "1917年、寺内正毅内閣が外交方針の「挙国一致」をはかるため、各政党の代表（原敬や犬養毅ら）をメンバーに引き込んで政府内に設置した臨時機関は何か。", a: ["枢密院", "臨時外交調査委員会", "内閣法制局", "総力戦研究所"], c: 1 },
-    { q: "第一次世界大戦の勃発により、日本は空前の好景気（大戦景気）を迎え、物価や米の価格はどのように変化したか。", a: ["上昇", "下降", "変化なし", "暴落"], c: 0 },
-    { q: "1918年、シベリア出兵を見込んだ業者の買い占めなどにより米価が急騰し、民衆が米屋を襲撃するなど全国に波及した大暴動を何というか。", a: ["日比谷焼き打ち事件", "米騒動", "大逆事件", "血の日曜日事件"], c: 1 },
-    { q: "米騒動の最初のきっかけとなった、女性たちが「米の県外移出反対」を訴えて集団行動を起こした都道府県はどこか。", a: ["富山県", "高知県", "新潟県", "大阪府"], c: 0 },
-    { q: "米騒動による寺内内閣の退陣後、本格的な政党内閣を組織し、爵位を持たない衆議院議員であったことから国民に大歓迎された人物は誰か。", a: ["原敬", "犬養毅", "加藤高明", "西園寺公望"], c: 0 },
-    { q: "初の本格的政党内閣を組織し、民衆から親しみを込めて呼ばれた原敬のニックネームは何か。", a: ["憲政の神様", "平民宰相", "ライオン首相", "藩閥の巨頭"], c: 1 },
-    { q: "原敬内閣が実施した選挙法改正において、衆議院議員選挙の投票権が得られる直接国税の納税要件は何円以上へと緩和されたか。", a: ["10円以上", "5円以上", "3円以上", "0円"], c: 2 },
-    { q: "原敬内閣が、自党（立憲政友会）に有利な選挙結果をもたらことを狙って導入した新しい選挙区制度は何か。", a: ["小選挙区制", "大選挙区制", "中選挙区制", "比例代表制"], c: 0 },
-    { q: "第一次世界大戦が終了し、ヨーロッパの生産力が回復したことによって、1920年に日本を襲った急激な経済不況を何というか。", a: ["昭和恐慌", "戦後恐慌", "世界大恐慌", "金融恐慌"], c: 1 }
-];
-
-// フィッシャー・イェーツのシャッフルアルゴリズム
-function shuffle(array) {
-    for (let i = array.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]];
-    }
-    return array;
-}
-
-// クイズデータの複製とシャッフル
-const shuffledData = shuffle([...rawData]);
-
-// 画面にクイズを生成
-const container = document.getElementById('quiz-container');
-shuffledData.forEach((item, index) => {
-    const quizItem = document.createElement('div');
-    quizItem.className = 'quiz-item';
-    quizItem.id = `question-${index}`;
-
-    const questionDiv = document.createElement('div');
-    questionDiv.className = 'quiz-question';
-    questionDiv.innerText = `Q${index + 1}. ${item.q}`;
-    quizItem.appendChild(questionDiv);
-
-    const optionsGroup = document.createElement('div');
-    optionsGroup.className = 'options-group';
-
-    const labelPrefix = ['A', 'B', 'C', 'D'];
-    item.a.forEach((option, oIdx) => {
-        const label = document.createElement('label');
-        label.className = 'option-label';
-
-        const radio = document.createElement('input');
-        radio.type = 'radio';
-        radio.name = `q-${index}`;
-        radio.value = oIdx;
-
-        label.appendChild(radio);
-        label.append(` ${labelPrefix[oIdx]}. ${option}`);
-        optionsGroup.appendChild(label);
-    });
-
-    quizItem.appendChild(optionsGroup);
-
-    // 正解表示用の隠し要素
-    const correctDiv = document.createElement('div');
-    correctDiv.className = 'correct-ans';
-    correctDiv.id = `correct-${index}`;
-    correctDiv.innerText = `【正解】 ${labelPrefix[item.c]}. ${item.a[item.c]}`;
-    quizItem.appendChild(correctDiv);
-
-    container.appendChild(quizItem);
-});
-
-// 採点関数
-function calcScore() {
-    let score = 0;
-    const total = shuffledData.length;
-
-    shuffledData.forEach((item, index) => {
-        const selected = document.querySelector(`input[name="q-${index}"]:checked`);
-        const correctDiv = document.getElementById(`correct-${index}`);
-        const quizItem = document.getElementById(`question-${index}`);
+    function switchTab(tabId) {
+        // すべてのセクションを非表示にする
+        const sections = document.querySelectorAll('.quiz-section');
+        sections.forEach(sec => sec.classList.remove('active'));
         
-        // 全ての正解を表示状態にする
-        correctDiv.style.display = 'block';
+        // すべてのタブボタンのactiveクラスを外す
+        const buttons = document.querySelectorAll('.tab-btn');
+        buttons.forEach(btn => btn.classList.remove('active'));
+        
+        // 対象のセクションとボタンをアクティブにする
+        document.getElementById(tabId).classList.add('active');
+        event.currentTarget.classList.add('active');
+    }
 
-        if (selected) {
-            const answerVal = parseInt(selected.value);
-            if (answerVal === item.c) {
-                score++;
-                quizItem.style.borderLeft = "5px solid #27ae60";
-                quizItem.style.paddingLeft = "10px";
-            } else {
-                quizItem.style.borderLeft = "5px solid #c0392b";
-                quizItem.style.paddingLeft = "10px";
-                // 選んだ不正解を目立たせる
-                const labelPrefix = ['A', 'B', 'C', 'D'];
-                const wrongText = document.createElement('span');
-                wrongText.className = 'wrong-choice';
-                wrongText.innerText = ` （あなたの回答: ${labelPrefix[answerVal]} ×）`;
-                correctDiv.appendChild(wrongText);
-            }
+    function toggleAns(btn) {
+        const answerBox = btn.parentElement.nextElementSibling;
+        if (answerBox.classList.contains('show')) {
+            answerBox.classList.remove('show');
+            btn.textContent = '正解を表示';
         } else {
-            // 未回答
-            quizItem.style.borderLeft = "5px solid #f39c12";
-            quizItem.style.paddingLeft = "10px";
-            const noAnsText = document.createElement('span');
-            noAnsText.className = 'wrong-choice';
-            noAnsText.innerText = ` （未回答 ×）`;
-            correctDiv.appendChild(noAnsText);
+            answerBox.classList.add('show');
+            btn.textContent = '正解を隠す';
         }
-    });
-
-    // スコア結果の表示
-    const percent = Math.round((score / total) * 100);
-    const resultDiv = document.getElementById('result');
-    resultDiv.className = 'success';
-    resultDiv.style.display = 'block';
-    resultDiv.innerHTML = `採点完了！<br>点数: ${score} / ${total} 問<br>正解率: ${percent}%`;
-
-    // 画面最上部へスムーズにスクロール
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-}
+    }
 </script>
 
 </body>
